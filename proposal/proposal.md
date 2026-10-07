@@ -354,8 +354,7 @@ the system actually get built next semester?"〉
 > fully responsible for the correctness of all AI-assisted work, including
 > the prototype code.
 
-〈Your disclosure. Naming the tool is not disclosure — name what it drafted,
-what fraction of each artifact was AI-assisted, and how you verified it.〉
+**Q62** (Round 4, prompt 4) *AI Usage*Here is how I used Claude to help me with the proposal. I dictated by voice on my iPhone or iPad using the Apple Notes application, I then copied it and pasted it into Claude code, running in terminal on my Windows desktop. Claude highlighted worthwhile quotes of things that I said and sorted them under the template headings, and added flags and questions to them. Claude made two word corrections at my request (it changed "rotors"to `[disc brakes]`, and changed "avoided" to`[voided]`). I checked Claude's work by reading the quotes. It noted to ensure that it stayed true to what I initially said. But also helped me by researching competitors. I checked its work by doing my own research on those same competitors from their sources. No sentences in the proposal were written by AI. If I had to assign a percentage of the work done on this assignment to AI, I'll say it did about 10%.
 
 ## 8. References
 
