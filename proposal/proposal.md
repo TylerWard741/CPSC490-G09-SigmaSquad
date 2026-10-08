@@ -168,20 +168,22 @@ apart.
 Write each objective the way the guidance above asks — **an action word plus
 the measure that says it is done**, not a role-play sentence:
 
-- **Goal 1: 〈e.g. Secure account management〉** (Epic #〈n〉)
-  - Objective 1.1: 〈Implement member registration and login with hashed
-    credentials, session expiry, and rejection of malformed input.〉 (#〈n〉)
-  - Objective 1.2: 〈Demonstrate the login round-trip in a runnable prototype
-    at the Week-8 in-class check.〉 (#〈n〉)
-- **Goal 2: 〈your second goal〉** (Epic #〈n〉)
-  - Objective 2.1: 〈Action word + what you will complete + how it will be
-    measured〉 (#〈n〉)
+- **Goal 1: Centralized Vehicle Data & Maintenance Tracking** (Epic #〈n〉)
 
-〈Replace the brackets with your own 2–3 goals and their objectives, and put
-the **real issue numbers** in as you file them — gate G8 checks that every
-epic and story in your repository is linked from this section. A fully worked
-version of this, with live issues and a populated board, is in the course
-example repository.〉
+  - Objective 1.1: Implement a database schema and REST API that let a user create, read, update, and delete vehicles and service records (date, mileage, service type, notes). (#〈n〉)
+
+  - Objective 1.2: Build a dashboard that shows each vehicle's maintenance history and supports all CRUD actions from 1.1 on desktop and mobile browsers. (#〈n〉)
+
+  - Objective 1.3: Write automated tests covering every maintenance-record endpoint, with all tests passing in CI. (#〈n〉)
+
+- **Goal 2: Scheduled Maintenance Recommendations & Alerts** (Epic #〈n〉)
+
+  - Objective 2.1: Develop a recommendation engine that uses each vehicle's mileage and service history to compute the next due mileage for at least 3 common service types (oil change, tire rotation, brake inspection). (#〈n〉)
+
+  - Objective 2.2: Display a dashboard alert for any vehicle that has reached or is within 500 miles of a recommended service. (#〈n〉)
+
+  - Objective 2.3: Demonstrate the recommendation and alert logic on at least 5 simulated vehicle-data scenarios, each producing the expected result. (#〈n〉)
+
 
 ## 3. Proposed Approaches
 
