@@ -1,41 +1,37 @@
-# CPSC 490 — Group 〈N〉 〈Group Name〉
+# CPSC 490 — Group 09 Sigma Squad
 
-> **Copy this file to `README.md` in YOUR repository and fill it in.**
-> (In this example repository the root `README.md` is the setup guide, so the
-> team README model lives here.)
-
-**Project title:** 〈Title〉
-**Sponsor:** 〈RTX-3 / EL-1 / SNX-2 / independent〉
-**Section:** 〈01 (Tue) | 05 (Thu)〉
+Project title: Vehicle Maintenance Logger 
+Sponsor: independent 
+Section: 01 (Tue)
 
 ## Team
 
 | Name | GitHub | Role | Leader |
-|---|---|---|---|
-| 〈Last, First〉 | @〈username〉 | 〈e.g. backend, docs lead〉 | ✅ |
-| 〈…〉 | @〈…〉 | 〈…〉 | |
-| 〈…〉 | @〈…〉 | 〈…〉 | |
-| 〈…〉 | @〈…〉 | 〈…〉 | |
+|---|---|---|---| 
+| Ward, Tyler | @TylerWard741 |  team leader, board and sprint reviews | ✅ |
+| Partain-Martinez, Mathieu | @Mathieu2303 |  goals/objectives and README | |
+| Mojica Arevalo, Hector Samuel | @TamtungOS | related work, AI usage and references | |
+| Chien, Ethan | @ready2pullallnighters | problem statements and PR review | |
+| Velasco, Emily | @emilyvlsco | abstract/intro and proposal.md structure | |
 
-**Contact person:** 〈Name〉 — 〈email〉
+Contact person: Tyler Ward — tymdraw@gmail.com
 
 ## Links
 
 - **Proposal:** [`proposal/proposal.md`](proposal/proposal.md)
-- **Project board:** 〈paste your Projects board URL〉
+- **Project board:** https://github.com/users/TylerWard741/projects/1
 - **Specifications:** [`docs/specs/`](docs/specs/) · **Designs:** [`docs/design/`](docs/design/)
 - **Prototype:** [`prototype/`](prototype/) — run instructions in its README
 - **Sprint reviews:** [`docs/sprint-reviews/`](docs/sprint-reviews/)
 
 ## Project summary
 
-〈3–5 sentences a stranger can understand: the problem, your approach, what
-will exist at the end of the semester.〉
+This project focuses on optimizing vehicle maintenance by adding features that allow users to log, mantain, and visualize their vehicle service. Our system uses maintenance records, mileage logs, and repair costs into an user friendly app. This helps vehicle owners easily monitor upkeep schedules and track lifetime ownership expenses in one location. By the end of the semester, we will deliver an interactive web application that gives users complete control over their maintenance records and routine service reminders.
 
 ## How we work
 
 - Sprints: four 2-week sprints (`Sprint 1`–`Sprint 4` milestones).
-  Sprint boundary ritual every other 〈day〉.
+  Sprint boundary ritual every other Tuesday.
 - Every change lands by pull request; **the author never approves their own PR**.
 - Every issue carries: assignee (owner), milestone (sprint), `priority:`,
   and a `sp:` story-point label.
