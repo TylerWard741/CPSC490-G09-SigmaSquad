@@ -168,20 +168,37 @@ apart.
 Write each objective the way the guidance above asks — **an action word plus
 the measure that says it is done**, not a role-play sentence:
 
-- **Goal 1: 〈e.g. Secure account management〉** (Epic #〈n〉)
-  - Objective 1.1: 〈Implement member registration and login with hashed
-    credentials, session expiry, and rejection of malformed input.〉 (#〈n〉)
-  - Objective 1.2: 〈Demonstrate the login round-trip in a runnable prototype
-    at the Week-8 in-class check.〉 (#〈n〉)
-- **Goal 2: 〈your second goal〉** (Epic #〈n〉)
-  - Objective 2.1: 〈Action word + what you will complete + how it will be
-    measured〉 (#〈n〉)
+**Goal 1: Centralized Vehicle Data & Maintenance Tracking** (Epic [#27](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/27))
 
-〈Replace the brackets with your own 2–3 goals and their objectives, and put
-the **real issue numbers** in as you file them — gate G8 checks that every
-epic and story in your repository is linked from this section. A fully worked
-version of this, with live issues and a populated board, is in the course
-example repository.〉
+Enable users to identify their exact vehicle, enter or import its service history, and access accurate maintenance records across desktop and mobile browsers.
+
+**Objectives**
+
+**1.1.** Implement a vehicle database and selection interface that allows users to identify a vehicle by make, model, year, and trim, and save the selected vehicle to their account. ([#29](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/29))
+
+**1.2.** Implement a database schema and REST API supporting create, read, update, and delete (CRUD) operations for vehicles and service records, including service date, mileage, service type, and notes. ([#30](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/30))
+
+**1.3.** Develop an interface that allows users to enter service history manually or import existing service-history data, with imported records validated before being saved. ([#31](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/31))
+
+**1.4.** Build a responsive dashboard that displays each vehicle's maintenance history and supports vehicle and service-record management on desktop and mobile browsers. ([#32](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/32))
+
+**1.5.** Create automated tests covering vehicle selection, service-history entry and import, and maintenance-record API endpoints, with all tests passing in continuous integration (CI). ([#33](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/33))
+
+**Goal 2: Scheduled Maintenance Recommendations & Alerts** (Epic [#28](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/28))
+
+Provide accurate, mileage-based maintenance recommendations and clearly communicate when maintenance is urgent versus when it can be completed at the user's convenience.
+
+**Objectives**
+
+**2.1.** Develop a recommendation engine that uses the selected vehicle's make, model, year, trim, current mileage, and service history to calculate the next recommended service and its due mileage. ([#34](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/34))
+
+**2.2.** Support next-service recommendations for at least three common service types: oil changes, tire rotations, and brake inspections. ([#35](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/35))
+
+**2.3.** Assign and display an urgency label of either "Urgent" or "When convenient" for each applicable maintenance recommendation, using documented mileage-based rules. ([#36](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/36))
+
+**2.4.** Display dashboard alerts for services that are overdue or within 500 miles of their recommended due mileage, applying the appropriate urgency label. ([#37](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/37))
+
+**2.5.** Validate vehicle selection, service-history processing, due-mileage calculations, and urgency labels against at least five simulated vehicle-data scenarios, with every scenario producing the expected result. ([#38](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/38))
 
 ## 3. Proposed Approaches
 
