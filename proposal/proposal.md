@@ -101,28 +101,25 @@ Date: 〈YYYY-MM-DD〉
 
 ### 1.1 Related Work
 
-> Describe the related or existing work in detail. This section is like a
-> survey on the selected problem or topic.
 
-〈Your survey. Cite with bracketed numbers matching §8 — every reference must
-be a source your team has actually read.〉
-
-**Do a comparative analysis, not a list of summaries.** Find the existing
-ideas, products, papers, or tools that attack the same problem and compare
-them against each other on the dimensions that matter for your project, with
-honest pros and cons. Then say plainly what your project does differently and
-why that difference is worth the effort.
+Vehicle maintenance tracking is an impacted space. We surveyed five currently active products as well as the calendar app that many users to keep track of maintenance. We compared them on the feature set that applies to our project such as: record keeping with support for import/export, how reminders are triggered and prioritized, AI assistance, platform coverage, and what users get with the free tier.
 
 | Existing approach | What it does | Pros | Cons | Why ours differs |
 |---|---|---|---|---|
-| 〈product / paper [1]〉 | 〈…〉 | 〈…〉 | 〈…〉 | 〈…〉 |
-| 〈product / paper [2]〉 | 〈…〉 | 〈…〉 | 〈…〉 | 〈…〉 |
-| 〈product / paper [3]〉 | 〈…〉 | 〈…〉 | 〈…〉 | 〈…〉 |
+| CARFAX Car Care [1] - [3] | Using a vehicle's VIN or plate, shows the maintenance schedule recommended by the manufacturer, displays service history by CARFAX network shops, and sends alerts for service or recalls. | Free. Almost no data entry. History can include work done by previous owners | History only populates with CARFAX partnered shop reports. Reminders cannot be adjusted and data cannot be exported. | Ours will allow owners to import records including physical reports and rank upcoming service by urgency. |
+| Drivvo [4],[5] | Logs fuel, expenses, income, services, and routes, sends reminders, renders reports and charts, even allows fleet management. Web, iOS, and Android support. | All three major platforms with sync features. Widespread usage. | Free tier has ads. Additional features require a paid plan. Fleet plans are subscription based. Aimed towards fleets and for-hire drivers. | No ads or paid tier. Narrower scope, created for the individual owner rather than fleets. |
+| Simply Auto [6]-[8] | Logs fill ups, services, expenses, and trips. Sends reminders based on mileage or date. Automatic trip logging with GPS or Bluetooth. Receipt capture. Cloud sync. | Mileage based reminders in free tier. Automatic trip logging. Low price. | Web access, PDF receipts, ad removal with paid tier. iOS app last updated March 24, 2022. Android app last updated October 10, 2024. Legacy interface. Automatic trip logging limited to 15 trips/month. | Web Access for every user, Actively maintained app on all three platforms with support for bulk import of old records. |
+| GarageHub [9]-[11], [16], [17] | Maintenance log with photos and costs, parts inventory, to-fix lists, mileage based reminders, and an AI assistant that reads the user's records before replying. Batch receipt scanning with CSV import with a ranked "UP Next" list. Web, iOS, and Android. | AI answers use user's history for context. Mileage based reminders. Bulk history import with reminders ordered by urgency. | Subscription with a limited free tier of 1 vehicle, 50 service logs, and 15 AI messages/month. Targeted towards hobby mechanics and project cars. | Closest competitor. Our focus is everyday owners, no paid tiers. |
+| MECH AI [12] | AI Repair assistant. Vehicle specific chat, OBD2 reading, repair guides, wiring diagrams, and parts search. Saves garage and maintenance history | Most diagnostic potential with repair help. Web, iOS, and Android. | Free tier is limited to 3 AI messages/day limited to only one vehicle. Targeted for just fixing a problem rather than vehicle maintenance. | Our project will use AI to answer questions about owner's records and schedule, supports record-keeping from repairs. |
+| Calendar App | Owner estimates a date for every service and reminder. | Free, pre-installed on devices. | Owner must manually log mileage intervals to their calendar by each respective trip date. No service history. | Reminders follow tracked mileage, history lives alongside it. |
 
-〈Discuss the table in prose — the table is evidence, the paragraph is the
-argument. "Nothing like this exists" is almost never true and reads as a
-missing survey; if a close competitor exists, say so and explain why you are
-still building this.〉
+Surveying the aforementioned competing products, we primarily focused on two, Drivvo and GarageHub. Drivvo's feature set includes logging, reminders, reports, as well as support for Web, iOS, and Android [4]. GarageHub includes importing old receipts, ranking upcoming service by urgency, even answering service questions from the owner’s own service history, as well as support for Web, iOS, and Android [9], [16], [17]. With multiple competitors already in circulation, our Vehicle Maintenance Logger project isn't unique with GarageHub being the closest competitor. 
+
+Building off of our inspiration to create our own vehicle maintenance logger, our starting point is importing old records into a usable vehicle history. GarageHub offers this, but only the first 10 imported entries are free [16], which a vehicle with a long service history would use up quickly. GarageHub also caps its AI messages [10] with MECH AI having its maintenance schedule locked behind a paid tier [12]. Simply Auto does provide automatic trip detection, however it is limited to 15 trips a month with more locked behind a paid tier [6], and Drivvo shows ads without a subscription [4]. Our application is intended to be the most accessible by vehicle owners wanting to take the initiative of properly maintaining their investment by being free from ads and paid tiers.
+
+MECH AI is another platform for vehicle maintenance, however their focus is for people who work on their own vehicles, similar to GarageHub. GarageHub  supports parts inventories and build logs, and MECH AI provides wiring diagrams. As described in Section 1, our users should not have to read the manual cover to cover. They need a guided setup and straightforward answers on what is urgent and what can wait. Another implementation we look for is to provide climate-based recommendations, meaning that our platform would adjust service recommendations to the climate the vehicle is driven in, rather than being a "one size fits all" approach, none of which of the products surveyed advertises this. 
+
+Finally, we seek to provide a platform that would act as a central hub for vehicle owners where record keeping, automatic mileage tracking, DIY service help, and finding parts live in one place. This could be seen as a consolidated platform combining at least two of the products above.
 
 ### 1.2 Problem Statements
 
@@ -302,29 +299,42 @@ the system actually get built next semester?"〉
 
 ## 7. AI Usage
 
-> Per the course AI policy (see the syllabus, Use of AI Tools), disclose the
-> AI tools used in preparing this proposal and the prototype: which tools,
-> for what tasks (e.g., code generation, test writing, debugging,
-> diagramming), and approximately what fraction of each artifact was
-> AI-assisted.
->
-> Reminder: the prose of this proposal must be your own writing. You remain
-> fully responsible for the correctness of all AI-assisted work, including
-> the prototype code.
+AI tools were used in the proposal. Requirements were dictated by voice-to-text on iPhone using the Apple Notes application, which was copied then pasted into Claude Code. Claude highlighted worthwhile quotes of things relevant to the proposal, and sorted them under the template headings. Claude made two word corrections, changing "rotors" to “disc brakes,” and changed "avoided" to “voided”. Claude was not responsible for writing any other text in the proposal. Claude was also used for research on competitor apps. Its work was independently checked with human research on competitors from the given sources.
 
-〈Your disclosure. Naming the tool is not disclosure — name what it drafted,
-what fraction of each artifact was AI-assisted, and how you verified it.〉
+Additionally, after writing the original proposal draft, Grammarly was used to verify grammar while Claude was used to verify proper citations were used in writing. For example, when referencing GarageHuub's featureset including its receipt importing and platform support, Claude was used to cross-check if my initial citations of [9], [16], and [17] were accurate. If we had to assign a percentage of the work done on this assignment to AI, it would be 10%.
 
 ## 8. References
 
-> [1] Burges, C. J. C. Tutorial on Support Vector Machines for Pattern
-> Recognition. Kluwer Academic Publishers, 1998.
-> [2] Chen, P., Fan, R., and Lin, C. A study on SMO-type decomposition
-> methods for support vector machines. IEEE Transactions on Neural Networks,
-> 2006.
-> [3] For Wikipedia, specify the URL here
-> [4] For a web source, specify the URL here plus date accessed
+[1] CARFAX. CARFAX Car Care (website and FAQ). https://www.carfax.com/Service/ (accessed Oct. 4, 2026).
 
-〈Number references in the order first cited and cite them in the text as
-[1], [2]. Every entry must be a source a team member has actually read and
-can produce on request.〉
+[2] CARFAX. CARFAX Car Care (App Store listing). https://apps.apple.com/us/app/carfax-car-care/id552472249 (accessed Oct. 4, 2026).
+
+[3] CARFAX. CARFAX Car Care (Google Play listing). https://play.google.com/store/apps/details?id=com.carfax.mycarfax (accessed Oct. 4, 2026).
+
+[4] Drivvo. Drivvo: vehicle and fleet management. https://www.drivvo.com/en (accessed Oct. 4, 2026).
+
+[5] Drivvo. Drivvo - Car Expense Tracker (App Store listing). https://apps.apple.com/us/app/drivvo-car-expense-tracker/id1206041425 (accessed Oct. 4, 2026).
+
+[6] Simply Auto. Simply Auto: Car maintenance and mileage tracker. https://simplyauto.app/ (accessed Oct. 4, 2026).
+
+[7] Simply Auto. Simply Auto: Mileage Tracker (App Store listing). https://apps.apple.com/us/app/simply-auto-mileage-tracker/id893278325 (accessed Oct. 4, 2026).
+
+[8] Simply Auto. Simply Auto: Car Maintenance (Google Play listing). https://play.google.com/store/apps/details?id=mrigapps.andriod.fuelcons (accessed Oct. 4, 2026).
+
+[9] GarageHub. GarageHub (home page). https://getgaragehub.com/ (accessed Oct. 4, 2026).
+
+[10] GarageHub. Pricing. https://getgaragehub.com/pricing (accessed Oct. 4, 2026).
+
+[11] GarageHub. Best Car Maintenance Apps 2026: 6 Compared. https://getgaragehub.com/learn/guides/best-car-maintenance-apps/ (accessed Oct. 4, 2026).
+
+[12] MECH AI. MECH AI (home, features, and pricing pages). https://mechai.app/ (accessed Oct. 4, 2026).
+
+[13] KineApps Oy. My Car - Vehicle Manager (App Store listing). https://apps.apple.com/us/app/my-car-vehicle-manager/id1165749302 (accessed Oct. 4, 2026).
+
+[14] Tapronix LLC. MyAutoLog: Car Maintenance Log (App Store listing). https://apps.apple.com/us/app/myautolog-car-maintenance-log/id6748665282 (accessed Oct. 4, 2026).
+
+[15] U.S. Federal Trade Commission. BMW Settles FTC Charges that Its MINI Division Illegally Conditioned Warranty Coverage on Use of Its Parts and Service. https://www.ftc.gov/node/44739 (accessed Oct. 4, 2026).
+
+[16] GarageHub. History Import. https://getgaragehub.com/features/history-import/ (accessed Oct. 9, 2026).
+
+[17] GarageHub. Car Maintenance Reminders. https://getgaragehub.com/features/maintenance-reminders/ (accessed Oct. 9, 2026).
