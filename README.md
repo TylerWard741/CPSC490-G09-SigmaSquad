@@ -11,8 +11,8 @@ Section: 01 (Tue)
 | Ward, Tyler | @TylerWard741 |  team leader, board and sprint reviews | ✅ |
 | Partain-Martinez, Mathieu | @Mathieu2303 |  goals/objectives and README | |
 | Mojica Arevalo, Hector Samuel | @TamtungOS | related work, AI usage and references | |
-| Chien, Ethan | @ready2pullallnighters | problem statements and PR review | |
-| Velasco, Emily | @emilyvlsco | abstract/intro and proposal.md structure | |
+| Velasco, Emily | @emilyvlsco | problem statements and PR review | |
+| Chien, Ethan | @ready2pullallnighters | abstract/intro and proposal.md structure | |
 
 Contact person: Tyler Ward — tymdraw@gmail.com
 
