@@ -71,117 +71,46 @@ Date: 〈YYYY-MM-DD〉
 
 ## 0. Abstract
 
-> The primary purpose of abstract is to help the reader understand the main
-> message of current document (proposal in this case) without reading the
-> entire document. Therefore an abstract should include at least one or two
-> paragraph of background (or motivation) information for the project, a
-> brief description of the problem you are trying to solve in this proposal,
-> a proposed ideas or solutions, the significance of your proposed idea
-> elaborating why the proposed idea is non-trivial, significant, or
-> beneficial in one or two paragraphs, the project goals and outcomes in one
-> paragraph, and a brief description of what you will discuss in this
-> proposal, giving a brief outline of this document in 1-2 sentences in one
-> paragraph. Abstract should not exceed one page. Any abstract exceeded
-> one-page limit must be shortened.
-
-〈Your abstract. Write it last.〉
-
 ## 1. Introduction
 
-> Describe the necessary background on the project field to help the reader
-> understand the field. Assume the reader has B.S. degree in computer science
-> but not necessary knowledgeable in the selected area. You may also briefly
-> describe motivation of the project if any.
->
-> Specify the problem identified and to be solved in this project, the
-> importance or usefulness of the problem solving or project. Further
-> describes what makes your proposal different from existing ones.
-
-〈Your introduction.〉
+Background for a non-car person:
+With every vehicle, there are slightly different mechanical configurations to the chassis to the engine and everything in between, like the transmission and the drive shaft and the ways that the wheels are connected and the different types of transmission and different types of brakes, like drums versus disc brakes. Every vehicle has a different configuration, and different configurations like this require different care instructions.
+In the automotive world, there are several different companies who manufacture different lines of vehicles. These are referred to as manufacturers. When we discuss vehicles, and we reference who made them, we might refer to it as the “make“. When a manufacturer creates a vehicle, they create a specific “model“. For example, many people know the Toyota Prius. In that case, Toyota is the manufacturer and Prius is the name of the model.
+If a manufacturer has a lot of success with a certain model, they will usually reproduce it again on some kind of interval, possibly yearly. Each year, the model is updated slightly with new features and improvements. Even with the same model of vehicle from the same manufacturer, differing year productions of it will require different regular maintenance and service from that of its other year models.
+The manufacturers lay this all out clearly and specifically in a booklet that always comes with a new vehicle that is called the drivers manual or owner’s manual. The information contained in the manuals goes over a wide range of topics, and one of the topics includes suggested regular maintenance. It usually gives a list or table showing the different services that the vehicle needs and it gives you a number of how many miles the vehicle will need to have its service done after. It might recommend that an oil or oil filter change for a vehicle is done every 3000 miles. The user is expected to perform that service on the vehicle at or before that mileage interval in order to keep the vehicle in proper working order.
+The vehicle maintenance logger is an idea for a web app and/or mobile apps that serves as a sort of journal and reminder and logger for an individuals vehicle maintenance.
+One of the team member’s current vehicle, a 2010 Chevy Silverado, was sold to him by his grandparents. They were the original owners and from the day they bought the truck, they saved a record of basically everything regarding the truck throughout its life. Every oil change, new tires, damage repair, transmission fluid replacement, etc., everything was all saved.
+It was plastic tote bin full of many papers. There are plenty of 8 1/2×11 sized papers, small receipts, pamphlets, the owners manual, other pink and yellow receipt type papers that are odd sizes, all sorts of documents. This is very useful information to have as the buyer of the vehicle, but the amount of documentation is overwhelming. It would take a lot of dedication to sit down and read through it and use it to determine what sort of service to do next on the vehicle and at what mileage. An app that can process these records with minimal human overhead can save a lot of time.
+Not having the information to make the appropriate judgment on the vehicle has its consequences. The Chevy’s entire transmission had to be replaced because the fluid was so incredibly bad. If I had transmission fluid check done and flushed way earlier, then I would've saved myself plenty of money on that transmission replacement.
+Why this matters:
+**Q28** If one does not change their tires before the tread gets too shallow, they run the risk of losing traction while driving and can end up injuring themselves and other people. If one does not replace their brake pads before they wear too thin, they will lose their stopping power and run the risk of injuring themselves and other people. These sorts of things are more serious and should be taken more seriously.
+**Q31** Anything that gets skipped causes the vehicle to deteriorate in a way that it is not supposed to if the owner had been following the proper maintenance and that deterioration of the vehicle will result in reduction to their safety and their passengers safety, and the safety of other drivers around them, the resale value of the vehicle will go down because people want to buy vehicle vehicles in good condition and will not pay as much for a vehicle and worse condition, and warranties may be voided if regular maintenance that is advised by the manufacturer is not kept up with by the owner.
+**Q13** This would be valuable for so many people because the average person does not keep up with all the regular recommended services of their vehicles to begin with. It's hassle some to keep track of and people don't want to consult the user manual that their car came with to determine which service is needed that which mileage and then keep track of which services they have done and they do not have have any will or desire to memorize the mileage, unless there was a convenient app that did it for them.
 
 ### 1.1 Related Work
-
-> Describe the related or existing work in detail. This section is like a
-> survey on the selected problem or topic.
+CARFAX, Drivvo, Simply Auto, GarageHub, and MECH AI already exist in this space. They do a lot really well, including showing a vehicle vehicles maintenance schedule from its VIN, track, fuel, expenses, and cost per mile, reminders and alerts for maintenance, services for vehicle fleets, cross platform functionality between Web, iOS, and android, the ability to capture receipts and import or export CSV files, log trips automatically by GPS or Bluetooth, AI assistance that reads users’ vehicle records before answering, and charts and graphs to track these things.
+After looking at Drivvo, I'm really concerned. They have a web version in addition to the iOS and Android apps. They even have a version for managing fleets of vehicles. They have so many good features. It seems like they beat me to the finish line a long time ago. Hopefully we can still find a way to exist in this space, unless it would just be best to move on to a different project idea entirely, but I hope we don't have to do that.
+It seems that Simply Auto doesn't have a web browser version but only the mobile apps. Their UI isn't as modern and nice as Drivvo's. Their iOS app hasn't received an update since March 24 2022. Their Android app hasn't received an update since October 10, 2024.
+Of the competitors, GarageHub seems most in line with what I want to create, but I also like the features of Mech AI that I'm seeing, as well as all the foundational stuff that Drivvo offers. Our creation will ideally be a blend of the best parts of these apps, while improving on their weak points.
+What’s different:
+**Q34** One possible critique is that a calendar or reminder app is enough to keep track of vehicle maintenance. These solutions involves manual work on the part of the user and attention and focus to not only think to do this in the first place, but then take the action to estimate the dates that they might reach the approximate mileage for the regular maintenance as advised in their owners manual and create the notes on their calendar. A calendar or reminder app or any fixed interval template is not optimal in this situation is because vehicle maintenance depends on several factors, including mileage, in what conditions the owner is driving it, how hard they are accelerating and braking, as well as other unaccounted for environmental factors like poorly paved or damage roads to name one example. Using a date to plan vehicle maintenance is not accurate. Our proposed application will be tailored for tracking one's vehicle's "health" by automatically aggregating vehicle information.
+**Q59** Our app is different because it it does all of these things plus more. In addition to offering the features noted above from competitors, it also allows for the bulk ingestion of a pile of old mixed-format paper records, it labels upcoming service as urgent versus when-convenient, it provides a simple to follow, guided tap-through setup, and it does all of this for free and reliably. Additionally, there will be no payment model whatsoever, and no advertisements. Our app will be reliable as well, and will work on time, every time, error-free. Basically, the main selling point of our application is that it has all the features a user could want from these other apps, with an elegant user interface and user experience, it is free and has no hidden pricing at all, and it performs exceptionally well on all devices, and will be supported by its developers far into the future.
 
 〈Your survey. Cite with bracketed numbers matching §8 — every reference must
 be a source your team has actually read.〉
 
-**Do a comparative analysis, not a list of summaries.** Find the existing
-ideas, products, papers, or tools that attack the same problem and compare
-them against each other on the dimensions that matter for your project, with
-honest pros and cons. Then say plainly what your project does differently and
-why that difference is worth the effort.
-
-| Existing approach | What it does | Pros | Cons | Why ours differs |
-|---|---|---|---|---|
-| 〈product / paper [1]〉 | 〈…〉 | 〈…〉 | 〈…〉 | 〈…〉 |
-| 〈product / paper [2]〉 | 〈…〉 | 〈…〉 | 〈…〉 | 〈…〉 |
-| 〈product / paper [3]〉 | 〈…〉 | 〈…〉 | 〈…〉 | 〈…〉 |
-
-〈Discuss the table in prose — the table is evidence, the paragraph is the
-argument. "Nothing like this exists" is almost never true and reads as a
-missing survey; if a close competitor exists, say so and explain why you are
-still building this.〉
 
 ### 1.2 Problem Statements
 
 > Briefly state the problem to solve in this project.
 
-〈Your problem statement(s), **concise** — a few sentences each, no
-background (that was §1) and no solution (that is §3). Number them P1, P2, …
-so later sections can refer back.〉
-
-**Every problem here must connect to the goals and objectives in §2, and
-every goal in §2 must trace back to a problem here.** A goal with no problem
-behind it is scope you invented; a problem with no goal is a problem you are
-not actually solving. Check both directions before you submit — this mapping
-is what the final project report is graded against.
-
-| Problem | Addressed by |
-|---|---|
-| P1 〈one line〉 | 〈Goal 1 (#n)〉 |
-| P2 〈one line〉 | 〈Goal 2 (#n)〉 |
+A user should be able to specify their vehicle make, model, year, and trim level. They will be able to import their service history, and the application will use a combination of logic, rules and AI to provide the user with a list of upcoming services that the vehicle needs done and at what mileages. The second goal is to implement other features like automatic mileage tracking, DIY maintenance help, a parts finder, and climate-based recommendations. A complete app should be able to import any vehicle's service records and receive the correct recommendations of services the vehicle needs next.
+Vehicle owners want their vehicles to last in good health for as long as possible. They want to avoid spending money on unnecessary repairs. To make that happen, they need to preemptively take action to maintain their vehicle by keeping up with its regular service needs as specified by its manufacturer. Missing maintenance can lead to expensive repairs, increased safety risks, diminished resale value, and can potentially cause warranty problems. Existing tools offer great solutions, but our application aims to provide users with a solution that is leagues better than the rest.
+The thing that matters most to a driver is reliability. They want the app to work, no matter what they're doing in it every time without having to worry that it won't work. That is the biggest thing in my mind regarding what we are creating here. We need to be open and transparent and accountable and reliable and feature-rich. Having a catch all app that does everything or just a basic AI catch-all chat bot is a non-goal. It has to simply be a great product so that it sells itself, and it has to live up to exactly what it is selling. It should stick to its purpose while not being buggy, poorly optimized, subversive, or manipulative.
 
 ## 2. Goals and Objectives
 
-> Describe goals and objectives. Goals are general statements of what you are
-> trying to accomplish with the project or problems to solve. Objectives are
-> specific, measurable statements of what you want to complete to reach the
-> project goals. Most projects have 2-3 goals.
->
-> List the objectives for each goal. To write objectives, look at the goal
-> statement and list what you need to complete using action words like use
-> case names in order to meet the goal.
->
-> Note that the goals and objectives in a proposal will be an important
-> metric to evaluate whether or not you successfully finished your project
-> when you turn in your final project report.
-
-Each **goal** is tracked as an **Epic** issue and each **objective** as a
-**User Story** issue in the team repository (see the setup guide's *Epics and user stories* section).
-**Every epic and user story in the repository is linked from this section** —
-CI gate G8 fails if one exists that this section does not link. That is what
-keeps the goals in this document and the work on the board from drifting
-apart.
-
-Write each objective the way the guidance above asks — **an action word plus
-the measure that says it is done**, not a role-play sentence:
-
-- **Goal 1: 〈e.g. Secure account management〉** (Epic #〈n〉)
-  - Objective 1.1: 〈Implement member registration and login with hashed
-    credentials, session expiry, and rejection of malformed input.〉 (#〈n〉)
-  - Objective 1.2: 〈Demonstrate the login round-trip in a runnable prototype
-    at the Week-8 in-class check.〉 (#〈n〉)
-- **Goal 2: 〈your second goal〉** (Epic #〈n〉)
-  - Objective 2.1: 〈Action word + what you will complete + how it will be
-    measured〉 (#〈n〉)
-
-〈Replace the brackets with your own 2–3 goals and their objectives, and put
-the **real issue numbers** in as you file them — gate G8 checks that every
-epic and story in your repository is linked from this section. A fully worked
-version of this, with live issues and a populated board, is in the course
-example repository.〉
+The use of AI tools was used in the proposal. Requirements were dictated by voice on iPhone using the Apple Notes application, which was copied and pasted into Claude Code. Claude highlighted worthwhile quotes of things relevant to the proposal, and sorted them under the template headings. Claude made two word corrections, changing "rotors" to “disc brakes,” and changed "avoided" to “voided”. Claude was not responsible for writing any other text in the proposal. Claude was also used for research on competitor apps. Its work was independently checked with human research on competitors from the given sources. If we had to assign a percentage of the work done on this assignment to AI, it would be 10%.
 
 ## 3. Proposed Approaches
 
@@ -312,8 +241,7 @@ the system actually get built next semester?"〉
 > fully responsible for the correctness of all AI-assisted work, including
 > the prototype code.
 
-〈Your disclosure. Naming the tool is not disclosure — name what it drafted,
-what fraction of each artifact was AI-assisted, and how you verified it.〉
+The use of AI tools was used in the proposal. Requirements were dictated by voice on iPhone using the Apple Notes application, which was copied and pasted into Claude Code. Claude highlighted worthwhile quotes of things relevant to the proposal, and sorted them under the template headings. Claude made two word corrections, changing "rotors" to “disc brakes,” and changed "avoided" to “voided”. Claude was not responsible for writing any other text in the proposal. Claude was also used for research on competitor apps. Its work was independently checked with human research on competitors from the given sources. If we had to assign a percentage of the work done on this assignment to AI, it would be 10%.
 
 ## 8. References
 

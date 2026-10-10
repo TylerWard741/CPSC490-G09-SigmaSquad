@@ -1,28 +1,25 @@
-# CPSC 490 — Group 〈N〉 〈Group Name〉
+# CPSC 490 — Group 09 Sigma Squad
 
-> **Copy this file to `README.md` in YOUR repository and fill it in.**
-> (In this example repository the root `README.md` is the setup guide, so the
-> team README model lives here.)
-
-**Project title:** 〈Title〉
-**Sponsor:** 〈RTX-3 / EL-1 / SNX-2 / independent〉
+**Project title:** Vehicle Maintenance Logger
+**Sponsor:** independent
 **Section:** 〈01 (Tue) | 05 (Thu)〉
 
 ## Team
 
 | Name | GitHub | Role | Leader |
 |---|---|---|---|
-| 〈Last, First〉 | @〈username〉 | 〈e.g. backend, docs lead〉 | ✅ |
-| 〈…〉 | @〈…〉 | 〈…〉 | |
-| 〈…〉 | @〈…〉 | 〈…〉 | |
-| 〈…〉 | @〈…〉 | 〈…〉 | |
+| Ward, Tyler | @TylerWard741 | 〈e.g. backend, docs lead〉 | ✅ |
+| Partain-Martinez, Mathieu | @Mathieu2303 | 〈…〉 | |
+| Mojica Arevalo, Hector Samuel | @TamtungOS | 〈…〉 | |
+| Chien, Ethan | @toodols | 〈…〉 | |
+| Velasco, Emily | @emilyvlsco | 〈…〉 | |
 
-**Contact person:** 〈Name〉 — 〈email〉
+**Contact person:** Tyler Ward — tymdraw@gmail.com
 
 ## Links
 
 - **Proposal:** [`proposal/proposal.md`](proposal/proposal.md)
-- **Project board:** 〈paste your Projects board URL〉
+- **Project board:** https://github.com/users/TylerWard741/projects/1
 - **Specifications:** [`docs/specs/`](docs/specs/) · **Designs:** [`docs/design/`](docs/design/)
 - **Prototype:** [`prototype/`](prototype/) — run instructions in its README
 - **Sprint reviews:** [`docs/sprint-reviews/`](docs/sprint-reviews/)
