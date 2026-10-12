@@ -71,6 +71,10 @@ Date: 〈YYYY-MM-DD〉
 
 ## 0. Abstract
 
+Vehicle maintenance and car servicing is essential to the reliability and efficiency of a vehicle.  Despite its importance, the process as a whole can be quite overwhelming.  Automakers provide an owner’s manual, but they do not prioritize conciseness, adaptability, and they do not account for the user's ability to interpret it or the user’s automotive knowledge. After years of operation, car owners will accumulate all kinds of receipts, invoices, and documents that detail services that were already completed. These documents need to be manually accounted for to effectively determine service requirements for a vehicle.  
+To better manage vehicle maintenance records and provide the most accurate logs for car owners, the project proposed focuses on a vehicle maintenance logger.  The logger will prioritize organization, adaptability, and accuracy, all while maintaining a user friendly system.  Users of the maintenance logger will be able to input vehicle specifications into the system: make, model, year, and existing records. The information will be processed, organized, and used to provide logical recommendations for future services. Automatic mileage tracking, DIY maintenance logs, a parts finder, climate based recommendations, and maintenance reminders are a few of the key features proposed. 
+The following proposal will discuss in further detail, the main issue to be solved with current vehicle maintenance processes.  It will examine existing applications and propose a new system with more distinguishing features. The proposal is intended to recommend improvements to already existing features, as well as incorporate newly developed ones. The project's goals and the intended direction for a reliable vehicle management system will also be specifically outlined. 
+
 ## 1. Introduction
 
 Background for a non-car person:
