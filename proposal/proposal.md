@@ -110,7 +110,43 @@ The thing that matters most to a driver is reliability. They want the app to wor
 
 ## 2. Goals and Objectives
 
-The use of AI tools was used in the proposal. Requirements were dictated by voice on iPhone using the Apple Notes application, which was copied and pasted into Claude Code. Claude highlighted worthwhile quotes of things relevant to the proposal, and sorted them under the template headings. Claude made two word corrections, changing "rotors" to “disc brakes,” and changed "avoided" to “voided”. Claude was not responsible for writing any other text in the proposal. Claude was also used for research on competitor apps. Its work was independently checked with human research on competitors from the given sources. If we had to assign a percentage of the work done on this assignment to AI, it would be 10%.
+> Describe goals and objectives. Goals are general statements of what you are
+> trying to accomplish with the project or problems to solve. Objectives are
+> specific, measurable statements of what you want to complete to reach the
+> project goals. Most projects have 2-3 goals.
+>
+> List the objectives for each goal. To write objectives, look at the goal
+> statement and list what you need to complete using action words like use
+> case names in order to meet the goal.
+>
+> Note that the goals and objectives in a proposal will be an important
+> metric to evaluate whether or not you successfully finished your project
+> when you turn in your final project report.
+
+Each **goal** is tracked as an **Epic** issue and each **objective** as a
+**User Story** issue in the team repository (see the setup guide's *Epics and user stories* section).
+**Every epic and user story in the repository is linked from this section** —
+CI gate G8 fails if one exists that this section does not link. That is what
+keeps the goals in this document and the work on the board from drifting
+apart.
+
+Write each objective the way the guidance above asks — **an action word plus
+the measure that says it is done**, not a role-play sentence:
+
+- **Goal 1: 〈e.g. Secure account management〉** (Epic #〈n〉)
+  - Objective 1.1: 〈Implement member registration and login with hashed
+    credentials, session expiry, and rejection of malformed input.〉 (#〈n〉)
+  - Objective 1.2: 〈Demonstrate the login round-trip in a runnable prototype
+    at the Week-8 in-class check.〉 (#〈n〉)
+- **Goal 2: 〈your second goal〉** (Epic #〈n〉)
+  - Objective 2.1: 〈Action word + what you will complete + how it will be
+    measured〉 (#〈n〉)
+
+〈Replace the brackets with your own 2–3 goals and their objectives, and put
+the **real issue numbers** in as you file them — gate G8 checks that every
+epic and story in your repository is linked from this section. A fully worked
+version of this, with live issues and a populated board, is in the course
+example repository.〉
 
 ## 3. Proposed Approaches
 
