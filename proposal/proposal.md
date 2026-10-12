@@ -4,8 +4,8 @@
 **CPSC 490 Undergraduate Seminar in Computer Science — Proposal for Capstone Project**
 
 **Group 09 — Sigma Squad** · Sponsor: independent
-Authors:
 
+**Authors**:
 | Name | Username |
 | -- | -- |
 |Ward, Tyler|@TylerWard741|
