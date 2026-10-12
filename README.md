@@ -26,7 +26,7 @@ Contact person: Tyler Ward — tymdraw@gmail.com
 
 ## Project summary
 
-This project helps vehicle owners stay on top of maintenance by letting them identify their exact vehicle, log or import its service history, and see a clear, mileage-based answer to what service is due next. Our system combines each vehicle's make, model, year, trim, current mileage, and service history to recommend upcoming maintenance and label it "urgent" or "when convenient." By the end of the semester, we will deliver an interactive web application that gives users a single, reliable place to track their vehicle's maintenance and know exactly what to take care of and when.
+This project allows vehicle owners to stay on top of maintenance by letting them identify their exact vehicle, log or import its service history, and have a clear, mileage-based answer to what service is due next. Our system combines each vehicle's make, model, year, trim, current mileage, and service history to recommend upcoming maintenance and label it "urgent" or "when convenient." By the end of the semester, we will deliver an interactive demo that demonstrates the use cases of this project.
 
 ## How we work
 
