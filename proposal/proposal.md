@@ -5,7 +5,9 @@
 
 **Group 09 — Sigma Squad** · Sponsor: independent
 Authors:
-|Name|Username|
+
+| Name | Username |
+| -- | -- |
 |Ward, Tyler|@TylerWard741|
 |Partain-Martinez, Mathieu|@Mathieu2303|
 |Mojica Arevalo, Hector Samuel|@TamtungOS|
