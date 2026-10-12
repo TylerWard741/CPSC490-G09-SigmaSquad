@@ -210,6 +210,12 @@ G8 fails if such an issue exists that this section does not link.
 | #8 | Task | Rework proposal Abstract and Introduction to match the skeleton and fix known problems | -- | @ready2pullallnighters | Sprint 1 |
 | #9 | Task | Fix proposal section 7 AI Usage and section 8 References | -- | @TamtungOS | Sprint 1 |
 | #10 | Task | Fill proposal.md header fields and list every Sprint 1 issue in section 4 | -- | @ready2pullallnighters | Sprint 1 |
+| #11 | Task | Replace develop's template README with the real project README | -- | @Mathieu2303 | Sprint 1 |
+| #12 | Task | Review and merge the instructor's open PRs #2 and #4 into develop | -- | @emilyvlsco | Sprint 1 |
+| #13 | Task | Fill docs/development-plan.md (team charter, QA rotation, AI rules, risk register) | -- | -- | Sprint 1 |
+| #14 | Task | Add the three board views and put every issue on the project board | -- | @TylerWard741 | Sprint 1 |
+| #15 | Task | Write the Sprint 1 review (docs/sprint-reviews/sprint-1.md) at the sprint boundary | -- | @TylerWard741 | Sprint 1 |
+| #19 | Task | Write the initial HW4 proposal draft and archive it in the repo for the team to refine | -- | @TylerWard741 | Sprint 1 |
 
 ## 5. Project Outcomes
 
