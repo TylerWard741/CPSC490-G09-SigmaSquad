@@ -26,7 +26,7 @@ Contact person: Tyler Ward — tymdraw@gmail.com
 
 ## Project summary
 
-This project focuses on optimizing vehicle maintenance by adding features that allow users to log, mantain, and visualize their vehicle service. Our system uses maintenance records, mileage logs, and repair costs into an user friendly app. This helps vehicle owners easily monitor upkeep schedules and track lifetime ownership expenses in one location. By the end of the semester, we will deliver an interactive web application that gives users complete control over their maintenance records and routine service reminders.
+This project helps vehicle owners stay on top of maintenance by letting them identify their exact vehicle, log or import its service history, and see a clear, mileage-based answer to what service is due next. Our system combines each vehicle's make, model, year, trim, current mileage, and service history to recommend upcoming maintenance and label it "urgent" or "when convenient." By the end of the semester, we will deliver an interactive web application that gives users a single, reliable place to track their vehicle's maintenance and know exactly what to take care of and when.
 
 ## How we work
 
