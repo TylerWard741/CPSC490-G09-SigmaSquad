@@ -71,77 +71,64 @@ Date: 〈YYYY-MM-DD〉
 
 ## 0. Abstract
 
-> The primary purpose of abstract is to help the reader understand the main
-> message of current document (proposal in this case) without reading the
-> entire document. Therefore an abstract should include at least one or two
-> paragraph of background (or motivation) information for the project, a
-> brief description of the problem you are trying to solve in this proposal,
-> a proposed ideas or solutions, the significance of your proposed idea
-> elaborating why the proposed idea is non-trivial, significant, or
-> beneficial in one or two paragraphs, the project goals and outcomes in one
-> paragraph, and a brief description of what you will discuss in this
-> proposal, giving a brief outline of this document in 1-2 sentences in one
-> paragraph. Abstract should not exceed one page. Any abstract exceeded
-> one-page limit must be shortened.
-
-〈Your abstract. Write it last.〉
+Vehicle maintenance and car servicing is essential to the reliability and efficiency of a vehicle.  Despite its importance, the process as a whole can be quite overwhelming.  Automakers provide an owner’s manual, but they do not prioritize conciseness, adaptability, and they do not account for the user's ability to interpret it or the user’s automotive knowledge. After years of operation, car owners will accumulate all kinds of receipts, invoices, and documents that detail services that were already completed. These documents need to be manually accounted for to effectively determine service requirements for a vehicle.  
+To better manage vehicle maintenance records and provide the most accurate logs for car owners, the project proposed focuses on a vehicle maintenance logger.  The logger will prioritize organization, adaptability, and accuracy, all while maintaining a user friendly system.  Users of the maintenance logger will be able to input vehicle specifications into the system: make, model, year, and existing records. The information will be processed, organized, and used to provide logical recommendations for future services. Automatic mileage tracking, DIY maintenance logs, a parts finder, climate based recommendations, and maintenance reminders are a few of the key features proposed. 
+The following proposal will discuss in further detail, the main issue to be solved with current vehicle maintenance processes.  It will examine existing applications and propose a new system with more distinguishing features. The proposal is intended to recommend improvements to already existing features, as well as incorporate newly developed ones. The project's goals and the intended direction for a reliable vehicle management system will also be specifically outlined. 
 
 ## 1. Introduction
 
-> Describe the necessary background on the project field to help the reader
-> understand the field. Assume the reader has B.S. degree in computer science
-> but not necessary knowledgeable in the selected area. You may also briefly
-> describe motivation of the project if any.
->
-> Specify the problem identified and to be solved in this project, the
-> importance or usefulness of the problem solving or project. Further
-> describes what makes your proposal different from existing ones.
-
-〈Your introduction.〉
+Background for a non-car person:
+With every vehicle, there are slightly different mechanical configurations to the chassis to the engine and everything in between, like the transmission and the drive shaft and the ways that the wheels are connected and the different types of transmission and different types of brakes, like drums versus disc brakes. Every vehicle has a different configuration, and different configurations like this require different care instructions.
+In the automotive world, there are several different companies who manufacture different lines of vehicles. These are referred to as manufacturers. When we discuss vehicles, and we reference who made them, we might refer to it as the “make“. When a manufacturer creates a vehicle, they create a specific “model“. For example, many people know the Toyota Prius. In that case, Toyota is the manufacturer and Prius is the name of the model.
+If a manufacturer has a lot of success with a certain model, they will usually reproduce it again on some kind of interval, possibly yearly. Each year, the model is updated slightly with new features and improvements. Even with the same model of vehicle from the same manufacturer, differing year productions of it will require different regular maintenance and service from that of its other year models.
+The manufacturers lay this all out clearly and specifically in a booklet that always comes with a new vehicle that is called the drivers manual or owner’s manual. The information contained in the manuals goes over a wide range of topics, and one of the topics includes suggested regular maintenance. It usually gives a list or table showing the different services that the vehicle needs and it gives you a number of how many miles the vehicle will need to have its service done after. It might recommend that an oil or oil filter change for a vehicle is done every 3000 miles. The user is expected to perform that service on the vehicle at or before that mileage interval in order to keep the vehicle in proper working order.
+The vehicle maintenance logger is an idea for a web app and/or mobile apps that serves as a sort of journal and reminder and logger for an individuals vehicle maintenance.
+One of the team member’s current vehicle, a 2010 Chevy Silverado, was sold to him by his grandparents. They were the original owners and from the day they bought the truck, they saved a record of basically everything regarding the truck throughout its life. Every oil change, new tires, damage repair, transmission fluid replacement, etc., everything was all saved.
+It was plastic tote bin full of many papers. There are plenty of 8 1/2×11 sized papers, small receipts, pamphlets, the owners manual, other pink and yellow receipt type papers that are odd sizes, all sorts of documents. This is very useful information to have as the buyer of the vehicle, but the amount of documentation is overwhelming. It would take a lot of dedication to sit down and read through it and use it to determine what sort of service to do next on the vehicle and at what mileage. An app that can process these records with minimal human overhead can save a lot of time.
+Not having the information to make the appropriate judgment on the vehicle has its consequences. The Chevy’s entire transmission had to be replaced because the fluid was so incredibly bad. If I had transmission fluid check done and flushed way earlier, then I would've saved myself plenty of money on that transmission replacement.
+Why this matters:
+If one does not change their tires before the tread gets too shallow, they run the risk of losing traction while driving and can end up injuring themselves and other people. If one does not replace their brake pads before they wear too thin, they will lose their stopping power and run the risk of injuring themselves and other people. These sorts of things are more serious and should be taken more seriously.
+Anything that gets skipped causes the vehicle to deteriorate in a way that it is not supposed to if the owner had been following the proper maintenance and that deterioration of the vehicle will result in reduction to their safety and their passengers safety, and the safety of other drivers around them, the resale value of the vehicle will go down because people want to buy vehicle vehicles in good condition and will not pay as much for a vehicle and worse condition, and warranties may be voided if regular maintenance that is advised by the manufacturer is not kept up with by the owner.
+This would be valuable for so many people because the average person does not keep up with all the regular recommended services of their vehicles to begin with. It's hassle some to keep track of and people don't want to consult the user manual that their car came with to determine which service is needed that which mileage and then keep track of which services they have done and they do not have have any will or desire to memorize the mileage, unless there was a convenient app that did it for them.
 
 ### 1.1 Related Work
 
-> Describe the related or existing work in detail. This section is like a
-> survey on the selected problem or topic.
 
-〈Your survey. Cite with bracketed numbers matching §8 — every reference must
-be a source your team has actually read.〉
-
-**Do a comparative analysis, not a list of summaries.** Find the existing
-ideas, products, papers, or tools that attack the same problem and compare
-them against each other on the dimensions that matter for your project, with
-honest pros and cons. Then say plainly what your project does differently and
-why that difference is worth the effort.
+Vehicle maintenance tracking is a crowded space. We surveyed five currently active products as well as the calendar app that many users use to keep track of maintenance. We compared them on the feature set that applies to our project such as: record keeping with support for import/export, how reminders are triggered and prioritized, AI assistance, platform coverage, and what users get with the free tier.
 
 | Existing approach | What it does | Pros | Cons | Why ours differs |
 |---|---|---|---|---|
-| 〈product / paper [1]〉 | 〈…〉 | 〈…〉 | 〈…〉 | 〈…〉 |
-| 〈product / paper [2]〉 | 〈…〉 | 〈…〉 | 〈…〉 | 〈…〉 |
-| 〈product / paper [3]〉 | 〈…〉 | 〈…〉 | 〈…〉 | 〈…〉 |
+| CARFAX Car Care [1] - [3] | Using a vehicle's VIN or plate, shows the maintenance schedule recommended by the manufacturer, displays service history by CARFAX network shops, and sends alerts for service or recalls. | Free. Almost no data entry. History can include work done by previous owners | History only populates with CARFAX partnered shop reports. | Ours will allow owners to import records including physical reports and rank upcoming service by urgency. |
+| Drivvo [4],[5] | Logs fuel, expenses, income, services, and routes, sends reminders, renders reports and charts, even allows fleet management. Web, iOS, and Android support. | All three major platforms with sync features. Widespread usage. | Free tier has ads. Additional features require a paid plan. Fleet plans are subscription based. Aimed towards fleets and for-hire drivers. | No ads or paid tier. Narrower scope, created for the individual owner rather than fleets. |
+| Simply Auto [6]-[8] | Logs fill ups, services, expenses, and trips. Sends reminders based on mileage or date. Automatic trip logging with GPS or Bluetooth. Receipt capture. Cloud sync. | Mileage based reminders in free tier. Automatic trip logging. Low price. | Web access, PDF receipts, ad removal with paid tier. iOS app last updated March 24, 2022. Android app last updated October 10, 2024. Legacy interface. Automatic trip logging limited to 15 trips/month. | Ours will have web access for every user regardless of paid tier status, actively maintained app on all three platforms with support for bulk import of old records. |
+| GarageHub [9]-[11], [13], [14] | Maintenance log with photos and costs, parts inventory, to-fix lists, mileage based reminders, and an AI assistant that reads the user's records before replying. Batch receipt scanning with CSV import with a ranked "Up Next" list. Web, iOS, and Android. | AI answers use user's history for context. Mileage based reminders. Bulk history import with reminders ordered by urgency. | Subscription with a limited free tier of 1 vehicle, 50 service logs, and 15 AI messages/month with a 10-entry import cap. Targeted towards hobby mechanics and project cars. | Closest competitor. Our focus is everyday owners, no paid tiers. |
+| MECH AI [12] | AI Repair assistant. Vehicle specific chat, OBD2 reading, repair guides, wiring diagrams, and parts search. Saves garage and maintenance history | Most diagnostic potential with repair help. Web, iOS, and Android. | Free tier is limited to 3 AI messages/day. Targeted for just fixing a problem rather than vehicle maintenance. | Our project will use AI to answer questions about owner's records and schedule, supports record-keeping from repairs. |
+| Calendar App | Owner estimates a date for every service and reminder. | Free, pre-installed on devices. | Owner must manually log mileage intervals to their calendar by each respective trip date. No service history. | Reminders follow tracked mileage, history lives alongside it. |
 
-〈Discuss the table in prose — the table is evidence, the paragraph is the
-argument. "Nothing like this exists" is almost never true and reads as a
-missing survey; if a close competitor exists, say so and explain why you are
-still building this.〉
+Surveying the aforementioned competing products, we primarily focused on two, Drivvo and GarageHub. Drivvo's feature set includes logging, reminders, reports, as well as support for Web, iOS, and Android [4]. GarageHub includes importing old receipts, ranking upcoming service by urgency, even answering service questions from the owner’s own service history, as well as support for Web, iOS, and Android [9], [13], [14]. With multiple competitors already in circulation, our Vehicle Maintenance Logger project isn't unique with GarageHub being the closest competitor. 
+
+Building off of our inspiration to create our own vehicle maintenance logger, our starting point is importing old records into a usable vehicle history. GarageHub offers this, but only the first 10 imported entries are free [13], which a vehicle with a long service history would use up quickly. GarageHub also caps its AI messages [10] with MECH AI having its maintenance schedule locked behind a paid tier [12]. Simply Auto does provide automatic trip detection, however it is limited to 15 trips a month with more locked behind a paid tier [6], and Drivvo shows ads without a subscription [4]. Our application is intended to be the most accessible by vehicle owners wanting to take the initiative of properly maintaining their investment by being free from ads and paid tiers.
+
+MECH AI is another platform for vehicle maintenance, however their focus is for people who work on their own vehicles, similar to GarageHub. GarageHub supports parts inventories and build logs, and MECH AI provides wiring diagrams. As described in Section 1, our users should not have to read the manual cover to cover. They need a guided setup and straightforward answers on what is urgent and what can wait. Another implementation we look for is to provide climate-based recommendations, meaning that our platform would adjust service recommendations to the climate the vehicle is driven in. 
+
+Finally, we seek to provide a platform that would act as a central hub for vehicle owners where record keeping, automatic mileage tracking, DIY service help, and finding parts live in one place. This could be seen as a consolidated platform combining at least two of the products above.
 
 ### 1.2 Problem Statements
 
 > Briefly state the problem to solve in this project.
 
-〈Your problem statement(s), **concise** — a few sentences each, no
-background (that was §1) and no solution (that is §3). Number them P1, P2, …
-so later sections can refer back.〉
+**P1: Maintenance Record Management**
 
-**Every problem here must connect to the goals and objectives in §2, and
-every goal in §2 must trace back to a problem here.** A goal with no problem
-behind it is scope you invented; a problem with no goal is a problem you are
-not actually solving. Check both directions before you submit — this mapping
-is what the final project report is graded against.
+Vehicle maintenance records can be lengthy, disorganized, and spread across various documents. Manually accessing these records can make it difficult to determine a vehicle's maintenance history. Vehicles of different makes, models, years, and trims require different services at different times. 
+
+**P2: Determining Maintenance Requirements and Urgency**
+
+Future vehicle services depend on previous services, a vehicle's specifications, and current mileage. Vehicle owners may have difficulty recognizing which services require immediate action and which services can wait. 
 
 | Problem | Addressed by |
 |---|---|
-| P1 〈one line〉 | 〈Goal 1 (#n)〉 |
-| P2 〈one line〉 | 〈Goal 2 (#n)〉 |
+| P1: Maintenance Record Management | G1: Centralized Vehicle Data & Maintenance Tracking ([#27](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/27)) |
+| P2: Determining Maintenance Requirements and Urgency | G2: Scheduled Maintenance Recommendations & Alerts ([#28](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/28)) |
 
 ## 2. Goals and Objectives
 
@@ -168,20 +155,37 @@ apart.
 Write each objective the way the guidance above asks — **an action word plus
 the measure that says it is done**, not a role-play sentence:
 
-- **Goal 1: 〈e.g. Secure account management〉** (Epic #〈n〉)
-  - Objective 1.1: 〈Implement member registration and login with hashed
-    credentials, session expiry, and rejection of malformed input.〉 (#〈n〉)
-  - Objective 1.2: 〈Demonstrate the login round-trip in a runnable prototype
-    at the Week-8 in-class check.〉 (#〈n〉)
-- **Goal 2: 〈your second goal〉** (Epic #〈n〉)
-  - Objective 2.1: 〈Action word + what you will complete + how it will be
-    measured〉 (#〈n〉)
+**Goal 1: Centralized Vehicle Data & Maintenance Tracking** (Epic [#27](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/27))
 
-〈Replace the brackets with your own 2–3 goals and their objectives, and put
-the **real issue numbers** in as you file them — gate G8 checks that every
-epic and story in your repository is linked from this section. A fully worked
-version of this, with live issues and a populated board, is in the course
-example repository.〉
+Enable users to identify their exact vehicle, enter or import its service history, and access accurate maintenance records across desktop and mobile browsers.
+
+**Objectives**
+
+**1.1.** Implement a vehicle database and selection interface that allows users to identify a vehicle by make, model, year, and trim, and save the selected vehicle to their account. ([#29](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/29))
+
+**1.2.** Implement a database schema and REST API supporting create, read, update, and delete (CRUD) operations for vehicles and service records, including service date, mileage, service type, and notes. ([#30](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/30))
+
+**1.3.** Develop an interface that allows users to enter service history manually or import existing service-history data, with imported records validated before being saved. ([#31](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/31))
+
+**1.4.** Build a responsive dashboard that displays each vehicle's maintenance history and supports vehicle and service-record management on desktop and mobile browsers. ([#32](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/32))
+
+**1.5.** Create automated tests covering vehicle selection, service-history entry and import, and maintenance-record API endpoints, with all tests passing in continuous integration (CI). ([#33](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/33))
+
+**Goal 2: Scheduled Maintenance Recommendations & Alerts** (Epic [#28](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/28))
+
+Provide accurate, mileage-based maintenance recommendations and clearly communicate when maintenance is urgent versus when it can be completed at the user's convenience.
+
+**Objectives**
+
+**2.1.** Develop a recommendation engine that uses the selected vehicle's make, model, year, trim, current mileage, and service history to calculate the next recommended service and its due mileage. ([#34](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/34))
+
+**2.2.** Support next-service recommendations for at least three common service types: oil changes, tire rotations, and brake inspections. ([#35](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/35))
+
+**2.3.** Assign and display an urgency label of either "Urgent" or "When convenient" for each applicable maintenance recommendation, using documented mileage-based rules. ([#36](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/36))
+
+**2.4.** Display dashboard alerts for services that are overdue or within 500 miles of their recommended due mileage, applying the appropriate urgency label. ([#37](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/37))
+
+**2.5.** Validate vehicle selection, service-history processing, due-mileage calculations, and urgency labels against at least five simulated vehicle-data scenarios, with every scenario producing the expected result. ([#38](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/38))
 
 ## 3. Proposed Approaches
 
@@ -302,29 +306,38 @@ the system actually get built next semester?"〉
 
 ## 7. AI Usage
 
-> Per the course AI policy (see the syllabus, Use of AI Tools), disclose the
-> AI tools used in preparing this proposal and the prototype: which tools,
-> for what tasks (e.g., code generation, test writing, debugging,
-> diagramming), and approximately what fraction of each artifact was
-> AI-assisted.
->
-> Reminder: the prose of this proposal must be your own writing. You remain
-> fully responsible for the correctness of all AI-assisted work, including
-> the prototype code.
+AI tools were used in the proposal. Requirements were dictated by voice-to-text on iPhone using the Apple Notes application, which was copied then pasted into Claude Code. Claude highlighted worthwhile quotes of things relevant to the proposal, and sorted them under the template headings. Claude made two word corrections, changing "rotors" to “disc brakes,” and changed "avoided" to “voided”. Claude was not responsible for writing any other text in the proposal. Claude was also used for research on competitor apps. Its work was independently checked with human research on competitors from the given sources.
 
-〈Your disclosure. Naming the tool is not disclosure — name what it drafted,
-what fraction of each artifact was AI-assisted, and how you verified it.〉
+Additionally, after writing the original proposal draft, Grammarly was used to verify grammar while Claude was used to verify proper citations were used in writing. For example, when referencing GarageHub's feature set including its receipt importing and platform support, Claude was used to cross-check if our initial citations of [9], [13], and [14] were accurate. If we had to assign a percentage of the work done on this assignment to AI, it would be 10%.
+
+ChatGPT was used to review grammar and clarity in Section 1.2, and to verify that the problem statements aligned with the project goals.  The problem statements were not generated by AI.
 
 ## 8. References
 
-> [1] Burges, C. J. C. Tutorial on Support Vector Machines for Pattern
-> Recognition. Kluwer Academic Publishers, 1998.
-> [2] Chen, P., Fan, R., and Lin, C. A study on SMO-type decomposition
-> methods for support vector machines. IEEE Transactions on Neural Networks,
-> 2006.
-> [3] For Wikipedia, specify the URL here
-> [4] For a web source, specify the URL here plus date accessed
+[1] CARFAX. CARFAX Car Care (website and FAQ). https://www.carfax.com/Service/ (accessed Oct. 4, 2026).
 
-〈Number references in the order first cited and cite them in the text as
-[1], [2]. Every entry must be a source a team member has actually read and
-can produce on request.〉
+[2] CARFAX. CARFAX Car Care (App Store listing). https://apps.apple.com/us/app/carfax-car-care/id552472249 (accessed Oct. 4, 2026).
+
+[3] CARFAX. CARFAX Car Care (Google Play listing). https://play.google.com/store/apps/details?id=com.carfax.mycarfax (accessed Oct. 4, 2026).
+
+[4] Drivvo. Drivvo: vehicle and fleet management. https://www.drivvo.com/en (accessed Oct. 4, 2026).
+
+[5] Drivvo. Drivvo - Car Expense Tracker (App Store listing). https://apps.apple.com/us/app/drivvo-car-expense-tracker/id1206041425 (accessed Oct. 4, 2026).
+
+[6] Simply Auto. Simply Auto: Car maintenance and mileage tracker. https://simplyauto.app/ (accessed Oct. 4, 2026).
+
+[7] Simply Auto. Simply Auto: Mileage Tracker (App Store listing). https://apps.apple.com/us/app/simply-auto-mileage-tracker/id893278325 (accessed Oct. 4, 2026).
+
+[8] Simply Auto. Simply Auto: Car Maintenance (Google Play listing). https://play.google.com/store/apps/details?id=mrigapps.andriod.fuelcons (accessed Oct. 4, 2026).
+
+[9] GarageHub. GarageHub (home page). https://getgaragehub.com/ (accessed Oct. 4, 2026).
+
+[10] GarageHub. Pricing. https://getgaragehub.com/pricing (accessed Oct. 4, 2026).
+
+[11] GarageHub. Best Car Maintenance Apps 2026: 6 Compared. https://getgaragehub.com/learn/guides/best-car-maintenance-apps/ (accessed Oct. 4, 2026).
+
+[12] MECH AI. MECH AI (home, features, and pricing pages). https://mechai.app/ (accessed Oct. 4, 2026).
+
+[13] GarageHub. History Import. https://getgaragehub.com/features/history-import/ (accessed Oct. 9, 2026).
+
+[14] GarageHub. Car Maintenance Reminders. https://getgaragehub.com/features/maintenance-reminders/ (accessed Oct. 9, 2026).
