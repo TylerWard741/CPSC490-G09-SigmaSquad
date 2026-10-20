@@ -1,20 +1,20 @@
 # CPSC 490 — Group 09 Sigma Squad
 
-**Project title:** Vehicle Maintenance Logger
-**Sponsor:** independent
-**Section:** 〈01 (Tue) | 05 (Thu)〉
+Project title: Vehicle Maintenance Logger 
+Sponsor: independent 
+Section: 01 (Tue)
 
 ## Team
 
 | Name | GitHub | Role | Leader |
-|---|---|---|---|
-| Ward, Tyler | @TylerWard741 | 〈e.g. backend, docs lead〉 | ✅ |
-| Partain-Martinez, Mathieu | @Mathieu2303 | 〈…〉 | |
-| Mojica Arevalo, Hector Samuel | @TamtungOS | 〈…〉 | |
-| Chien, Ethan | @toodols | 〈…〉 | |
-| Velasco, Emily | @emilyvlsco | 〈…〉 | |
+|---|---|---|---| 
+| Ward, Tyler | @TylerWard741 |  team leader, board and sprint reviews | ✅ |
+| Partain-Martinez, Mathieu | @Mathieu2303 |  goals/objectives and README | |
+| Mojica Arevalo, Hector Samuel | @TamtungOS | related work, AI usage and references | |
+| Velasco, Emily | @emilyvlsco | problem statements and PR review | |
+| Chien, Ethan | @ready2pullallnighters | abstract/intro and proposal.md structure | |
 
-**Contact person:** Tyler Ward — tymdraw@gmail.com
+Contact person: Tyler Ward — tymdraw@gmail.com
 
 ## Links
 
@@ -26,13 +26,12 @@
 
 ## Project summary
 
-〈3–5 sentences a stranger can understand: the problem, your approach, what
-will exist at the end of the semester.〉
+This project allows vehicle owners to stay on top of maintenance by letting them identify their exact vehicle, log or import its service history, and have a clear, mileage-based answer to what service is due next. Our system combines each vehicle's make, model, year, trim, current mileage, and service history to recommend upcoming maintenance and label it "urgent" or "when convenient." By the end of the semester, we will deliver an interactive demo that demonstrates the use cases of this project.
 
 ## How we work
 
 - Sprints: four 2-week sprints (`Sprint 1`–`Sprint 4` milestones).
-  Sprint boundary ritual every other 〈day〉.
+  Sprint boundary ritual every other Tuesday.
 - Every change lands by pull request; **the author never approves their own PR**.
 - Every issue carries: assignee (owner), milestone (sprint), `priority:`,
   and a `sp:` story-point label.
