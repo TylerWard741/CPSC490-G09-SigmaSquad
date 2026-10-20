@@ -1,71 +1,19 @@
-# Project Proposal — 〈Project Title〉
+# Project Proposal — Vehicle Maintenance Logger
 
 **Department of Computer Science**
 **CPSC 490 Undergraduate Seminar in Computer Science — Proposal for Capstone Project**
 
-**Group 〈N〉 — 〈Group Name〉** · Sponsor: 〈RTX-3 / EL-1 / SNX-n / independent〉
-Authors: 〈Last, First (GitHub username)〉, 〈…〉
-Date: 〈YYYY-MM-DD〉
+**Group 09 — Sigma Squad** · Sponsor: independent
 
-> **This file is the proposal document, not a README.** Its section numbers,
-> titles, and guidance are copied from the course Word template, so it
-> converts cleanly for Canvas submission. Write continuous academic prose —
-> no task lists, no emoji, no repo jargon.
->
-> Each section below opens with the template's own guidance in a quote block.
-> **Delete the quote blocks and every 〈bracket〉 before submitting.**
->
-> **Getting this into the Word template for Canvas.** The template numbers
-> its headings **automatically** (a multilevel list: top-level sections at
-> level 1, *Related Work* and *Problem Statements* at level 2). The numbers
-> typed below exist so the repo copy is readable and checkable — so when you
-> move the text into Word, do not end up with both sets.
->
-> The reliable route, and the one most teams should use: **open the course
-> template and paste your prose section by section**, leaving Word's own
-> numbering to do the numbering. Ten minutes, no surprises.
->
-> If you prefer to convert, `pandoc` can do it (install with
-> `winget install pandoc`):
->
->     pandoc proposal/proposal.md -o proposal.docx --reference-doc="CPSC 490 Project Proposal Template Fall 2026.docx"
->
-> Then in Word: delete the typed `0.` / `1.` / `1.1` prefixes (Word re-adds
-> them from the list), and set *Related Work* and *Problem Statements* to the
-> template's level-2 heading so they number as 1.1 and 1.2. Check figure
-> placement, then submit.
->
-> **Formatting requirements — the submitted Word document is graded against
-> these, explicitly:**
->
-> - **Cover page: use the template's cover page, unchanged in layout.** Fill
->   in only its fields — project title, group number and name, sponsor,
->   authors, date — and keep the template's own placement, fonts and spacing
->   for it. The header block at the top of this file carries the same fields
->   so the paste is a transcription, not a redesign.
-> - **Font: Times New Roman, 11-point.** Body text, headings and captions
->   take their size and style from the template's own styles — do not
->   restyle anything by hand.
-> - **Line spacing: 1.5.** **Margins: 1.0 inch** on all four sides.
-> - **Section format, numbering and indentation must match the Word template
->   exactly** — the multilevel-list numbering, heading levels, and paragraph
->   indentation are the template's, not yours. If your document's §1.1 looks
->   different from the template's §1.1, fix yours.
-> - **Length: the Final Project Proposal Paper (due Sun Dec 20) must exceed
->   50 pages** under exactly this formatting — font, spacing and margins are
->   fixed above precisely so page count means the same thing for every team.
->   The Preview paper (due Sun Nov 29) is the same document part-way; it has
->   no minimum, but it is graded on the same formatting.
->
-> A paste into the template inherits all of this automatically **if you paste
-> as text and let Word's styles apply** (Home → Paste → *Keep Text Only*, or
-> apply the template's styles after pasting). A pandoc conversion with
-> `--reference-doc` inherits it too — but verify font, spacing and margins
-> afterward rather than assuming.
->
-> Either way, keep this Markdown copy current — it is what peer review and CI
-> can actually read. If your team writes in Word instead, commit the `.docx`
-> here as well.
+**Authors**:
+| Name | Username |
+| -- | -- |
+|Ward, Tyler|@TylerWard741|
+|Partain-Martinez, Mathieu|@Mathieu2303|
+|Mojica Arevalo, Hector Samuel|@TamtungOS|
+|Chien, Ethan|@ready2pullallnighters|
+|Velasco, Emily|@emilyvlsco|
+Date: 2026-10-09
 
 ---
 
@@ -272,12 +220,18 @@ G8 fails if such an issue exists that this section does not link.
 
 | Issue | Type | Activity | Parent | Owner | Sprint |
 |---|---|---|---|---|---|
-| 〈#n〉 | 〈task〉 | 〈stand up the prototype login endpoint〉 | 〈#story〉 | 〈owner〉 | 〈Sprint 1〉 |
-| 〈#n〉 | 〈feature/enhancement/bug/task/sub-task〉 | 〈…〉 | 〈#story〉 | 〈…〉 | 〈…〉 |
-
-〈Replace these rows with your own, and keep the table current as you file new
-issues — with §2 it gives a reader every planned activity in one place, each
-traceable to the objective it serves.〉
+| #5 | Task | Write proposal section 2 Goals and Objectives | -- | @Mathieu2303 | Sprint 1 |
+| #6 | Task | Write proposal section 1.1 Related Work as a comparative table plus argument | -- | @TamtungOS | Sprint 1 |
+| #7 | Task | Write proposal section 1.2 Problem Statements (P1..Pn) mapped to the goals | -- | @emilyvlsco | Sprint 1 |
+| #8 | Task | Rework proposal Abstract and Introduction to match the skeleton and fix known problems | -- | @ready2pullallnighters | Sprint 1 |
+| #9 | Task | Fix proposal section 7 AI Usage and section 8 References | -- | @TamtungOS | Sprint 1 |
+| #10 | Task | Fill proposal.md header fields and list every Sprint 1 issue in section 4 | -- | @ready2pullallnighters | Sprint 1 |
+| #11 | Task | Replace develop's template README with the real project README | -- | @Mathieu2303 | Sprint 1 |
+| #12 | Task | Review and merge the instructor's open PRs #2 and #4 into develop | -- | @emilyvlsco | Sprint 1 |
+| #13 | Task | Fill docs/development-plan.md (team charter, QA rotation, AI rules, risk register) | -- | -- | Sprint 1 |
+| #14 | Task | Add the three board views and put every issue on the project board | -- | @TylerWard741 | Sprint 1 |
+| #15 | Task | Write the Sprint 1 review (docs/sprint-reviews/sprint-1.md) at the sprint boundary | -- | @TylerWard741 | Sprint 1 |
+| #19 | Task | Write the initial HW4 proposal draft and archive it in the repo for the team to refine | -- | @TylerWard741 | Sprint 1 |
 
 ## 5. Project Outcomes
 
