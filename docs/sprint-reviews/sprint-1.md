@@ -22,13 +22,7 @@ This is what the sprint's 5% is assessed on. Be concrete and link things.
 | proposal/HW4_Proposal.docx, docs/source-material/ | submitted HW4 draft and source quotes archived | PR #39 |
 | README.md | real team roster and project summary | PR #21 |
 
-**Prototype moved:** 〈what it can do now that it could not at the start of
-this sprint, and how you demonstrated it — a command, a screenshot, a test
-name.〉
-
-〈If either line is thin, say so plainly and say why. An honest "the sponsor
-data never arrived, so we built against a synthetic fixture instead" reads
-far better than a padded list.〉
+**Prototype moved:** We don't have a prototype yet. Sprint one didn't cover creating a prototype, only drafting the proposal and creating some first issues and resolving them. The prototype will come later.
 
 ## Velocity
 
@@ -62,16 +56,14 @@ far better than a padded list.〉
 
 | | This sprint |
 |---|---|
-| Iterations to green, average per PR | 〈n〉 |
+| Iterations to green, average per PR | 2.4 (5 of 8 PRs went green on the first run; #21, #22 and #41 needed 4 to 5) |
 | Harness rules added (rows in the harness log) | 0 |
 
-〈One line: is our spec-writing improving, or are we still discovering
-requirements during implementation?〉
+Spec-writing is looking great and I'm proud of what our team has contributed in this regard.
 
 ## Prototype increment
 
-〈What the prototype can do at the end of this sprint that it couldn't at the
-start; how it was demonstrated.〉
+We don't have a prototype yet. That will come later.
 
 ## Feedback we received, and what we did about it
 
@@ -98,10 +90,8 @@ starter, and an early warning the team can act on itself.
 | @TamtungOS | n/a | 1 | 2 | 8 |
 | @emilyvlsco | n/a | 1 | 2 | 2 |
 
-〈If one member is far below the others, say what the team is doing about it
-here — and note anything the numbers hide, e.g. pairing (use
-`Co-authored-by:` so it shows up), or a big unmerged branch.〉
+I'm not concerned with a smaller PR count for Hector and Emily since they still completed their work in a timely manner and have continuously communicated promptly in our Discord channel. As more story points are assigned going forward, the average work distribution per teammate will even out.
 
 ## What we change next sprint
 
-- 〈one concrete process change, if any〉
+- Request a reviewer the day a PR opens.
