@@ -75,65 +75,44 @@ Future vehicle services depend on previous services, a vehicle's specifications,
 
 | Problem | Addressed by |
 |---|---|
-| P1: Maintenance Record Management | G1: Centralized Vehicle Data & Maintenance Tracking ([#27](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/27)) |
-| P2: Determining Maintenance Requirements and Urgency | G2: Scheduled Maintenance Recommendations & Alerts ([#28](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/28)) |
+| P1: Maintenance Record Management | G1: Centralized Vehicle Data & Maintenance Tracking ([epic:#27](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/27)) |
+| P2: Determining Maintenance Requirements and Urgency | G2: Scheduled Maintenance Recommendations & Alerts ([epic:#28](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/28)) |
 
 ## 2. Goals and Objectives
 
-> Describe goals and objectives. Goals are general statements of what you are
-> trying to accomplish with the project or problems to solve. Objectives are
-> specific, measurable statements of what you want to complete to reach the
-> project goals. Most projects have 2-3 goals.
->
-> List the objectives for each goal. To write objectives, look at the goal
-> statement and list what you need to complete using action words like use
-> case names in order to meet the goal.
->
-> Note that the goals and objectives in a proposal will be an important
-> metric to evaluate whether or not you successfully finished your project
-> when you turn in your final project report.
+Features such as automatic mileage tracking, DIY maintenance logs, a parts finder, and climate-based recommendations are not part of the version one scope. We intend to implement these later as stretch goals. This will allow us to keep version one achievable this semester, it allows us to put the core value (due-next maintenance) first, and it allows us more time to research and verify how we should implement these features.
 
-Each **goal** is tracked as an **Epic** issue and each **objective** as a
-**User Story** issue in the team repository (see the setup guide's *Epics and user stories* section).
-**Every epic and user story in the repository is linked from this section** —
-CI gate G8 fails if one exists that this section does not link. That is what
-keeps the goals in this document and the work on the board from drifting
-apart.
-
-Write each objective the way the guidance above asks — **an action word plus
-the measure that says it is done**, not a role-play sentence:
-
-**Goal 1: Centralized Vehicle Data & Maintenance Tracking** (Epic [#27](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/27))
+**Goal 1: Centralized Vehicle Data & Maintenance Tracking** (Epic [epic:#27](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/27))
 
 Enable users to identify their exact vehicle, enter or import its service history, and access accurate maintenance records across desktop and mobile browsers.
 
 **Objectives**
 
-**1.1.** Implement a vehicle database and selection interface that allows users to identify a vehicle by make, model, year, and trim, and save the selected vehicle to their account. ([#29](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/29))
+**1.1.** Implement a vehicle database and selection interface that allows users to identify a vehicle by make, model, year, and trim, and save the selected vehicle to their account. ([story:#29](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/29))
 
-**1.2.** Implement a database schema and REST API supporting create, read, update, and delete (CRUD) operations for vehicles and service records, including service date, mileage, service type, and notes. ([#30](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/30))
+**1.2.** Implement a database schema and REST API supporting create, read, update, and delete (CRUD) operations for vehicles and service records, including service date, mileage, service type, and notes. ([story:#30](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/30))
 
-**1.3.** Develop an interface that allows users to enter service history manually or import existing service-history data, with imported records validated before being saved. ([#31](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/31))
+**1.3.** Develop an interface that allows users to enter service history manually or import existing service-history data, with imported records validated before being saved. ([story:#31](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/31))
 
-**1.4.** Build a responsive dashboard that displays each vehicle's maintenance history and supports vehicle and service-record management on desktop and mobile browsers. ([#32](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/32))
+**1.4.** Build a responsive dashboard that displays each vehicle's maintenance history and supports vehicle and service-record management on desktop and mobile browsers. ([story:#32](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/32))
 
-**1.5.** Create automated tests covering vehicle selection, service-history entry and import, and maintenance-record API endpoints, with all tests passing in continuous integration (CI). ([#33](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/33))
+**1.5.** Create automated tests covering vehicle selection, service-history entry and import, and maintenance-record API endpoints, with all tests passing in continuous integration (CI). ([story:#33](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/33))
 
-**Goal 2: Scheduled Maintenance Recommendations & Alerts** (Epic [#28](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/28))
+**Goal 2: Scheduled Maintenance Recommendations & Alerts** (Epic [epic:#28](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/28))
 
 Provide accurate, mileage-based maintenance recommendations and clearly communicate when maintenance is urgent versus when it can be completed at the user's convenience.
 
 **Objectives**
 
-**2.1.** Develop a recommendation engine that uses the selected vehicle's make, model, year, trim, current mileage, and service history to calculate the next recommended service and its due mileage. ([#34](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/34))
+**2.1.** Develop a recommendation engine that uses the selected vehicle's make, model, year, trim, current mileage, and service history to calculate the next recommended service and its due mileage. ([story:#34](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/34))
 
-**2.2.** Support next-service recommendations for at least three common service types: oil changes, tire rotations, and brake inspections. ([#35](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/35))
+**2.2.** Support next-service recommendations for at least three common service types: oil changes, tire rotations, and brake inspections. ([story:#35](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/35))
 
-**2.3.** Assign and display an urgency label of either "Urgent" or "When convenient" for each applicable maintenance recommendation, using documented mileage-based rules. ([#36](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/36))
+**2.3.** Assign and display an urgency label of either "Urgent" or "When convenient" for each applicable maintenance recommendation, using documented mileage-based rules. ([story:#36](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/36))
 
-**2.4.** Display dashboard alerts for services that are overdue or within 500 miles of their recommended due mileage, applying the appropriate urgency label. ([#37](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/37))
+**2.4.** Display dashboard alerts for services that are overdue or within 500 miles of their recommended due mileage, applying the appropriate urgency label. ([story:#37](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/37))
 
-**2.5.** Validate vehicle selection, service-history processing, due-mileage calculations, and urgency labels against at least five simulated vehicle-data scenarios, with every scenario producing the expected result. ([#38](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/38))
+**2.5.** Validate vehicle selection, service-history processing, due-mileage calculations, and urgency labels against at least five simulated vehicle-data scenarios, with every scenario producing the expected result. ([story:#38](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/38))
 
 ## 3. Proposed Approaches
 
@@ -210,18 +189,22 @@ G8 fails if such an issue exists that this section does not link.
 
 | Issue | Type | Activity | Parent | Owner | Sprint |
 |---|---|---|---|---|---|
-| #5 | Task | Write proposal section 2 Goals and Objectives | -- | @Mathieu2303 | Sprint 1 |
-| #6 | Task | Write proposal section 1.1 Related Work as a comparative table plus argument | -- | @TamtungOS | Sprint 1 |
-| #7 | Task | Write proposal section 1.2 Problem Statements (P1..Pn) mapped to the goals | -- | @emilyvlsco | Sprint 1 |
-| #8 | Task | Rework proposal Abstract and Introduction to match the skeleton and fix known problems | -- | @ready2pullallnighters | Sprint 1 |
-| #9 | Task | Fix proposal section 7 AI Usage and section 8 References | -- | @TamtungOS | Sprint 1 |
-| #10 | Task | Fill proposal.md header fields and list every Sprint 1 issue in section 4 | -- | @ready2pullallnighters | Sprint 1 |
-| #11 | Task | Replace develop's template README with the real project README | -- | @Mathieu2303 | Sprint 1 |
-| #12 | Task | Review and merge the instructor's open PRs #2 and #4 into develop | -- | @emilyvlsco | Sprint 1 |
-| #13 | Task | Fill docs/development-plan.md (team charter, QA rotation, AI rules, risk register) | -- | -- | Sprint 1 |
-| #14 | Task | Add the three board views and put every issue on the project board | -- | @TylerWard741 | Sprint 1 |
-| #15 | Task | Write the Sprint 1 review (docs/sprint-reviews/sprint-1.md) at the sprint boundary | -- | @TylerWard741 | Sprint 1 |
-| #19 | Task | Write the initial HW4 proposal draft and archive it in the repo for the team to refine | -- | @TylerWard741 | Sprint 1 |
+| [task:#5](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/5) | Task | Write proposal section 2 Goals and Objectives | -- | @Mathieu2303 | Sprint 1 |
+| [task:#6](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/6) | Task | Write proposal section 1.1 Related Work as a comparative table plus argument | -- | @TamtungOS | Sprint 1 |
+| [task:#7](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/7) | Task | Write proposal section 1.2 Problem Statements (P1..Pn) mapped to the goals | -- | @emilyvlsco | Sprint 1 |
+| [task:#8](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/8) | Task | Rework proposal Abstract and Introduction to match the skeleton and fix known problems | -- | @ready2pullallnighters | Sprint 1 |
+| [task:#9](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/9) | Task | Fix proposal section 7 AI Usage and section 8 References | -- | @TamtungOS | Sprint 1 |
+| [task:#10](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/10) | Task | Fill proposal.md header fields and list every Sprint 1 issue in section 4 | -- | @ready2pullallnighters | Sprint 1 |
+| [task:#11](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/11) | Task | Replace develop's template README with the real project README | -- | @Mathieu2303 | Sprint 1 |
+| [task:#12](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/12) | Task | Review and merge the instructor's open PRs [2](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/pull/2) and [4](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/pull/4) into develop | -- | @emilyvlsco | Sprint 1 |
+| [task:#13](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/13) | Task | Fill docs/development-plan.md (team charter, QA rotation, AI rules, risk register) | -- | @TylerWard741 | Sprint 2 |
+| [task:#14](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/14) | Task | Add the three board views and put every issue on the project board | -- | @TylerWard741 | Sprint 1 |
+| [task:#15](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/15) | Task | Write the Sprint 1 review (docs/sprint-reviews/sprint-1.md) at the sprint boundary | -- | @TylerWard741 | Sprint 1 |
+| [task:#19](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/19) | Task | Write the initial HW4 proposal draft and archive it in the repo for the team to refine | -- | @TylerWard741 | Sprint 1 |
+| [task:#44](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/44) | Task | Convert proposal issue references to typed links and list #16-#18 in section 4 | -- | @TylerWard741 | Sprint 1 |
+| [task:#16](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/16) | Task | Write proposal section 3 Proposed Approaches | -- | @Mathieu2303 | Sprint 2 |
+| [task:#17](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/17) | Task | Write proposal section 4 Environment, Resources and Planned Activities (with diagrams) | -- | @emilyvlsco | Sprint 2 |
+| [task:#18](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/18) | Task | Write proposal section 5 Project Outcomes and section 6 Project Timeline (the CPSC 491 plan) | -- | @ready2pullallnighters | Sprint 3 |
 
 ## 5. Project Outcomes
 
