@@ -80,28 +80,7 @@ Future vehicle services depend on previous services, a vehicle's specifications,
 
 ## 2. Goals and Objectives
 
-> Describe goals and objectives. Goals are general statements of what you are
-> trying to accomplish with the project or problems to solve. Objectives are
-> specific, measurable statements of what you want to complete to reach the
-> project goals. Most projects have 2-3 goals.
->
-> List the objectives for each goal. To write objectives, look at the goal
-> statement and list what you need to complete using action words like use
-> case names in order to meet the goal.
->
-> Note that the goals and objectives in a proposal will be an important
-> metric to evaluate whether or not you successfully finished your project
-> when you turn in your final project report.
-
-Each **goal** is tracked as an **Epic** issue and each **objective** as a
-**User Story** issue in the team repository (see the setup guide's *Epics and user stories* section).
-**Every epic and user story in the repository is linked from this section** —
-CI gate G8 fails if one exists that this section does not link. That is what
-keeps the goals in this document and the work on the board from drifting
-apart.
-
-Write each objective the way the guidance above asks — **an action word plus
-the measure that says it is done**, not a role-play sentence:
+Features such as automatic mileage tracking, DIY maintenance logs, a parts finder, and climate-based recommendations are not part of the version one scope. We intend to implement these later as stretch goals. This will allow us to keep version one achievable this semester, it allows us to put the core value (due-next maintenance) first, and it allows us more time to research and verify how we should implement these features.
 
 **Goal 1: Centralized Vehicle Data & Maintenance Tracking** (Epic [epic:#27](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/27))
 
