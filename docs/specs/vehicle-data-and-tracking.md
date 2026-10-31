@@ -1,5 +1,6 @@
 # Specification — Vehicle Data and Tracking
-> Epic: #1 · Stories: #1.1, #1.2, #1.3, #1.4, #1.5
+> Epic: [#27](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/27) ·
+	Stories: [#29](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/29), [#30](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/30), [#31](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/31), [#32](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/32), [#33](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/33) 
 > Owner: 〈name〉 · Sprint: 1 · Status: draft
 
 ## Scope
