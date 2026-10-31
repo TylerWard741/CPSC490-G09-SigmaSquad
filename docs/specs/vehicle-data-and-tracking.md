@@ -1,10 +1,11 @@
 # Specification — Vehicle Data and Tracking
 > Epic: [#27](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/27) ·
 	Stories: [#29](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/29), [#30](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/30), [#31](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/31), [#32](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/32), [#33](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/33) 
-> Owner: 〈name〉 · Sprint: 1 · Status: draft
+> Owner: [Ethan Chien](https://github.com/ready2pullallnighters) · Sprint: 2 · Status: draft
 
 ## Scope
-
+**In scope** Upload valid vehicles with a make, model, year, and trim, their service records, and access them later on a dashboard, 
+**Out of scope** Account creation, authentication for API.
 ## Functional requirements
 | ID | Requirement | Story |
 |---|---|---|
