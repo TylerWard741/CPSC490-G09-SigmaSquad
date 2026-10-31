@@ -8,7 +8,12 @@
 ## Functional requirements
 | ID | Requirement | Story |
 |---|---|---|
-| FR-1 | --- | --- | 
+| FR-1 | When the user selects the make option, the system shall allow the user to select from a list of the names of all automotive manufacturers. | [#29](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/29) | 
+| FR-2 | While a make is selected, when the user selects the model option, the system shall allow the user to select from a list of all vehicle models from that manufacturer | [#29](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/29) |
+| FR-3 | While a make and model is selected, when the user selects the year option, the system shall allow the user to select from a list of all vehicle production years for that model | [#29](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/29) |
+| FR-4 | While a make, model, and year is selected, when the user selects the trim option, the system shall allow the user to select from a list of all automotive trim levels for that model | [#29](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/29) |
+| FR-5 | When the user saves a vehicle, the system validates that the configuration is a valid vehicle entry in database | [#29](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/29) |
+| FR-6 | When the user saves a vehicle, the system shall store the make, model, year, and trim in database | [#29](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/29) |
 | - | "When the user selects the import option for service history, the system shall allow the user to upload existing records in a supported file format." | [#31](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/31) |
 | - | "When the user selects the manual input option for service history, the system shall allow the user to manually input the service date, mileage, service type, and notes." | [#31](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/31) |
 | - | "When the user imports existing records, the system shall validate the required fields before saving." | [#31](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/31) |
@@ -17,7 +22,6 @@
 | - | "When a service record passes validation and the user confirms the entry or import, the system shall save the record and associate it with the selected vehicle." | [#31](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/31) |
 | - | "When a user opens the maintenance history for a selected vehicle, the system shall display the previously saved service records." | [#31](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/31) |
 ## Non-functional requirements
-
 ## Acceptable criteria [epic level]
 - [ ] A user can select a vehicle by make, model, year, and trim through a dashboard interface
 - [ ] There is an API endpoint for each of: create, read, update, and delete for vehicles and service records
