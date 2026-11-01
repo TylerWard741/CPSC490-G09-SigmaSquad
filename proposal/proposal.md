@@ -170,7 +170,7 @@ buildable. CI gate G9 fails if a document exists in `docs/specs/` or
 
 | Document | Kind | Covers | Issues |
 |---|---|---|---|
-| 〈docs/specs/account-management.md〉 | specification | 〈account management requirements〉 | 〈#n, #n〉 |
+| docs/specs/vehicle-data-and-tracking.md | specification | Database and user endpoints for vehicle service records | #49 |
 | 〈docs/design/architecture.md〉 | design | 〈system architecture + data model〉 | 〈#n〉 |
 
 〈The scaffold ships `docs/specs/example-spec.md` and
