@@ -30,3 +30,6 @@
 - [ ] The automated tests from Objective 1.5 are passing in CI.
 
 ## Open questions
+| Question | Owner | Needed by |
+|---|---|---|
+| What platform will we use for hosting? | @TylerWard741 | Sprint 2 |
