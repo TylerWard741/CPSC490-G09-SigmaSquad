@@ -160,6 +160,14 @@ figure the text never mentions is decoration. See `docs/design/DIAGRAMS.md`
 for tools, conventions, and the rule that every box and arrow must be
 verified against reality.〉
 
+Figure 1 demonstrates how users navigate through the Vehicle Maintenance
+Logger, including vehicle selection, service history management,
+manual entry, importing records, and validation before saving.
+
+![Dashboard and service-entry screen flow](../docs/design/diagrams/screen-flow.png)
+
+*Figure 1 — Dashboard and Service Entry Screen Flow.*
+
 ### Specification and design documents
 
 **Every specification and design document the team writes is listed here**
@@ -172,6 +180,7 @@ buildable. CI gate G9 fails if a document exists in `docs/specs/` or
 |---|---|---|---|
 | docs/specs/vehicle-data-and-tracking.md | specification | Database and user endpoints for vehicle service records | #49 |
 | 〈docs/design/architecture.md〉 | design | 〈system architecture + data model〉 | 〈#n〉 |
+| [docs/design/screen-flow.md](../docs/design/screen-flow.md) | design | dashboard, vehicle selection, service-history entry and import | #29, #31, #32, #53 |
 
 〈The scaffold ships `docs/specs/example-spec.md` and
 `docs/design/example-design.md` as worked examples — read them, then delete
@@ -205,6 +214,7 @@ G8 fails if such an issue exists that this section does not link.
 | [task:#16](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/16) | Task | Write proposal section 3 Proposed Approaches | -- | @Mathieu2303 | Sprint 2 |
 | [task:#17](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/17) | Task | Write proposal section 4 Environment, Resources and Planned Activities (with diagrams) | -- | @emilyvlsco | Sprint 2 |
 | [task:#18](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/18) | Task | Write proposal section 5 Project Outcomes and section 6 Project Timeline (the CPSC 491 plan) | -- | @ready2pullallnighters | Sprint 3 |
+| [task:#53](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/53) | Task | Draw dashboard and service-entry screen flow | -- | @emilyvlsco | Sprint 2 |
 
 ## 5. Project Outcomes
 
