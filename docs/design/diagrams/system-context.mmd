@@ -1,5 +1,5 @@
-flowchart TB
-  owner(["Vehicle owner<br/>desktop or mobile browser"])
-  app["Vehicle Maintenance Logger<br/>version one web application"]
-  owner -->|"vehicle selection, current mileage,<br/>manual or imported service records"| app
-  app -->|"service history, next service and due mileage,<br/>urgency labels and alerts"| owner
+flowchart LR
+owner(["Vehicle owner<br/>desktop or mobile browser"])
+app["Vehicle Maintenance Logger<br/>version one web application"]
+owner -->|"vehicle selection,<br/>current mileage,<br/>manual or imported<br/>service records"| app
+app -->|"service history,<br/>next service and<br/>due mileage,<br/>status labels and alerts"| owner

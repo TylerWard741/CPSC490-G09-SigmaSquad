@@ -1,16 +1,16 @@
 flowchart TB
-  subgraph browser["User's browser"]
-    spa["React single-page app<br/>TypeScript, Tailwind, Vite<br/>prototype/web (#54)"]
-  end
-  subgraph server["Server side (hosting not decided)"]
-    api["Flask REST API (Python)<br/>vehicle and service-record CRUD<br/>(#30)"]
-    engine["Recommendation engine<br/>next service, due mileage, urgency<br/>(#34, #36)"]
-    db[("SQLite database<br/>prototype/db/app.db (#29)")]
-    seed["Schema and seed script<br/>prototype/db/init_db.py (#29)"]
-  end
-  spa -.->|"REST calls"| api
-  api -.->|"calls"| engine
-  api -.->|"reads and writes"| db
-  seed -->|"creates and seeds"| db
-  classDef planned stroke-dasharray:6 4;
-  class api,engine planned;
+subgraph browser["User's browser"]
+spa["React single-page app<br/>TypeScript, Tailwind, Vite<br/>prototype/web (#54)"]
+end
+subgraph server["Server side (hosting not decided)"]
+api["Flask REST API (Python)<br/>vehicle and service-record CRUD<br/>(#30)"]
+engine["Recommendation engine<br/>next service, due mileage, status label<br/>(#34, #36)"]
+db[("SQLite database<br/>prototype/db/app.db (#29)")]
+seed["Schema and seed script<br/>prototype/db/init_db.py (#29)"]
+end
+spa -.->|"REST calls"| api
+api -.->|"calls"| engine
+api -.->|"reads and writes"| db
+seed -->|"creates and seeds"| db
+classDef planned stroke-dasharray:6 4;
+class api,engine planned;
