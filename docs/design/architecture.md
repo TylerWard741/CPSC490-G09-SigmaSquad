@@ -5,7 +5,7 @@
 
 ## 1. System context
 
-![System context: the vehicle owner sends vehicle selection, mileage, and service records to the web application and receives history, next-service recommendations, and urgency alerts](diagrams/system-context.png)
+![System context: the vehicle owner sends vehicle selection, mileage, and service records to the web application and receives history, next-service recommendations, and status-label alerts](diagrams/system-context.png)
 
 *Figure 1 — System context. This shows where version one ends. The vehicle
 owner is the only person outside the system, and we haven't picked any
@@ -37,9 +37,9 @@ API, the recommendation engine, and the SQLite database.
 | Vite | `prototype/web/` on `feature/54-prototype-skeleton`; not named in the stack post | code on unmerged branch |
 | Flask REST API (Python) | Objective 1.2 (#30); team stack post, Discord, 2026-11-01 | agreed; not built |
 | Recommendation engine | Objectives 2.1 and 2.3 (#34, #36) | required; not built |
-| SQLite | Team stack post, Discord, 2026-11-01; `prototype/db/` in PR #48 | agreed for the prototype; code in unreviewed PR |
-| Seed script | `prototype/db/` in PR #48 | code in unreviewed PR |
-| API calls engine; only the API touches the database |confirmed | agreed; not built |
+| SQLite | Team stack post, Discord, 2026-11-01; `prototype/db/` (PR #48, merged into `develop`) | agreed for the prototype; built |
+| Seed script | `prototype/db/init_db.py` (PR #48, merged into `develop`) | built |
+| API calls engine; only the API touches the database | Team confirmation in Discord (#general) | agreed; not built |
 
 ## 4. Open decisions
 
