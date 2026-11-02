@@ -17,7 +17,7 @@ the page only talks to the API, so React can replace it later.
 
 The make list and saved cars load right away, while the model, year, and trim
 dropdowns are locked. Each pick fills in and unlocks the next dropdown. Filter
-boxes narrow will down the make and model lists, with the model filter unlocking
+boxes narrow down the make and model lists, with the model filter unlocking
 once a make is picked, and they never change a pick you've already made. If you
 go back and change an earlier pick, everything after it clears and locks again.
 Save becomes available once all four fields are picked. Saving shows a
