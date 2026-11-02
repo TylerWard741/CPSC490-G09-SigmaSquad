@@ -1,0 +1,24 @@
+sequenceDiagram
+  actor U as User
+  participant FE as React frontend
+  participant API as Flask API
+  participant ENG as Recommendation engine
+  participant DB as SQLite
+
+  U->>FE: Open vehicle on dashboard
+  FE->>API: GET /vehicles/{id}/next-service
+  API->>DB: SELECT user_vehicle (trim_id, current_mileage)
+  DB-->>API: vehicle row
+  API->>DB: SELECT schedule_rules WHERE trim_id = ?
+  DB-->>API: interval_miles per service_type
+  API->>DB: SELECT latest service_record per service_type
+  DB-->>API: last mileage per service_type (or none)
+  API->>ENG: current_mileage, rules, last services
+  loop each service_type with a rule
+    ENG->>ENG: due_mileage = (last mileage or 0) + interval_miles
+    ENG->>ENG: miles_left = due_mileage - current_mileage
+    ENG->>ENG: status label (rules open in issue 36)
+  end
+  ENG-->>API: next services with due_mileage, miles_left, label
+  API-->>FE: 200 JSON list
+  FE-->>U: Show next services, soonest first, alert if miles_left at most 500
