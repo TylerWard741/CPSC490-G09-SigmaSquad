@@ -160,6 +160,14 @@ figure the text never mentions is decoration. See `docs/design/DIAGRAMS.md`
 for tools, conventions, and the rule that every box and arrow must be
 verified against reality.〉
 
+Figure 1 demonstrates how users navigate through the Vehicle Maintenance
+Logger, including vehicle selection, service history management,
+manual entry, importing records, and validation before saving.
+
+![Dashboard and service-entry screen flow](../docs/design/diagrams/screen-flow.png)
+
+*Figure 1 — Dashboard and Service Entry Screen Flow.*
+
 ### Specification and design documents
 
 **Every specification and design document the team writes is listed here**
@@ -172,6 +180,7 @@ buildable. CI gate G9 fails if a document exists in `docs/specs/` or
 |---|---|---|---|
 | 〈docs/specs/account-management.md〉 | specification | 〈account management requirements〉 | 〈#n, #n〉 |
 | 〈docs/design/architecture.md〉 | design | 〈system architecture + data model〉 | 〈#n〉 |
+| [docs/design/screen-flow.md](../docs/design/screen-flow.md) | design | dashboard, vehicle selection, service-history entry and import | #29, #31, #32, #53 |
 
 〈The scaffold ships `docs/specs/example-spec.md` and
 `docs/design/example-design.md` as worked examples — read them, then delete
@@ -202,9 +211,20 @@ G8 fails if such an issue exists that this section does not link.
 | [task:#15](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/15) | Task | Write the Sprint 1 review (docs/sprint-reviews/sprint-1.md) at the sprint boundary | -- | @TylerWard741 | Sprint 1 |
 | [task:#19](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/19) | Task | Write the initial HW4 proposal draft and archive it in the repo for the team to refine | -- | @TylerWard741 | Sprint 1 |
 | [task:#44](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/44) | Task | Convert proposal issue references to typed links and list #16-#18 in section 4 | -- | @TylerWard741 | Sprint 1 |
+| [task:#46](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/46) | Task | Merge develop into main at the end of Sprint 1 | -- | @TylerWard741 | Sprint 1 |
 | [task:#16](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/16) | Task | Write proposal section 3 Proposed Approaches | -- | @Mathieu2303 | Sprint 2 |
 | [task:#17](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/17) | Task | Write proposal section 4 Environment, Resources and Planned Activities (with diagrams) | -- | @emilyvlsco | Sprint 2 |
+| [task:#49](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/49) | Task | Write the specification for epic #27 (vehicle data and maintenance tracking) | -- | @ready2pullallnighters | Sprint 2 |
+| [task:#50](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/50) | Task | Write the specification for epic #28 (recommendations and alerts) | -- | @TylerWard741 | Sprint 2 |
+| [task:#51](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/51) | Task | Draw the architecture and system context diagrams | -- | @Mathieu2303 | Sprint 2 |
+| [task:#52](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/52) | Task | Draw the ER diagram and the next-service sequence diagram | -- | @TamtungOS | Sprint 2 |
+| [task:#53](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/53) | Task | Draw the dashboard and entry screen flow | -- | @emilyvlsco | Sprint 2 |
+| [task:#54](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/54) | Task | Build the prototype skeleton and smoke run | -- | @ready2pullallnighters | Sprint 2 |
+| [task:#55](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/55) | Task | Update proposal section 4 index and clean up section 1 | -- | @TylerWard741 | Sprint 2 |
+| [task:#56](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/56) | Task | Write the Sprint 2 review and the release PR | -- | @TylerWard741 | Sprint 2 |
+| [task:#57](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/57) | Task | Add Sprint 2 task rows to proposal section 4 (gate G8) | -- | @TylerWard741 | Sprint 2 |
 | [task:#18](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/18) | Task | Write proposal section 5 Project Outcomes and section 6 Project Timeline (the CPSC 491 plan) | -- | @ready2pullallnighters | Sprint 3 |
+| [task:#53](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/53) | Task | Draw dashboard and service-entry screen flow | -- | @emilyvlsco | Sprint 2 |
 
 ## 5. Project Outcomes
 
