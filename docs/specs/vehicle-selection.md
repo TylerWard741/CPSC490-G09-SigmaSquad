@@ -5,29 +5,26 @@
 
 ## Overview
 
-TODO (Mathieu writes)
-
-Notes to turn into your own sentences:
-
-- Story #29: the user picks a vehicle by make, then model, then year, then trim, and saves it to their account.
-- The saved vehicle tells the app which vehicle later maintenance records and recommendations apply to.
-- The prototype has three parts: a Flask JSON API (`prototype/app.py`), a plain HTML/JS page (`prototype/static/`), and a SQLite database (`prototype/db/`).
-- The seeded data is 2 makes, 3 models and 5 trims (Toyota Camry 2020 LE and SE, Toyota Corolla 2021 L, Honda Civic 2019 EX and 2022 Sport).
-- Sign-in is out of scope for this story, so a seeded demo user stands in for the signed-in user.
-- The page is plain HTML/JS because the React skeleton (#54) is not merged; the API is independent of the page, so a React page can replace it later.
+Users can pick their car (make, model, year, trim) and save it. Maintenance
+schedules and recommendations depend on the exact vehicle. The Flask API
+provides and saves the data, the HTML page handles the user interface, and
+SQLite stores the cars and the saved vehicles. Login is not part of this story so
+a seeded demo user stands in for the signed-in user. The page is plain HTML
+because the React skeleton (#54) hasn't been merged yet. That's fine because
+the page only talks to the API, so React can replace it later.
 
 ## UI Flow
 
-TODO (Mathieu writes)
-
-Notes to turn into your own sentences:
-
-- On opening, the page loads the makes and the demo user's saved vehicles; model, year and trim stay disabled.
-- Choosing a value loads and enables the next dropdown. Filter boxes above Make and Model narrow those lists as the user types.
-- Changing an earlier choice clears and disables every later dropdown, and a filter never changes a choice that is already made.
-- Save vehicle stays disabled until all four are chosen. Saving shows a confirmation and updates the saved list.
-- Saving a vehicle that is already on the account shows an "already saved" message and adds nothing.
-- If a request fails, an error and a Retry button appear, and the current selections stay as they were.
+The make list and saved cars load right away, while the model, year, and trim
+dropdowns are locked. Each pick fills in and unlocks the next dropdown. Filter
+boxes narrow will down the make and model lists, with the model filter unlocking
+once a make is picked, and they never change a pick you've already made. If you
+go back and change an earlier pick, everything after it clears and locks again.
+Save becomes available once all four fields are picked. Saving shows a
+confirmation and adds the car to your saved list. Saving a duplicate car shows
+an "already saved" message without creating a copy. If a request
+fails, an error message and a Retry button appear, and your current picks stay
+the same.
 
 ## Data model
 
