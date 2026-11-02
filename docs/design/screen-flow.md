@@ -70,10 +70,6 @@ Invalid records are not saved.
 
 This diagram supports the following project objectives:
 
-## Related Requirements
-
-This diagram supports the following project objectives:
-
 - **Objective 1.1 ([#29](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/29)):** Vehicle selection and identification using make, model, year, and trim.
 - **Objective 1.3 ([#31](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/31)):** Manual service-history entry, importing existing records, and validating records before saving.
 - **Objective 1.4 ([#32](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/32)):** Dashboard navigation and access to vehicle maintenance history.
