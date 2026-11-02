@@ -339,3 +339,7 @@ ChatGPT was used to review grammar and clarity in Section 1.2, and to verify tha
 [13] GarageHub. History Import. https://getgaragehub.com/features/history-import/ (accessed Oct. 9, 2026).
 
 [14] GarageHub. Car Maintenance Reminders. https://getgaragehub.com/features/maintenance-reminders/ (accessed Oct. 9, 2026).
+
+[15] Pallets Projects. Flask Documentation. https://flask.palletsprojects.com/en/stable/ (accessed Nov. 1, 2026).
+
+[16] OpenJS Foundation. Introduction to Node.js. https://nodejs.org/learn/getting-started/introduction-to-nodejs (accessed Nov. 1, 2026).
