@@ -9,9 +9,13 @@ SAMPLE = {
     "Honda": {"Civic": [(2019, "EX"), (2022, "Sport")]},
 }
 
+# Auth is out of scope for #29: this seeded user stands in for a signed-in one.
+DEMO_USER_ID = 1
+DEMO_USER_EMAIL = "demo@example.com"
 
-def init_db():
-    conn = sqlite3.connect(DB_PATH)
+
+def init_db(db_path=DB_PATH):
+    conn = sqlite3.connect(db_path)
     conn.execute("PRAGMA foreign_keys = ON")
     conn.executescript((DB_DIR / "schema.sql").read_text())
     for make, models in SAMPLE.items():
@@ -26,6 +30,9 @@ def init_db():
                 "INSERT INTO vehicle_trims (model_id, year, trim) VALUES (?, ?, ?)",
                 [(model_id, y, t) for y, t in trims],
             )
+    conn.execute(
+        "INSERT INTO users (id, email) VALUES (?, ?)", (DEMO_USER_ID, DEMO_USER_EMAIL)
+    )
     conn.commit()
     conn.close()
 
