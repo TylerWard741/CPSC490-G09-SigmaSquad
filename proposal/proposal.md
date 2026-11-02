@@ -164,7 +164,7 @@ Figure 1 demonstrates how users navigate through the Vehicle Maintenance
 Logger, including vehicle selection, service history management,
 manual entry, importing records, and validation before saving.
 
-![Dashboard and service-entry screen flow](docs/design/diagrams/screen-flow.png)
+![Dashboard and service-entry screen flow](../docs/design/diagrams/screen-flow.png)
 
 *Figure 1 — Dashboard and Service Entry Screen Flow.*
 
@@ -180,7 +180,7 @@ buildable. CI gate G9 fails if a document exists in `docs/specs/` or
 |---|---|---|---|
 | 〈docs/specs/account-management.md〉 | specification | 〈account management requirements〉 | 〈#n, #n〉 |
 | 〈docs/design/architecture.md〉 | design | 〈system architecture + data model〉 | 〈#n〉 |
-| [docs/design/screen-flow.md](docs/design/screen-flow.md) | design | dashboard, vehicle selection, service-history entry and import | #29, #31, #32, #53 |
+| [docs/design/screen-flow.md](../docs/design/screen-flow.md) | design | dashboard, vehicle selection, service-history entry and import | #29, #31, #32, #53 |
 
 〈The scaffold ships `docs/specs/example-spec.md` and
 `docs/design/example-design.md` as worked examples — read them, then delete
