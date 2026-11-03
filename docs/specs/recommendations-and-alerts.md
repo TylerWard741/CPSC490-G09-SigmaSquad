@@ -37,8 +37,9 @@ Version one of this spec does not cover notifications, AI-generated recommendati
 | ID    | Requirement | Why it matters here |
 | ----- | ----------- | ------------------- |
 | NFR-1 | A status label must always show the status label as a word, so that users unable to see color still understand the status of different services. | This matters for our users because they might not be able to see the color of the status label in certain situations |
-| NFR-2 | The systems labels must be reliable, which means add all simulated scenarios pass tests and checks. | This matters because if a label is wrong, it could lead to users performing recommended services too late or too early, potentially causing damage to their vehicle and/or wasting money. |
-| NFR-3 | On a phone screen, the dashboard must fit the screen width and only be scrollable vertically and text should be readable and buttons should be big enough to be easy to click. | This matters because many, if not most users will access our app on mobile devices. |
+| NFR-2 | The system's labels must be reliable, which means that the five simulated scenarios mentioned in Objective 2.5 shall pass tests and checks. | This matters because if a label is wrong, it could lead to users performing recommended services too late or too early, potentially causing damage to their vehicle and/or wasting money. |
+| NFR-3 | On a phone screen, the dashboard shall fit the screen width and scroll only vertically. | This matters because we intended for our app to perform well on mobile devices since the inception of this project. |
+| NFR-4 | On a phone screen, text shall be easily readable and buttons should be big enough to tap easily. | This matters because users will have a difficult time using our app if they can't read its text and click its buttons. |
 
 ## Acceptance criteria (epic level)
 
