@@ -45,7 +45,7 @@ def _error(message: str, status: int):
 
 
 def create_app(db_path=DEFAULT_DB_PATH) -> Flask:
-    app = Flask(__name__, static_folder="static", static_url_path="/static")
+    app = Flask(__name__, static_folder="web/dist", static_url_path="/")
 
     def get_db() -> sqlite3.Connection:
         if "db" not in g:

@@ -8,13 +8,19 @@ and trim, then save the vehicle to an account. Details are in
 | Path | What it is |
 |---|---|
 | `app.py` | Flask JSON API, which also serves the page |
-| `static/` | The plain HTML/JS page |
 | `db/` | SQLite schema and seed script; builds `db/app.db` (not committed) |
 | `tests/test_vehicle_api.py` | API tests (pytest) |
 | `tests/ui/` | Page tests (`node --test` with jsdom) |
 | `login.py`, `tests/test_login.py` | The course's example, to be removed by #54 |
 
 You need Python 3.12 and, for the page tests only, Node 20 or newer.
+
+## First time installation (Windows, Linux)
+```bash
+cd prototype/web
+npm install
+npm run build
+```
 
 ## How to run
 

@@ -1,1 +1,55 @@
 @import "tailwindcss";
+
+body {
+	font-family: system-ui, sans-serif;
+	max-width: 32rem;
+	margin: 2rem auto;
+	padding: 0 1rem;
+	color: #1f2933;
+}
+label {
+	display: block;
+	margin-top: 1rem;
+	font-weight: 600;
+}
+select,
+input {
+	display: block;
+	width: 100%;
+	box-sizing: border-box;
+	padding: 0.5rem;
+	margin-top: 0.25rem;
+	font: inherit;
+}
+button {
+	margin-top: 1rem;
+	padding: 0.5rem 1rem;
+	font: inherit;
+	cursor: pointer;
+}
+button:disabled {
+	cursor: not-allowed;
+}
+.message {
+	margin-top: 1rem;
+	padding: 0.75rem;
+	border-radius: 0.25rem;
+}
+.error {
+	background: #fde8e8;
+	color: #8a1c1c;
+}
+.success {
+	background: #e3f6e8;
+	color: #17602c;
+}
+.info {
+	background: #fff4d6;
+	color: #6b4e00;
+}
+#retry {
+	margin-top: 0.5rem;
+}
+[hidden] {
+	display: none;
+}
