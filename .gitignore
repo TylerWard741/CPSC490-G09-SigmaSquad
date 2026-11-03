@@ -20,6 +20,7 @@ Thumbs.db
 .env.*
 *.pem
 *.key
+!.env.example
 
 # Build output
 dist/
