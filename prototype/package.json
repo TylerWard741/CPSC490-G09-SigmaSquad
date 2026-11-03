@@ -1,0 +1,12 @@
+{
+  "name": "vehicle-selection-ui-tests",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Runs the UI tests for the plain HTML/JS vehicle selection page (#29).",
+  "scripts": {
+    "test": "node --test tests/ui/vehicle-select.test.js"
+  },
+  "devDependencies": {
+    "jsdom": "26.1.0"
+  }
+}
