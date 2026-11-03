@@ -199,6 +199,7 @@ buildable. CI gate G9 fails if a document exists in `docs/specs/` or
 | 〈docs/design/architecture.md〉 | design | 〈system architecture + data model〉 | 〈#n〉 |
 | [docs/design/screen-flow.md](../docs/design/screen-flow.md) | design | dashboard, vehicle selection, service-history entry and import | #29, #31, #32, #53 |
 | [docs/specs/vehicle-service-api.md](../docs/specs/vehicle-service-api.md) | specification | API spec that outlines our database schema and REST API implementation for Creating, Reading, Updating, and Deleting (CRUD) operations for vehicles and service records. | #30 |
+| [docs/specs/recommendations-and-alerts.md](../docs/specs/recommendations-and-alerts.md) | specification | Status labels and dashboard for recommended services (epic #28) | #50, #34, #35, #36, #37, #38 |
 
 〈The scaffold ships `docs/specs/example-spec.md` and
 `docs/design/example-design.md` as worked examples — read them, then delete

@@ -3,57 +3,17 @@
 > Epic: #28 · Stories: #34, #35, #36, #37, #38
 > Owner: Tyler Ward · Sprint: 2 · Status: draft
 
-The `> Q#` blocks below are Tyler's own words, placed here unchanged as raw material. They are to be rewritten into the tables in place before this goes up for review.
-
 ## Scope
 
 **In scope.**
 
-> **Q4.** The reason we show these labels instead of just a due date is because it allows the user to better prepare and understand what is due soon versus what is not due soon with a quick glance instead of having to look at the mileage numbers and do mathematical subtraction to find out how close they are.
-
-> **Q7.** I think the app should show three labels, and they are “Overdue” ( in red), “Due Soon” (in orange), and “When Convenient” (in yellow).
-
-> **Q14.** For version one, user's current mileage gets into the app by manual entry. They will need to log their mileage whenever is convenient for them. In later versions of the product, we will implement a way to make this automatic so that the users don’t have to manually enter their mileage.
-
-> **Q15.** The spec is satisfied when someone can input their vehicle information, service history, and current mileage, and see which services are “Overdue,” “Due Soon,” and “When Convenient.”  we will use multiple simulated scenarios with different vehicles and mileages and service histories to test this.
-
-
-
 This spec covers status labels for suggested services so that the user can see at a glance the statuses of recommended services. The app will use four status labels, which are “Overdue” (in red), “Due Now” (in orange), "Due Soon" (in yellow), and “When Convenient” (in green). For version one, user's current mileage will be entered into the app manually. They will need to log their mileage when it's convenient for them to do so. The app will calculate the mileage numbers at which all recommended services are due, using plain code-based logic. Version one will support three service types: oil changes, tire rotations and brake inspections. A service will be labeled "When Convenient" when the vehicle's current mileage is more than 500 miles before the start of the recommended service window. A service will be labeled "Due Soon" when the vehicle's current mileage is less than or equal to 500 miles before the start of the recommended service window. A service will be labeled "Due Now" when the vehicle's current mileage is inside the recommended service window. A service will be labeled "Overdue" when the vehicle's current mileage is past the end of the recommended service window. The start and end mileages of the service windows will be considered inside the windows. Cases in which manufacturers recommend a single mileage as opposed to mileage windows will be treated as windows in the app with the start and end mileage being the same. For services with status labels "Due Soon" and "Due Now," the dashboard will show the names of those specific services, their status label, the mileage window in which they're due, and the number of remaining miles until the end of the window. Version one of the app will still calculate the "When Convenient" services, but they will not be displayed on the dashboard. For services that are overdue, instead of showing the number of remaining miles until the end of the window, the dashboard will show the number of miles past the end of each window. The recommended intervals come from the vehicle's owner's manual, and/or the manufacturer's website.
-
-
 
 **Out of scope.**
 
-> **Q8.** In version one, notifications won’t be used because version one will just be a web app with mobile apps to come later. Those mobile apps later will use the notification system.
-
-> **Q13.** Beside those, version one of the app will not include features for multiple drivers, it will not automatically calculate the vehicle’s current mileage, and it will not implement AI to assist in calculating recommendations. I want to say this so that nobody builds these features by accident.
-
-> **Q12.** Version one will use code-based logic to make recommendations on upcoming services. Later, as a stretch goal, we will try to implement artificial intelligence to make those recommendations. The course requires an AI-powered feature or documented AI-assisted development, and we are using AI to assist in our development, so that is how we are meeting that requirement for version one.
-
-
-
 Version one of this spec does not cover notifications, AI-generated recommendations, automatic mileage, multiple drivers, or additional services beyond the three primary service types (oil changes, tire rotations and brake inspections). Notifications may be implemented during a later version, since version one focuses only on the web-based app, and mobile apps may be implemented during later versions. AI-generated recommendations are not necessary for version one, so we will consider adding them as a stretch goal for a later version. Automatic mileage tracking may also be implemented during a later version using GPS or an OBD reader. Having the option to add multiple drivers for a vehicle will also remain as a stretch goal.
 
-
-
 ## Functional requirements
-
-> **Q1.** When a service is overdue, the app should tell the user that it is overdue with an indicator on the item itself shown in the list, which looks like a red pill shape outline and background with the word “overdue” on it. It should not be large, but a rather small indicator. Placed on probably the top left corner of the item in the list. Notifications should also periodically be sent to the user that said service is overdue once it is overdue. Those notifications should be sent to their device once per day.
-
-> **Q2.** When a service is coming due soon, the app should tell the user it is such with an indicator on the item itself shown in the list, which looks like an orange pill shape outline and background with the words “Due Soon” on it. It should not be large, but a rather small indicator. Placed on probably the top left corner of the item in the list. Notifications should also periodically be sent to the user that said service is due soon once their mileage is within 1,000 miles of the official mileage window. Those notifications should be sent to their device once per week.
-
-> **Q3.** When a service is a long way off, the app should tell the user it is such with an indicator on the item itself shown in the list, which looks like a yellow pill shape outline and background with the words “When Convenient” on it or something similar with different phrasing perhaps. It should not be large, but a rather small indicator. Placed on probably the top left corner of the item in the list. Notifications do not need to be sent for these.
-
-> **Q6.** Regarding the labels and alerts, “Due Soon” starts at 500 miles before the due mileage because it is not too far off, or not too soon. It is a sweet spot for when we should let the user know that their service is due soon.
-
-> **Q9.** When I said 'the official mileage window', I meant the recommended mileage window as specified by the manufacturer.
-
-> **Q10.** The label “Urgent” will no longer be used because we think it will be better to use three labels instead, which are “Overdue” (red), “Due Soon” (orange), “When Convenient” (yellow). These labels are clearer and simpler to understand.
-
-> **Q14.** For version one, user's current mileage gets into the app by manual entry. They will need to log their mileage whenever is convenient for them. In later versions of the product, we will implement a way to make this automatic so that the users don’t have to manually enter their mileage.
-
-> **Q16.** The recommendations must be reliable because suggesting maintenance or service later than is appropriate could lead to damage to the user’s vehicle and suggesting maintenance or service earlier than is appropriate could lead to users distrusting and no longer using the application. To ensure this, we must conduct multiple varied test scenarios, all passing with flying colors, in that they will recommend the appropriate services at the appropriate millages and have the correct labels indicating the level of urgency. If the data needed to calculate whether a recommendation is has not been made or the noted mileage is outdated, the app should prompt the user for the correct data instead of guessing. This is important because a wrong label could lead to the user unknowingly neglecting needed service, leading to possible damage to their vehicle.
 
 | ID    | Requirement                                                                                                                                                                                                                                                         | Story |
 | ----- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----- |
@@ -74,30 +34,22 @@ Version one of this spec does not cover notifications, AI-generated recommendati
 
 ## Non-functional requirements
 
-> **Q16.** The recommendations must be reliable because suggesting maintenance or service later than is appropriate could lead to damage to the user’s vehicle and suggesting maintenance or service earlier than is appropriate could lead to users distrusting and no longer using the application. To ensure this, we must conduct multiple varied test scenarios, all passing with flying colors, in that they will recommend the appropriate services at the appropriate millages and have the correct labels indicating the level of urgency. If the data needed to calculate whether a recommendation is has not been made or the noted mileage is outdated, the app should prompt the user for the correct data instead of guessing. This is important because a wrong label could lead to the user unknowingly neglecting needed service, leading to possible damage to their vehicle.
-
-> **Q17.** A user should be able to tell what is due and how urgent it is at a glance with the help of our three urgency labels. This is important because it makes things easier and more efficient for the user. This is simply a decision based on good UX. The labels must not rely only on color, but the word or phrase as well. The list works on a phone screen because they can scroll through it and see things at a glance conveniently.
-
 | ID    | Requirement | Why it matters here |
 | ----- | ----------- | ------------------- |
-| NFR-1 |             |                     |
+| NFR-1 | A status label must always show the status label as a word, so that users unable to see color still understand the status of different services. | This matters for our users because they might not be able to see the color of the status label in certain situations |
+| NFR-2 | The systems labels must be reliable, which means add all simulated scenarios pass tests and checks. | This matters because if a label is wrong, it could lead to users performing recommended services too late or too early, potentially causing damage to their vehicle and/or wasting money. |
+| NFR-3 | On a phone screen, the dashboard must fit the screen width and only be scrollable vertically and text should be readable and buttons should be big enough to be easy to click. | This matters because many, if not most users will access our app on mobile devices. |
 
 ## Acceptance criteria (epic level)
 
-> **Q15.** The spec is satisfied when someone can input their vehicle information, service history, and current mileage, and see which services are “Overdue,” “Due Soon,” and “When Convenient.”  we will use multiple simulated scenarios with different vehicles and mileages and service histories to test this.
-
-> **Q16.** The recommendations must be reliable because suggesting maintenance or service later than is appropriate could lead to damage to the user’s vehicle and suggesting maintenance or service earlier than is appropriate could lead to users distrusting and no longer using the application. To ensure this, we must conduct multiple varied test scenarios, all passing with flying colors, in that they will recommend the appropriate services at the appropriate millages and have the correct labels indicating the level of urgency. If the data needed to calculate whether a recommendation is has not been made or the noted mileage is outdated, the app should prompt the user for the correct data instead of guessing. This is important because a wrong label could lead to the user unknowingly neglecting needed service, leading to possible damage to their vehicle.
-
-- [ ] 
+- [ ] The spec is satisfied when someone can input vehicle information, service history, and current mileage, and see the status labels on recommended services on the dashboard.
+- [ ] The spec is also satisfied when five simulated scenarios with different vehicles all produce the correct status labels.
+- [ ] The spec is also satisfied when a user who tries to view the dashboard with insufficient data is prompted to provide sufficient data.
 
 ## Open questions
 
-> **Q5.** I’m not sure yet whether these would be the best labels to use, or if we might want to tweak them slightly, and I would want to check anecdotes on the Internet to see when the most handy callouts would be, and what people would prefer most or find most helpful.
-
-> **Q11.** For version one, the manufacturer’s intervals will come from any official sources from the manufacturer, including but not limited to owner’s manuals, their official website, and verified claims by users on the internet.
-
-> **Q12.** Version one will use code-based logic to make recommendations on upcoming services. Later, as a stretch goal, we will try to implement artificial intelligence to make those recommendations. The course requires an AI-powered feature or documented AI-assisted development, and we are using AI to assist in our development, so that is how we are meeting that requirement for version one.
-
 | Question | Owner | Needed by |
 | -------- | ----- | --------- |
-|          |       |           |
+| How does the system determine whether there is sufficient data to produce an accurate status label? | Tyler Ward | Before story #34 starts |
+| How shall we determine what counts as a reliable source of information regarding different vehicles and their recommended services? | Tyler Ward | Before story #35 starts |
+| What is the best way to update #36 and #37 to be fully in line with our now four status labels and what may be shown on the app's dashboard? | Tyler Ward | Before story #36 starts |
