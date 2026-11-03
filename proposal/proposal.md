@@ -124,15 +124,7 @@ The team’s approach is to build the recommendation logic around the user’s e
 
 **Rule-based vs. AI-generated recommendations.** Competitors like GarageHub and MECH AI use AI to answer service questions. AI is flexible, but its answers can be hard to verify and those features are often behind a paywall. We will be choosing rules built from manufacturer specs because they are predictable, testable, and the information is free. The trade-off is that new vehicles and service types have to be added by hand.
 
-### Technology Selection Rationale
-
-**Frontend - React, TypeScript, and Tailwind CSS:** The team selected React to support the development of an interactive, component-based user interface. TypeScript was chosen to help identify programming errors through type checking, while Tailwind CSS will help to simplify the creation of consistent and responsive layouts.
-
-**Backend - Python and Flask:** Python was selected for its readability and suitability for processing vehicle maintenance information. Flask provides a lightweight framework for implementing backend functionality and communicating with the frontend.
-
-**Database - SQLite:** SQLite was selected for the initial prototype because it is lightweight and does not require a separate database server. This allows the team to focus on developing and testing the application's functionality without additional database configuration.
-
-**Hosting - TBD:** The hosting platform has not yet been finalized, however, the team will evaluate available options based on compatibility with the selected technologies and deployment requirements.
+The proposed tech stack is explained in §4.
 
 ## 4. Required Environment, Resources, and Planned Activities
 
@@ -143,7 +135,15 @@ The team’s approach is to build the recommendation logic around the user’s e
 > Describe the expected activities to achieve the stated goals, e.g.,
 > software development process.
 
-〈Your environment, resources, and planned activities.〉
+### Technology Selection Rationale
+
+**Frontend - React, TypeScript, and Tailwind CSS:** The team selected React to support the development of an interactive, component-based user interface. TypeScript was chosen to help identify programming errors through type checking, while Tailwind CSS will help to simplify the creation of consistent and responsive layouts.
+
+**Backend - Python and Flask:** Python was selected for its readability and suitability for processing vehicle maintenance information. Flask provides a lightweight framework for implementing backend functionality and communicating with the frontend.
+
+**Database - SQLite:** SQLite was selected for the initial prototype because it is lightweight and does not require a separate database server. This allows the team to focus on developing and testing the application's functionality without additional database configuration.
+
+**Hosting - TBD:** The hosting platform has not yet been finalized, however, the team will evaluate available options based on compatibility with the selected technologies and deployment requirements.
 
 **Diagrams belong in this section.** Include at minimum a high-level
 architecture diagram and a system (context) diagram; add the ER/EER model and
@@ -152,12 +152,6 @@ building and what it depends on. Draw them with any graphical tool
 (Lucidchart, draw.io, Miro, Mermaid, ERDPlus, Figma), keep the authoritative
 copies in `docs/design/` with both editable source and exported image, and
 reference them here.
-
-〈Number every figure, caption it, and point at it from the prose — "Figure 1
-shows the three deployment tiers and the trust boundary between them." A
-figure the text never mentions is decoration. See `docs/design/DIAGRAMS.md`
-for tools, conventions, and the rule that every box and arrow must be
-verified against reality.〉
 
 Figure 1 demonstrates how users navigate through the Vehicle Maintenance
 Logger, including vehicle selection, service history management,
