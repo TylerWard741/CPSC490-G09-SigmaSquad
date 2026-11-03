@@ -219,18 +219,39 @@ manual entry, importing records, and validation before saving.
 
 *Figure 1 — Dashboard and Service Entry Screen Flow.*
 
-Figure 2 illustrates the high-level architecture of the Vehicle Maintenance Logger and the relationships between the application's main components.
+Figure 2 shows what version one covers and who uses it from the outside.
 
-![High-level architecture of the Vehicle Maintenance Logger](../docs/design/diagrams/architecture.png)
+![System context diagram](../docs/design/diagrams/system-context.png)
 
-*Figure 2 — High-Level Architecture Diagram.*
+*Figure 2 — System context. This shows where version one ends. The vehicle
+owner is the only person outside the system, and we haven't picked any
+third-party services yet.*
 
-Figure 3 illustrates the system context of the Vehicle Maintenance Logger, including the system boundary and its interactions with users and external systems.
+Figure 3 breaks the system into its main parts: the React front end, the Flask
+API, the recommendation engine, and the SQLite database.
 
-![System context diagram of the Vehicle Maintenance Logger](../docs/design/diagrams/system-context.png)
+![High-level architecture diagram](../docs/design/diagrams/architecture.png)
 
-*Figure 3 — System Context Diagram.*
+*Figure 3 — High-level architecture. These are the main pieces and how they
+fit together. Solid boxes and arrows already have code on an open branch.
+Dashed ones are required by one of our objectives but haven't been built yet.*
 
+Figure 4 shows the proposed Entity-Relationship model. Each table's Primary Key will be id and the various Foreign Keys
+will consist of make_id, model_id, trim_id, user_id, service_type_id and vehicle_id.
+
+Currently there are 3 dashed border tables, meaning they are proposed: schedule_rules, service_types, and service_records.
+
+![ER Model Diagram: includes vehicles, service history, schedule rules(makes → models → trims, users’ saved vehicles, and service records attached to a saved vehicle.)](../docs/design/diagrams/er-model.png)
+
+*Figure 4 — Entity-Relationship Model*
+
+Figure 5 shows the proposed sequence flow for calculating next service on a vehicle. This includes
+the calls from the React UI to Flask API, which then queries the SQLite database. The resulting data paths back
+to the user with the API from the return data the recommendation engine calculates with due mileage, miles left, and a  label.
+
+![Sequence Diagram for next-service calculations (user → frontend → API → database, then API → engine → back)](../docs/design/diagrams/next-service-sequence.png)
+
+*Figure 5 — Next-Service Sequence Diagram*
 
 ### Specification and design documents
 
@@ -243,8 +264,9 @@ buildable. CI gate G9 fails if a document exists in `docs/specs/` or
 | Document | Kind | Covers | Issues |
 |---|---|---|---|
 | 〈docs/specs/account-management.md〉 | specification | 〈account management requirements〉 | 〈#n, #n〉 |
-| 〈docs/design/architecture.md〉 | design | 〈system architecture + data model〉 | 〈#n〉 |
+| [docs/design/architecture.md](../docs/design/architecture.md) | design | system context and high-level architecture | #27, #28, #29, #30, #34, #36, #51 |
 | [docs/design/screen-flow.md](../docs/design/screen-flow.md) | design | dashboard, vehicle selection, service-history entry and import | #29, #31, #32, #53 |
+| [docs/specs/vehicle-service-api.md](../docs/specs/vehicle-service-api.md) | specification | API spec that outlines our database schema and REST API implementation for Creating, Reading, Updating, and Deleting (CRUD) operations for vehicles and service records. | #30 |
 
 〈The scaffold ships `docs/specs/example-spec.md` and
 `docs/design/example-design.md` as worked examples — read them, then delete
@@ -275,8 +297,18 @@ G8 fails if such an issue exists that this section does not link.
 | [task:#15](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/15) | Task | Write the Sprint 1 review (docs/sprint-reviews/sprint-1.md) at the sprint boundary | -- | @TylerWard741 | Sprint 1 |
 | [task:#19](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/19) | Task | Write the initial HW4 proposal draft and archive it in the repo for the team to refine | -- | @TylerWard741 | Sprint 1 |
 | [task:#44](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/44) | Task | Convert proposal issue references to typed links and list #16-#18 in section 4 | -- | @TylerWard741 | Sprint 1 |
+| [task:#46](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/46) | Task | Merge develop into main at the end of Sprint 1 | -- | @TylerWard741 | Sprint 1 |
 | [task:#16](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/16) | Task | Write proposal section 3 Proposed Approaches | -- | @Mathieu2303 | Sprint 2 |
 | [task:#17](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/17) | Task | Write proposal section 4 Environment, Resources and Planned Activities (with diagrams) | -- | @emilyvlsco | Sprint 2 |
+| [task:#49](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/49) | Task | Write the specification for epic #27 (vehicle data and maintenance tracking) | -- | @ready2pullallnighters | Sprint 2 |
+| [task:#50](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/50) | Task | Write the specification for epic #28 (recommendations and alerts) | -- | @TylerWard741 | Sprint 2 |
+| [task:#51](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/51) | Task | Draw the architecture and system context diagrams | -- | @Mathieu2303 | Sprint 2 |
+| [task:#52](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/52) | Task | Draw the ER diagram and the next-service sequence diagram | -- | @TamtungOS | Sprint 2 |
+| [task:#53](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/53) | Task | Draw the dashboard and entry screen flow | -- | @emilyvlsco | Sprint 2 |
+| [task:#54](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/54) | Task | Build the prototype skeleton and smoke run | -- | @ready2pullallnighters | Sprint 2 |
+| [task:#55](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/55) | Task | Update proposal section 4 index and clean up section 1 | -- | @TylerWard741 | Sprint 2 |
+| [task:#56](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/56) | Task | Write the Sprint 2 review and the release PR | -- | @TylerWard741 | Sprint 2 |
+| [task:#57](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/57) | Task | Add Sprint 2 task rows to proposal section 4 (gate G8) | -- | @TylerWard741 | Sprint 2 |
 | [task:#18](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/18) | Task | Write proposal section 5 Project Outcomes and section 6 Project Timeline (the CPSC 491 plan) | -- | @ready2pullallnighters | Sprint 3 |
 | [task:#53](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/53) | Task | Draw dashboard and service-entry screen flow | -- | @emilyvlsco | Sprint 2 |
 
