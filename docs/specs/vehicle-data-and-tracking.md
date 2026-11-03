@@ -50,8 +50,6 @@
 ## Acceptance criteria [epic level]
 - [ ] A user can select a vehicle by make, model, year, and trim through a dashboard interface
 - [ ] There is an API endpoint for each of: create, read, update, and delete for vehicles and service records
-- [ ] The user can enter or import validated service history
-- [ ] The automated tests from Objective 1.5 are passing in CI.
 
 ## Open questions
 | Question | Owner | Needed by |
