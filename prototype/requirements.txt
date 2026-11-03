@@ -1,2 +1,3 @@
-# Prototype dependencies. Empty for v0 (standard library only).
-# Add one line per package you actually need, pinned:  requests==2.32.3
+# Prototype dependencies, pinned.
+Flask==3.1.0
+pytest==9.2.0
