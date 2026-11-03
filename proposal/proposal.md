@@ -116,6 +116,28 @@ Provide accurate, mileage-based maintenance recommendations and clearly communic
 
 ## 3. Proposed Approaches
 
+### Proposed Approach
+
+<!-- TODO: Mathieu - Explain the team's chosen approach,
+how the Vehicle Maintenance Logger addresses the identified
+problems, and how maintenance recommendations will work. -->
+
+### Alternatives and Trade-offs
+
+<!-- TODO: Mathieu - Discuss alternative approaches considered,
+their advantages and disadvantages, and why the team selected
+its proposed strategy. -->
+
+### Technology Selection Rationale
+
+**Frontend - React, TypeScript, and Tailwind CSS:** The team selected React to support the development of an interactive, component-based user interface. TypeScript was chosen to help identify programming errors through type checking, while Tailwind CSS will help to simplify the creation of consistent and responsive layouts.
+
+**Backend - Python and Flask:** Python was selected for its readability and suitability for processing vehicle maintenance information. Flask provides a lightweight framework for implementing backend functionality and communicating with the frontend.
+
+**Database - SQLite:** SQLite was selected for the initial prototype because it is lightweight and does not require a separate database server. This allows the team to focus on developing and testing the application's functionality without additional database configuration.
+
+**Hosting - TBD:** The hosting platform has not yet been finalized, however, the team will evaluate available options based on compatibility with the selected technologies and deployment requirements.
+
 > Describe your proposed approach to solve the problem, specifying how you
 > will achieve the stated goals. List some possible strategies.
 
