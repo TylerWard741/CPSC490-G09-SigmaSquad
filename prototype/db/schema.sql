@@ -28,6 +28,5 @@ id INTEGER PRIMARY KEY,
 user_id INTEGER NOT NULL REFERENCES users(id),
 trim_id INTEGER NOT NULL REFERENCES vehicle_trims(id),
 nickname TEXT,
-saved_at TEXT DEFAULT CURRENT_TIMESTAMP,
-UNIQUE (user_id, trim_id)
+saved_at TEXT DEFAULT CURRENT_TIMESTAMP
 );
