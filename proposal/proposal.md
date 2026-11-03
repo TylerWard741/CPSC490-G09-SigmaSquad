@@ -75,8 +75,8 @@ Future vehicle services depend on previous services, a vehicle's specifications,
 
 | Problem | Addressed by |
 |---|---|
-| P1: Maintenance Record Management | G1: Centralized Vehicle Data & Maintenance Tracking ([epic:#27](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/27)) |
-| P2: Determining Maintenance Requirements and Urgency | G2: Scheduled Maintenance Recommendations & Alerts ([epic:#28](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/28)) |
+| P1: Maintenance Record Management | G1: Centralized Vehicle Data & Maintenance Tracking |
+| P2: Determining Maintenance Requirements and Urgency | G2: Scheduled Maintenance Recommendations & Alerts |
 
 ## 2. Goals and Objectives
 
@@ -252,18 +252,11 @@ buildable. CI gate G9 fails if a document exists in `docs/specs/` or
 
 | Document | Kind | Covers | Issues |
 |---|---|---|---|
-| 〈docs/specs/account-management.md〉 | specification | 〈account management requirements〉 | 〈#n, #n〉 |
 | [docs/design/architecture.md](../docs/design/architecture.md) | design | system context and high-level architecture | #27, #28, #29, #30, #34, #36, #51 |
 | [docs/design/screen-flow.md](../docs/design/screen-flow.md) | design | dashboard, vehicle selection, service-history entry and import | #29, #31, #32, #53 |
 | [docs/specs/vehicle-service-api.md](../docs/specs/vehicle-service-api.md) | specification | API spec that outlines our database schema and REST API implementation for Creating, Reading, Updating, and Deleting (CRUD) operations for vehicles and service records. | #30 |
 | [docs/specs/recommendations-and-alerts.md](../docs/specs/recommendations-and-alerts.md) | specification | Status labels and dashboard for recommended services (epic #28) | #50, #34, #35, #36, #37, #38 |
-
-〈The scaffold ships `docs/specs/example-spec.md` and
-`docs/design/example-design.md` as worked examples — read them, then delete
-them once you have your own, and list yours here.〉
-
-〈Replace these rows with your own. Each document names its epic and stories
-in its own first lines too (gate G2), so the trail runs both ways.〉
+| [docs/specs/vehicle-selection.md](../docs/specs/vehicle-selection.md) | specification | This spec covers choosing a vehicle with its make, model, year and trim, and saving it to an account. | #29 |
 
 ### Planned activities — the work items
 
@@ -299,6 +292,8 @@ G8 fails if such an issue exists that this section does not link.
 | [task:#55](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/55) | Task | Update proposal section 4 index and clean up section 1 | -- | @TylerWard741 | Sprint 2 |
 | [task:#56](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/56) | Task | Write the Sprint 2 review and the release PR | -- | @TylerWard741 | Sprint 2 |
 | [task:#57](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/57) | Task | Add Sprint 2 task rows to proposal section 4 (gate G8) | -- | @TylerWard741 | Sprint 2 |
+| [task:#59](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/59) | Task | Change Objective 2.3 from two labels to four (#36, epic #28) | -- | @TylerWard741 | Sprint 2 |
+| [task:#63](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/63) | Task | Vehicle database schema and seed data | #29 | @Mathieu2303 | Sprint 2 |
 | [task:#18](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/18) | Task | Write proposal section 5 Project Outcomes and section 6 Project Timeline (the CPSC 491 plan) | -- | @ready2pullallnighters | Sprint 3 |
 
 ## 5. Project Outcomes
