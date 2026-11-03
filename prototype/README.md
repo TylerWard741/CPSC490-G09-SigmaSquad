@@ -5,7 +5,7 @@ Proof-of-concept code for Vehicle Maintenance Logger.
 ## First time installation
 - Prerequisite: node.js
 ```bash
-cd prototype
+cd prototype/web
 npm install
 ```
 
@@ -13,5 +13,5 @@ npm install
 
 ```bash
 cd prototype
-npm run start; python app.py
+python app.py
 ```
