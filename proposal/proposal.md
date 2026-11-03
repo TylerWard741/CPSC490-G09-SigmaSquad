@@ -168,6 +168,23 @@ manual entry, importing records, and validation before saving.
 
 *Figure 1 — Dashboard and Service Entry Screen Flow.*
 
+Figure 2 shows what version one covers and who uses it from the outside.
+
+![System context diagram](../docs/design/diagrams/system-context.png)
+
+*Figure 2 — System context. This shows where version one ends. The vehicle
+owner is the only person outside the system, and we haven't picked any
+third-party services yet.*
+
+Figure 3 breaks the system into its main parts: the React front end, the Flask
+API, the recommendation engine, and the SQLite database.
+
+![High-level architecture diagram](../docs/design/diagrams/architecture.png)
+
+*Figure 3 — High-level architecture. These are the main pieces and how they
+fit together. Solid boxes and arrows already have code on an open branch.
+Dashed ones are required by one of our objectives but haven't been built yet.*
+
 Figure 4 shows the proposed Entity-Relationship model. Each table's Primary Key will be id and the various Foreign Keys
 will consist of make_id, model_id, trim_id, user_id, service_type_id and vehicle_id.
 
@@ -196,7 +213,7 @@ buildable. CI gate G9 fails if a document exists in `docs/specs/` or
 | Document | Kind | Covers | Issues |
 |---|---|---|---|
 | 〈docs/specs/account-management.md〉 | specification | 〈account management requirements〉 | 〈#n, #n〉 |
-| 〈docs/design/architecture.md〉 | design | 〈system architecture + data model〉 | 〈#n〉 |
+| [docs/design/architecture.md](../docs/design/architecture.md) | design | system context and high-level architecture | #27, #28, #29, #30, #34, #36, #51 |
 | [docs/design/screen-flow.md](../docs/design/screen-flow.md) | design | dashboard, vehicle selection, service-history entry and import | #29, #31, #32, #53 |
 | [docs/specs/vehicle-service-api.md](../docs/specs/vehicle-service-api.md) | specification | API spec that outlines our database schema and REST API implementation for Creating, Reading, Updating, and Deleting (CRUD) operations for vehicles and service records. | #30 |
 | [docs/specs/recommendations-and-alerts.md](../docs/specs/recommendations-and-alerts.md) | specification | Status labels and dashboard for recommended services (epic #28) | #50, #34, #35, #36, #37, #38 |
