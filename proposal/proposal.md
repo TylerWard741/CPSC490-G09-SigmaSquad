@@ -118,15 +118,11 @@ Provide accurate, mileage-based maintenance recommendations and clearly communic
 
 ### Proposed Approach
 
-<!-- TODO: Mathieu - Explain the team's chosen approach,
-how the Vehicle Maintenance Logger addresses the identified
-problems, and how maintenance recommendations will work. -->
+The team’s approach is to build the recommendation logic around the user’s exact vehicle. The user selects their make, model, year, and trim and enters or imports their service history. That gives one organized record and addresses P1. The backend will then match the vehicle to its recommended service intervals, which come from verified sources such as owner’s manuals and dealer specifications. It compares those intervals against the vehicle’s current mileage and past services to work out when each service is next due. Each recommendation gets a simple label, “Urgent” or “When convenient,” based on documented mileage rules, so owners can see at a glance what needs attention now and what can wait. This addresses P2.
 
 ### Alternatives and Trade-offs
 
-<!-- TODO: Mathieu - Discuss alternative approaches considered,
-their advantages and disadvantages, and why the team selected
-its proposed strategy. -->
+**Rule-based vs. AI-generated recommendations.** Competitors like GarageHub and MECH AI use AI to answer service questions. AI is flexible, but its answers can be hard to verify and those features are often behind a paywall. We will be choosing rules built from manufacturer specs because they are predictable, testable, and the information is free. The trade-off is that new vehicles and service types have to be added by hand.
 
 ### Technology Selection Rationale
 
@@ -137,25 +133,6 @@ its proposed strategy. -->
 **Database - SQLite:** SQLite was selected for the initial prototype because it is lightweight and does not require a separate database server. This allows the team to focus on developing and testing the application's functionality without additional database configuration.
 
 **Hosting - TBD:** The hosting platform has not yet been finalized, however, the team will evaluate available options based on compatibility with the selected technologies and deployment requirements.
-
-> Describe your proposed approach to solve the problem, specifying how you
-> will achieve the stated goals. List some possible strategies.
-
-〈Your approach — **clear and concise**. State the strategy you chose, the
-alternatives you considered, and the reasoning that decided between them.
-Think of this as the argument, not the manual: a reader should finish this
-section understanding *what* you will do and *why that* rather than the
-alternatives.〉
-
-**Keep the details out of this section.** Tooling, platforms, frameworks,
-DBMS choices, environment setup, diagrams, and the work breakdown all belong
-in §4 (Required Environment, Resources, and Planned Activities). If a
-sentence here names a version number, a library, or a configuration, it
-probably belongs in §4 — leave a pointer instead ("the implementation stack
-is detailed in §4").
-
-〈A few paragraphs, or a short list of candidate strategies with one line of
-trade-off each. If it runs past a page, you are writing §4.〉
 
 ## 4. Required Environment, Resources, and Planned Activities
 
@@ -264,7 +241,6 @@ G8 fails if such an issue exists that this section does not link.
 | [task:#56](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/56) | Task | Write the Sprint 2 review and the release PR | -- | @TylerWard741 | Sprint 2 |
 | [task:#57](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/57) | Task | Add Sprint 2 task rows to proposal section 4 (gate G8) | -- | @TylerWard741 | Sprint 2 |
 | [task:#18](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/18) | Task | Write proposal section 5 Project Outcomes and section 6 Project Timeline (the CPSC 491 plan) | -- | @ready2pullallnighters | Sprint 3 |
-| [task:#53](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/53) | Task | Draw dashboard and service-entry screen flow | -- | @emilyvlsco | Sprint 2 |
 
 ## 5. Project Outcomes
 
