@@ -4,6 +4,7 @@
   "private": true,
   "description": "Runs the UI tests for the plain HTML/JS vehicle selection page (#29).",
   "scripts": {
+    "postinstall": "npm --prefix web ci && npm --prefix web run build",
     "test": "node --test tests/ui/vehicle-select.test.js"
   },
   "devDependencies": {
