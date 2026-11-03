@@ -168,6 +168,23 @@ manual entry, importing records, and validation before saving.
 
 *Figure 1 — Dashboard and Service Entry Screen Flow.*
 
+Figure 4 shows the proposed Entity-Relationship model. Each table's Primary Key will be id and the various Foreign Keys
+will consist of make_id, model_id, trim_id, user_id, service_type_id and vehicle_id.
+
+Currently there are 3 dashed border tables, meaning they are proposed: schedule_rules, service_types, and service_records.
+
+![ER Model Diagram: includes vehicles, service history, schedule rules(makes → models → trims, users’ saved vehicles, and service records attached to a saved vehicle.)](../docs/design/diagrams/er-model.png)
+
+*Figure 4 — Entity-Relationship Model*
+
+Figure 5 shows the proposed sequence flow for calculating next service on a vehicle. This includes
+the calls from the React UI to Flask API, which then queries the SQLite database. The resulting data paths back
+to the user with the API from the return data the recommendation engine calculates with due mileage, miles left, and a  label.
+
+![Sequence Diagram for next-service calculations (user → frontend → API → database, then API → engine → back)](../docs/design/diagrams/next-service-sequence.png)
+
+*Figure 5 — Next-Service Sequence Diagram*
+
 ### Specification and design documents
 
 **Every specification and design document the team writes is listed here**
