@@ -15,6 +15,8 @@ from pathlib import Path
 from flask import Flask, g, jsonify, request
 from werkzeug.exceptions import HTTPException
 
+from db.init_db import init_db
+
 DEFAULT_DB_PATH = Path(__file__).parent / "db" / "app.db"
 NICKNAME_MAX_LENGTH = 100
 
@@ -45,7 +47,7 @@ def _error(message: str, status: int):
 
 
 def create_app(db_path=DEFAULT_DB_PATH) -> Flask:
-    app = Flask(__name__, static_folder="static", static_url_path="/static")
+    app = Flask(__name__, static_folder="web/dist", static_url_path="/")
 
     def get_db() -> sqlite3.Connection:
         if "db" not in g:
@@ -186,5 +188,16 @@ def create_app(db_path=DEFAULT_DB_PATH) -> Flask:
     return app
 
 
+def main(db_path=DEFAULT_DB_PATH, port=5000):
+    # Seed on first run so the page works without `python db/init_db.py`.
+    # Requests still open the file with mode=rw, so a database that goes
+    # missing while the server runs is reported, not silently recreated.
+    # A 0-byte file counts as missing: sqlite3.connect leaves one behind.
+    path = Path(db_path)
+    if not path.exists() or path.stat().st_size == 0:
+        init_db(path)
+    create_app(db_path).run(host="127.0.0.1", port=port)
+
+
 if __name__ == "__main__":  # pragma: no cover - manual run
-    create_app().run(host="127.0.0.1", port=5000)
+    main()

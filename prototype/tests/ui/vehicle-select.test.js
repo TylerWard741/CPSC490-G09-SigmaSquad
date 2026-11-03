@@ -1,15 +1,20 @@
 // UI tests for story #29, named by acceptance criterion. These run the real
-// static/index.html and static/vehicle-select.js in jsdom; only fetch is
+// built page from web/dist (what app.py serves at /) in jsdom; only fetch is
 // replaced, by a fake server holding the same data as db/init_db.py.
+// web/dist is built by `npm install` in prototype/ (the postinstall script).
 const { test } = require("node:test");
 const assert = require("node:assert/strict");
 const fs = require("node:fs");
 const path = require("node:path");
 const { JSDOM } = require("jsdom");
 
-const STATIC_DIR = path.join(__dirname, "..", "..", "static");
-const HTML = fs.readFileSync(path.join(STATIC_DIR, "index.html"), "utf8");
-const SCRIPT = fs.readFileSync(path.join(STATIC_DIR, "vehicle-select.js"), "utf8");
+const DIST_DIR = path.join(__dirname, "..", "..", "web", "dist");
+const BUILT_HTML = fs.readFileSync(path.join(DIST_DIR, "index.html"), "utf8");
+// The bundle has no imports or exports, so it runs as a classic script; the
+// module tag is removed and the bundle is evaluated by openPage instead.
+const SCRIPT_TAG = /<script type="module"[^>]*src="\/([^"]+)"[^>]*><\/script>/;
+const HTML = BUILT_HTML.replace(SCRIPT_TAG, "");
+const SCRIPT = fs.readFileSync(path.join(DIST_DIR, BUILT_HTML.match(SCRIPT_TAG)[1]), "utf8");
 
 const MAKES = [{ id: 2, name: "Honda" }, { id: 1, name: "Toyota" }];
 const MODELS = {
@@ -89,8 +94,10 @@ async function openPage(t, server = createServer()) {
   t.after(() => dom.window.close());
   dom.window.fetch = server.fetch;
   dom.window.eval(SCRIPT);
-  await settle();
   const doc = dom.window.document;
+  // React renders asynchronously; wait for the page before its first fetch settles.
+  while (!doc.getElementById("make")) await settle();
+  await settle();
 
   const page = {
     server,
@@ -364,7 +371,7 @@ test("server text is rendered as text, not HTML", async (t) => {
   const server = createServer();
   const original = server.fetch;
   server.fetch = async (href, options) =>
-    href === "/users/1/vehicles" && !options
+    href === "/users/1/vehicles" && !options?.method
       ? json(200, {
           vehicles: [{ id: 1, trim_id: 1, year: 2020, make: "<img src=x>", model: "M", trim: "T", nickname: null }],
         })

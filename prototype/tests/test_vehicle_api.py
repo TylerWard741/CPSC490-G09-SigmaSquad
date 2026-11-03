@@ -49,7 +49,7 @@ def saved_row_count(db_path):
 
 
 def test_ac1_page_is_served_and_makes_come_from_the_database(client, db_path):
-    assert b'id="make"' in client.get("/").data
+    assert b'<div id="root">' in client.get("/").data
     assert names(client.get("/makes"), "makes") == ["Honda", "Toyota"]
 
     # Reads the database, not a list in the code.
