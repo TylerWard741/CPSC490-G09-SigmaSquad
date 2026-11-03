@@ -143,9 +143,9 @@ The Vehicle Maintenance Logger will use a web-based architecture consisting of a
 
 The frontend will use React, TypeScript, and Tailwind CSS. React will be used to create the application's user interface.  The interface includes the dashboard, vehicle selection, service-history management, and maintenance recommendations. TypeScript will provide type checking to help identify errors during development and Tailwind CSS will support consistent styling and layouts for both desktop and mobile browsers.
 
-The backend will use Python with the Flask web framework. Flask will handle requests from the frontend, process vehicle and service-history information, validate user input, and support the application's REST API. Python will also be used to implement the logic for determining upcoming maintenance services based on vehicle specifications, current mileage, and previous service records.
+The backend will use Python with the Flask web framework [15]. Flask will handle requests from the frontend, process vehicle and service-history information, validate user input, and support the application's REST API. Python will also be used to implement the logic for determining upcoming maintenance services based on vehicle specifications, current mileage, and previous service records.
 
-SQLite has been selected as the database for the initial prototype. It's role is to store vehicle information, maintenance records, and other data required by the application. This database was chosen for it's lightweight and compact nature.  It does not require a separate database server, making it suitable for early development and testing.
+SQLite has been selected as the database for the initial prototype. Its role is to store vehicle information, maintenance records, and other data required by the application. This database was chosen for its lightweight and compact nature.  It does not require a separate database server, making it suitable for early development and testing.
 
 The hosting platform has not yet been finalized. Deployment options will be evaluated based on compatibility with the selected technologies and the requirements of the completed application.
 
@@ -162,9 +162,9 @@ The development of the Vehicle Maintenance Logger will require several software 
 
 Git will be used for version control and allows team members to work on separate branches without directly modifying the main development branch. Changes will be submitted through pull requests targeting the develop branch and every pull request will be reviewed by another team member before merging.  GitHub Actions will also support continuous integration by running automated checks on submitted changes. These checks will help identify problems with repository structure and application functionality.
 
-Visual Studio Code can be used as a development environment for writing and editing application files. Node.js and npm will support the frontend development environment by managing dependencies and development tools for React and TypeScript.
+Visual Studio Code can be used as a development environment for writing and editing application files. Node.js and npm will support the frontend development environment by managing dependencies and development tools for React and TypeScript [16].
 
-For system documentation and design, the team will use various diagramming applications (draw.io, dbdiagram.io, Miro, Excalidraw) to create diagrams illustrating the application's architecture, data relationships, and user navigation. The specific application used will vary depending on specific requirements and team member preferences. These diagrams will be stored in the GitHub repository alongside their editable source files.
+For system documentation and design, the team will use various diagramming applications (draw.io, dbdiagram.io, Miro, Excalidraw) to create diagrams illustrating the application's architecture, data relationships, and user navigation. The applications used will vary depending on specific requirements and team member preferences. These diagrams will be stored in the GitHub repository alongside their editable source files.
 
 | Tool | Purpose |
 |---|---|
@@ -208,8 +208,6 @@ The Vehicle Maintenance Logger will use a frontend, backend, and database to man
 The backend will use Python and Flask to process requests from the frontend, validate vehicle and service records, and support maintenance recommendation calculations. SQLite will be used to store vehicle information and maintenance records during prototype development.
 
 The high-level architecture diagram will illustrate how these components communicate with one another, including the interaction between the frontend, backend, and database.  The system context diagram will show the boundaries of the Vehicle Maintenance Logger and how users interact with the application to manage their vehicles and maintenance information.
-
-The architecture and system context diagrams are currently being developed under [Issue #51](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/51) and will be incorporated into this section once finalized.
 
 Figure 1 demonstrates how users navigate through the Vehicle Maintenance
 Logger, including vehicle selection, service history management,
