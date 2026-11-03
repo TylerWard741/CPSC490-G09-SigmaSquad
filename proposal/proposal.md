@@ -116,49 +116,89 @@ Provide accurate, mileage-based maintenance recommendations and clearly communic
 
 ## 3. Proposed Approaches
 
-> Describe your proposed approach to solve the problem, specifying how you
-> will achieve the stated goals. List some possible strategies.
+### Proposed Approach
 
-〈Your approach — **clear and concise**. State the strategy you chose, the
-alternatives you considered, and the reasoning that decided between them.
-Think of this as the argument, not the manual: a reader should finish this
-section understanding *what* you will do and *why that* rather than the
-alternatives.〉
+The team’s approach is to build the recommendation logic around the user’s exact vehicle. The user selects their make, model, year, and trim and enters or imports their service history. That gives one organized record and addresses P1. The backend will then match the vehicle to its recommended service intervals, which come from verified sources such as owner’s manuals and dealer specifications. It compares those intervals against the vehicle’s current mileage and past services to work out when each service is next due. Each recommendation gets a simple label, “Urgent” or “When convenient,” based on documented mileage rules, so owners can see at a glance what needs attention now and what can wait. This addresses P2.
 
-**Keep the details out of this section.** Tooling, platforms, frameworks,
-DBMS choices, environment setup, diagrams, and the work breakdown all belong
-in §4 (Required Environment, Resources, and Planned Activities). If a
-sentence here names a version number, a library, or a configuration, it
-probably belongs in §4 — leave a pointer instead ("the implementation stack
-is detailed in §4").
+### Alternatives and Trade-offs
 
-〈A few paragraphs, or a short list of candidate strategies with one line of
-trade-off each. If it runs past a page, you are writing §4.〉
+**Rule-based vs. AI-generated recommendations.** Competitors like GarageHub and MECH AI use AI to answer service questions. AI is flexible, but its answers can be hard to verify and those features are often behind a paywall. We will be choosing rules built from manufacturer specs because they are predictable, testable, and the information is free. The trade-off is that new vehicles and service types have to be added by hand.
+
+The proposed tech stack is explained in §4.
 
 ## 4. Required Environment, Resources, and Planned Activities
 
-> Review the required and available resources and environment to complete
-> your project. For example, server, platform, software tools, operating
-> systems, DBMS, or any required skills.
->
-> Describe the expected activities to achieve the stated goals, e.g.,
-> software development process.
+### 4.1 Development Environment
 
-〈Your environment, resources, and planned activities.〉
+The Vehicle Maintenance Logger will use a web-based architecture consisting of a frontend interface, backend application, and database. Each component will serve a different purpose in allowing users to manage their vehicles, record maintenance history, and receive recommendations for upcoming services.
 
-**Diagrams belong in this section.** Include at minimum a high-level
-architecture diagram and a system (context) diagram; add the ER/EER model and
-a data-flow diagram where they help the reader understand what you are
-building and what it depends on. Draw them with any graphical tool
-(Lucidchart, draw.io, Miro, Mermaid, ERDPlus, Figma), keep the authoritative
-copies in `docs/design/` with both editable source and exported image, and
-reference them here.
+The frontend will use React, TypeScript, and Tailwind CSS. React will be used to create the application's user interface.  The interface includes the dashboard, vehicle selection, service-history management, and maintenance recommendations. TypeScript will provide type checking to help identify errors during development and Tailwind CSS will support consistent styling and layouts for both desktop and mobile browsers.
 
-〈Number every figure, caption it, and point at it from the prose — "Figure 1
-shows the three deployment tiers and the trust boundary between them." A
-figure the text never mentions is decoration. See `docs/design/DIAGRAMS.md`
-for tools, conventions, and the rule that every box and arrow must be
-verified against reality.〉
+The backend will use Python with the Flask web framework [15]. Flask will handle requests from the frontend, process vehicle and service-history information, validate user input, and support the application's REST API. Python will also be used to implement the logic for determining upcoming maintenance services based on vehicle specifications, current mileage, and previous service records.
+
+SQLite has been selected as the database for the initial prototype. Its role is to store vehicle information, maintenance records, and other data required by the application. This database was chosen for its lightweight and compact nature.  It does not require a separate database server, making it suitable for early development and testing.
+
+The hosting platform has not yet been finalized. Deployment options will be evaluated based on compatibility with the selected technologies and the requirements of the completed application.
+
+| Component | Technology | Purpose |
+|---|---|---|
+| Frontend | React, TypeScript, Tailwind CSS | Build the dashboard, forms, and user interface |
+| Backend | Python, Flask | Handle application logic, REST API requests, and data validation |
+| Database | SQLite | Store vehicle information and maintenance records during prototype development |
+| Hosting | To be determined | Deploy the application for online access |
+
+### 4.2 Software Tools and Resources
+
+The development of the Vehicle Maintenance Logger will require several software tools to support programming, collaboration, testing, and documentation. The team will use GitHub as the primary platform for managing the project repository, tracking issues, reviewing changes, and organizing development tasks.
+
+Git will be used for version control and allows team members to work on separate branches without directly modifying the main development branch. Changes will be submitted through pull requests targeting the develop branch and every pull request will be reviewed by another team member before merging.  GitHub Actions will also support continuous integration by running automated checks on submitted changes. These checks will help identify problems with repository structure and application functionality.
+
+Visual Studio Code can be used as a development environment for writing and editing application files. Node.js and npm will support the frontend development environment by managing dependencies and development tools for React and TypeScript [16].
+
+For system documentation and design, the team will use various diagramming applications (draw.io, dbdiagram.io, Miro, Excalidraw) to create diagrams illustrating the application's architecture, data relationships, and user navigation. The applications used will vary depending on specific requirements and team member preferences. These diagrams will be stored in the GitHub repository alongside their editable source files.
+
+| Tool | Purpose |
+|---|---|
+| GitHub | Repository management, issue tracking, pull requests, and collaboration |
+| Git | Version control and branch management |
+| GitHub Actions | Automated testing and repository validation |
+| Visual Studio Code | Writing and editing source code |
+| draw.io, dbdiagram.io, Miro, etc. | Creating system architecture and design diagrams |
+| Node.js and npm | Frontend dependency management and development |
+| Python | Backend programming and application logic |
+| Markdown | Writing project documentation and specifications |
+
+### 4.3 Required Skills
+
+The Vehicle Maintenance Logger will require knowledge of frontend development, backend programming, database management, and software testing.
+
+Frontend development skills will be necessary to build the dashboard, vehicle selection interface, and service-history entry screens. Knowledge of React, TypeScript, HTML, and CSS will help the team create an interface that is accessible through both desktop and mobile browsers.
+
+Backend development will require Python programming and familiarity with the Flask framework. These skills will be used to process requests, validate information, manage database operations, and calculate upcoming maintenance recommendations.
+
+Database design skills will be necessary to organize vehicle information and service-history records. The team will need to understand relational databases, data relationships, and create, read, update, and delete operations.
+
+Data validation will also be important because users must be able to manually enter or import existing service records. The application must identify missing or invalid information before saving records.
+
+Finally, testing and debugging skills will help the team verify that the application functions as expected. Git and GitHub knowledge will support collaboration, code reviews, and maintaining an organized development process.
+
+| Required Skill | Application |
+|---|---|
+| Frontend Development | Creating responsive dashboards, forms, and navigation |
+| Python Programming | Implementing backend functionality and maintenance calculations |
+| REST API Development | Connecting the frontend and backend |
+| Database Design | Organizing vehicles, service records, and related information |
+| Data Validation | Checking user input and imported maintenance records |
+| Testing and Debugging | Verifying functionality and correcting errors |
+| Git and GitHub | Managing collaborative development and pull requests |
+
+### 4.4 System Architecture and Design Diagrams
+
+The Vehicle Maintenance Logger will use a frontend, backend, and database to manage vehicle information and provide maintenance recommendations. The frontend will allow users to interact with the application, while the backend will process requests and communicate with the database.
+
+The backend will use Python and Flask to process requests from the frontend, validate vehicle and service records, and support maintenance recommendation calculations. SQLite will be used to store vehicle information and maintenance records during prototype development.
+
+The high-level architecture diagram will illustrate how these components communicate with one another, including the interaction between the frontend, backend, and database.  The system context diagram will show the boundaries of the Vehicle Maintenance Logger and how users interact with the application to manage their vehicles and maintenance information.
 
 Figure 1 demonstrates how users navigate through the Vehicle Maintenance
 Logger, including vehicle selection, service history management,
@@ -260,7 +300,6 @@ G8 fails if such an issue exists that this section does not link.
 | [task:#56](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/56) | Task | Write the Sprint 2 review and the release PR | -- | @TylerWard741 | Sprint 2 |
 | [task:#57](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/57) | Task | Add Sprint 2 task rows to proposal section 4 (gate G8) | -- | @TylerWard741 | Sprint 2 |
 | [task:#18](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/18) | Task | Write proposal section 5 Project Outcomes and section 6 Project Timeline (the CPSC 491 plan) | -- | @ready2pullallnighters | Sprint 3 |
-| [task:#53](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/53) | Task | Draw dashboard and service-entry screen flow | -- | @emilyvlsco | Sprint 2 |
 
 ## 5. Project Outcomes
 
@@ -305,6 +344,10 @@ Additionally, after writing the original proposal draft, Grammarly was used to v
 
 ChatGPT was used to review grammar and clarity in Section 1.2, and to verify that the problem statements aligned with the project goals.  The problem statements were not generated by AI.
 
+ChatGPT was used to assist with planning and documenting the dashboard and service-entry screen flow. It provided suggestions for organizing the diagram, however, the screen flow diagram was created by a team member in draw.io.  AI also assisted in converting written prose into GitHub Markdown formatting.
+
+ChatGPT helped to search for official sources used in writing Section 4 of this proposal, as well as correct grammar and fix unclear wording. The technology stack was selected by the team independently, while ChatGPT was used to help organize the information. The proposal content was written, reviewed, and revised by a team member to align with the team's decisions and project requirements.
+
 ## 8. References
 
 [1] CARFAX. CARFAX Car Care (website and FAQ). https://www.carfax.com/Service/ (accessed Oct. 4, 2026).
@@ -334,3 +377,7 @@ ChatGPT was used to review grammar and clarity in Section 1.2, and to verify tha
 [13] GarageHub. History Import. https://getgaragehub.com/features/history-import/ (accessed Oct. 9, 2026).
 
 [14] GarageHub. Car Maintenance Reminders. https://getgaragehub.com/features/maintenance-reminders/ (accessed Oct. 9, 2026).
+
+[15] Pallets Projects. Flask Documentation. https://flask.palletsprojects.com/en/stable/ (accessed Nov. 1, 2026).
+
+[16] OpenJS Foundation. Introduction to Node.js. https://nodejs.org/learn/getting-started/introduction-to-nodejs (accessed Nov. 1, 2026).
