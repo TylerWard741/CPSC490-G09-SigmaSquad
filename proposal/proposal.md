@@ -185,6 +185,23 @@ API, the recommendation engine, and the SQLite database.
 fit together. Solid boxes and arrows already have code on an open branch.
 Dashed ones are required by one of our objectives but haven't been built yet.*
 
+Figure 4 shows the proposed Entity-Relationship model. Each table's Primary Key will be id and the various Foreign Keys
+will consist of make_id, model_id, trim_id, user_id, service_type_id and vehicle_id.
+
+Currently there are 3 dashed border tables, meaning they are proposed: schedule_rules, service_types, and service_records.
+
+![ER Model Diagram: includes vehicles, service history, schedule rules(makes → models → trims, users’ saved vehicles, and service records attached to a saved vehicle.)](../docs/design/diagrams/er-model.png)
+
+*Figure 4 — Entity-Relationship Model*
+
+Figure 5 shows the proposed sequence flow for calculating next service on a vehicle. This includes
+the calls from the React UI to Flask API, which then queries the SQLite database. The resulting data paths back
+to the user with the API from the return data the recommendation engine calculates with due mileage, miles left, and a  label.
+
+![Sequence Diagram for next-service calculations (user → frontend → API → database, then API → engine → back)](../docs/design/diagrams/next-service-sequence.png)
+
+*Figure 5 — Next-Service Sequence Diagram*
+
 ### Specification and design documents
 
 **Every specification and design document the team writes is listed here**
@@ -198,6 +215,7 @@ buildable. CI gate G9 fails if a document exists in `docs/specs/` or
 | 〈docs/specs/account-management.md〉 | specification | 〈account management requirements〉 | 〈#n, #n〉 |
 | [docs/design/architecture.md](../docs/design/architecture.md) | design | system context and high-level architecture | #27, #28, #29, #30, #34, #36, #51 |
 | [docs/design/screen-flow.md](../docs/design/screen-flow.md) | design | dashboard, vehicle selection, service-history entry and import | #29, #31, #32, #53 |
+| [docs/specs/vehicle-service-api.md](../docs/specs/vehicle-service-api.md) | specification | API spec that outlines our database schema and REST API implementation for Creating, Reading, Updating, and Deleting (CRUD) operations for vehicles and service records. | #30 |
 
 〈The scaffold ships `docs/specs/example-spec.md` and
 `docs/design/example-design.md` as worked examples — read them, then delete
