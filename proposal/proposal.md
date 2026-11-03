@@ -219,6 +219,19 @@ manual entry, importing records, and validation before saving.
 
 *Figure 1 — Dashboard and Service Entry Screen Flow.*
 
+Figure 2 illustrates the high-level architecture of the Vehicle Maintenance Logger and the relationships between the application's main components.
+
+![High-level architecture of the Vehicle Maintenance Logger](../docs/design/diagrams/architecture.png)
+
+*Figure 2 — High-Level Architecture Diagram.*
+
+Figure 3 illustrates the system context of the Vehicle Maintenance Logger, including the system boundary and its interactions with users and external systems.
+
+![System context diagram of the Vehicle Maintenance Logger](../docs/design/diagrams/system-context.png)
+
+*Figure 3 — System Context Diagram.*
+
+
 ### Specification and design documents
 
 **Every specification and design document the team writes is listed here**
