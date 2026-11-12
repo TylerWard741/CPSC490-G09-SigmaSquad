@@ -295,6 +295,15 @@ G8 fails if such an issue exists that this section does not link.
 | [task:#59](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/59) | Task | Change Objective 2.3 from two labels to four (#36, epic #28) | -- | @TylerWard741 | Sprint 2 |
 | [task:#63](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/63) | Task | Vehicle database schema and seed data | #29 | @Mathieu2303 | Sprint 2 |
 | [task:#18](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/18) | Task | Write proposal section 5 Project Outcomes and section 6 Project Timeline (the CPSC 491 plan) | -- | @ready2pullallnighters | Sprint 3 |
+| [task:#72](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/72) | Task | Calculate When Convenient/Due Soon/Due Now/Overdue labels from current mileage | #34 | @TylerWard741 | Sprint 3 |
+| [task:#73](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/73) | Task | Add current-mileage entry that replaces the stored value and recalculates labels | #34 | @TylerWard741 | Sprint 3 |
+| [task:#74](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/74) | Task | Prompt the user for missing data before showing recommendation labels | #34 | @TylerWard741 | Sprint 3 |
+| [task:#75](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/75) | Task | Add recommended-interval reference data for oil changes, tire rotations, and brake inspections | #35 | @ready2pullallnighters | Sprint 3 |
+| [task:#76](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/76) | Task | Wire the three service types into the recommendation engine's calculation | #35 | @ready2pullallnighters | Sprint 3 |
+| [task:#77](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/77) | Task | Build the dashboard page listing each vehicle's maintenance history | #32 | @ready2pullallnighters | Sprint 3 |
+| [task:#78](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/78) | Task | Make the dashboard responsive for mobile screen widths | #32 | @ready2pullallnighters | Sprint 3 |
+| [task:#79](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/79) | Task | Add dashboard UI to edit and delete vehicles and service records | #32 | @ready2pullallnighters | Sprint 3 |
+| [task:#80](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/80) | Task | Add Sprint 3 child-task rows to proposal section 4 | -- | @TylerWard741 | Sprint 3 |
 
 ## 5. Project Outcomes
 
