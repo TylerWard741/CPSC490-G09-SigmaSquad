@@ -257,6 +257,7 @@ buildable. CI gate G9 fails if a document exists in `docs/specs/` or
 | [docs/specs/vehicle-service-api.md](../docs/specs/vehicle-service-api.md) | specification | API spec that outlines our database schema and REST API implementation for Creating, Reading, Updating, and Deleting (CRUD) operations for vehicles and service records. | #30 |
 | [docs/specs/recommendations-and-alerts.md](../docs/specs/recommendations-and-alerts.md) | specification | Status labels and dashboard for recommended services (epic #28) | #50, #34, #35, #36, #37, #38 |
 | [docs/specs/vehicle-selection.md](../docs/specs/vehicle-selection.md) | specification | This spec covers choosing a vehicle with its make, model, year and trim, and saving it to an account. | #29 |
+| [docs/specs/vehicle-data-and-tracking.md](../docs/specs/vehicle-data-and-tracking.md) | specification | Specification for epic #27: vehicle data upload and tracking, CRUD requirements, and service-history entry/import. | #27, #29, #30, #31, #49 |
 
 ### Planned activities — the work items
 
@@ -295,7 +296,7 @@ G8 fails if such an issue exists that this section does not link.
 | [task:#59](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/59) | Task | Change Objective 2.3 from two labels to four (#36, epic #28) | -- | @TylerWard741 | Sprint 2 |
 | [task:#63](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/63) | Task | Vehicle database schema and seed data | #29 | @Mathieu2303 | Sprint 2 |
 | [task:#18](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/18) | Task | Write proposal section 5 Project Outcomes and section 6 Project Timeline (the CPSC 491 plan) | -- | @ready2pullallnighters | Sprint 3 |
-| [task:#72](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/72) | Task | Calculate When Convenient/Due Soon/Due Now/Overdue labels from current mileage | #34 | @TylerWard741 | Sprint 3 |
+| [task:#72](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/72) | Task | Implement the When Convenient/Due Soon/Due Now/Overdue label rule | #36 | @Mathieu2303 | Sprint 3 |
 | [task:#73](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/73) | Task | Add current-mileage entry that replaces the stored value and recalculates labels | #34 | @TylerWard741 | Sprint 3 |
 | [task:#74](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/74) | Task | Prompt the user for missing data before showing recommendation labels | #34 | @TylerWard741 | Sprint 3 |
 | [task:#75](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/75) | Task | Add recommended-interval reference data for oil changes, tire rotations, and brake inspections | #35 | @ready2pullallnighters | Sprint 3 |
@@ -304,6 +305,7 @@ G8 fails if such an issue exists that this section does not link.
 | [task:#78](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/78) | Task | Make the dashboard responsive for mobile screen widths | #32 | @ready2pullallnighters | Sprint 3 |
 | [task:#79](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/79) | Task | Add dashboard UI to edit and delete vehicles and service records | #32 | @ready2pullallnighters | Sprint 3 |
 | [task:#80](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/80) | Task | Add Sprint 3 child-task rows to proposal section 4 | -- | @TylerWard741 | Sprint 3 |
+| [task:#81](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/81) | Task | Build the service-records schema and CRUD API (per vehicle-service-api.md) | #30 | @TamtungOS | Sprint 3 |
 
 ## 5. Project Outcomes
 
