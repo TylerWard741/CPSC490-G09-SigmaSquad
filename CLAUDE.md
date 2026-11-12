@@ -44,6 +44,10 @@ merely suggested; see `docs/aidlc/loop-engineering.md`.
   and is **approved by a teammate who is not the author**. CI must be green.
 - A story is done only when its acceptance criteria are checked off and its
   PR is merged.
+- Board cards move as work happens, not in a batch at the end: whichever of
+  us opens a branch for a tracked issue moves its card to In Progress;
+  whoever opens the PR moves it to In Review. If you're the assistant doing
+  that branch/PR work for someone, move the card yourself and say so.
 
 ## What the assistant may and may not do
 
