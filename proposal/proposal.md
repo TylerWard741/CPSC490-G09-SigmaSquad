@@ -306,6 +306,7 @@ G8 fails if such an issue exists that this section does not link.
 | [task:#79](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/79) | Task | Add dashboard UI to edit and delete vehicles and service records | #32 | @ready2pullallnighters | Sprint 3 |
 | [task:#80](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/80) | Task | Add Sprint 3 child-task rows to proposal section 4 | -- | @TylerWard741 | Sprint 3 |
 | [task:#81](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/81) | Task | Build the service-records schema and CRUD API (per vehicle-service-api.md) | #30 | @TamtungOS | Sprint 3 |
+| [task:#83](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/83) | Task | Add a board-card-movement reminder to shared CLAUDE.md | -- | @TylerWard741 | Sprint 3 |
 
 ## 5. Project Outcomes
 
