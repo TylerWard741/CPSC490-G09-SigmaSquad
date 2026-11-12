@@ -307,6 +307,9 @@ G8 fails if such an issue exists that this section does not link.
 | [task:#80](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/80) | Task | Add Sprint 3 child-task rows to proposal section 4 | -- | @TylerWard741 | Sprint 3 |
 | [task:#81](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/81) | Task | Build the service-records schema and CRUD API (per vehicle-service-api.md) | #30 | @TamtungOS | Sprint 3 |
 | [task:#83](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/83) | Task | Add a board-card-movement reminder to shared CLAUDE.md | -- | @TylerWard741 | Sprint 3 |
+| [task:#85](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/85) | Task | Build the manual service-record entry form | #31 | @emilyvlsco | Sprint 3 |
+| [task:#86](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/86) | Task | Build the service-history import/upload interface | #31 | @emilyvlsco | Sprint 3 |
+| [task:#87](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/87) | Task | Display a vehicle's saved maintenance history | #31 | @emilyvlsco | Sprint 3 |
 
 ## 5. Project Outcomes
 
