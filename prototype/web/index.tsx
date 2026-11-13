@@ -58,7 +58,7 @@ function SelectionPage() {
 	);
 }
 
-// Story #77: saved vehicles on the left, the selected vehicle's service
+// Stories #77 and #79: saved vehicles on the left, the selected vehicle's service
 // history on the right at desktop width.
 function DashboardPage() {
 	const root = useRef<HTMLDivElement>(null);
@@ -74,7 +74,8 @@ function DashboardPage() {
 					Retry
 				</button>
 			</div>
-			<div className="mt-6 grid gap-8 md:grid-cols-[18rem_1fr]">
+			<div id="dash-status" className="message success" role="status" hidden></div>
+			<div className="mt-6 grid gap-8 md:grid-cols-[22rem_1fr]">
 				<section>
 					<h2 className="text-lg font-semibold">Your vehicles</h2>
 					<ul id="dash-vehicles" className="mt-3 space-y-2"></ul>
@@ -100,6 +101,7 @@ function DashboardPage() {
 								<th className="border-b py-2 pr-4">Service</th>
 								<th className="border-b py-2 pr-4">Mileage</th>
 								<th className="border-b py-2 pr-4">Notes</th>
+								<th className="border-b py-2 pr-4">Actions</th>
 							</tr>
 						</thead>
 						<tbody id="dash-records"></tbody>
