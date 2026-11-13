@@ -1,7 +1,6 @@
 """API tests for task #81, named by the requirement they cover.
 
-FR numbers are from docs/specs/vehicle-service-api.md. The vehicle endpoints
-(FR-4, FR-9, FR-10) are not built yet, so they have no tests here.
+FR numbers are from docs/specs/vehicle-service-api.md.
 """
 import sqlite3
 from datetime import date, timedelta
@@ -154,6 +153,29 @@ def test_fr3_update_of_one_field_leaves_the_others(client, vehicle_id):
     assert response.get_json()["service_record"] == {**record, "notes": "Edited"}
 
 
+def test_fr4_delete_vehicle_returns_204_and_removes_it_and_its_records(
+    client, db_path, vehicle_id
+):
+    other = client.post(VEHICLES_URL, json={"trim_id": 2}).get_json()["vehicle"]["id"]
+    create_record(client, vehicle_id)
+    create_record(client, vehicle_id, service_date="2026-03-01")
+    kept = create_record(client, other)
+
+    response = client.delete(f"/vehicles/{vehicle_id}")
+
+    assert response.status_code == 204
+    assert response.data == b""
+    assert query(db_path, "SELECT id FROM user_vehicles") == [(other,)]
+    assert query(db_path, "SELECT id FROM service_records") == [(kept["id"],)]
+    assert client.get(f"/vehicles/{vehicle_id}").status_code == 404
+    assert client.get(records_url(vehicle_id)).status_code == 404
+
+
+def test_fr4_deleted_vehicle_can_be_saved_again(client, vehicle_id):
+    client.delete(f"/vehicles/{vehicle_id}")
+    assert client.post(VEHICLES_URL, json={"trim_id": 1}).status_code == 201
+
+
 def test_fr5_delete_returns_204_and_removes_the_record(client, db_path, vehicle_id):
     record = create_record(client, vehicle_id)
     kept = create_record(client, vehicle_id)
@@ -282,9 +304,16 @@ def test_fr6_the_database_itself_rejects_negative_mileage(db_path):
     ("patch", "/service-records/999"),
     ("delete", "/service-records/999"),
     ("get", "/service-records/not-a-number"),
+    ("get", "/vehicles/999"),
+    ("patch", "/vehicles/999"),
+    ("delete", "/vehicles/999"),
+    ("get", "/vehicles/not-a-number"),
 ])
 def test_fr7_unknown_vehicle_or_record_returns_404_json(client, db_path, method, url):
-    body = valid_body(client) if method in ("post", "patch") else None
+    if url.startswith("/vehicles/999") and method == "patch":
+        body = {"nickname": "Daily driver"}
+    else:
+        body = valid_body(client) if method in ("post", "patch") else None
 
     response = getattr(client, method)(url, json=body)
 
@@ -319,10 +348,16 @@ def test_fr7_deleted_record_is_no_longer_found(client, vehicle_id):
     ("get", "/service-records/1"),
     ("patch", "/service-records/1"),
     ("delete", "/service-records/1"),
+    ("get", "/vehicles/1"),
+    ("patch", "/vehicles/1"),
+    ("delete", "/vehicles/1"),
 ])
 def test_fr8_missing_database_returns_503_with_the_message(db_path, method, url):
     client = create_app(db_path).test_client()
-    body = {"service_type_id": 1, "service_date": "2026-10-15", "mileage": 42150}
+    if url == "/vehicles/1":
+        body = {"current_mileage": 42150}
+    else:
+        body = {"service_type_id": 1, "service_date": "2026-10-15", "mileage": 42150}
     db_path.unlink()
 
     response = getattr(client, method)(url, json=body if method in ("post", "patch") else None)
@@ -331,6 +366,108 @@ def test_fr8_missing_database_returns_503_with_the_message(db_path, method, url)
     assert response.get_json() == {"error": UNAVAILABLE}
     # mode=rw: the outage must not be hidden by creating a new empty file.
     assert not db_path.exists()
+
+
+def test_fr9_read_vehicle_returns_200_and_its_details(client):
+    saved = client.post(
+        VEHICLES_URL, json={"trim_id": 1, "nickname": "Daily driver"}
+    ).get_json()["vehicle"]
+
+    response = client.get(f"/vehicles/{saved['id']}")
+
+    assert response.status_code == 200
+    vehicle = response.get_json()["vehicle"]
+    assert vehicle == {**saved, "current_mileage": None}
+    assert (
+        vehicle["make"], vehicle["model"], vehicle["year"], vehicle["trim"],
+        vehicle["nickname"], vehicle["current_mileage"],
+    ) == ("Toyota", "Camry", 2020, "LE", "Daily driver", None)
+
+
+def test_fr9_read_vehicle_shows_the_mileage_a_record_set(client, vehicle_id):
+    create_record(client, vehicle_id, mileage=42150)
+    vehicle = client.get(f"/vehicles/{vehicle_id}").get_json()["vehicle"]
+    assert vehicle["current_mileage"] == 42150
+
+
+def test_fr10_update_vehicle_returns_200_and_saves_the_changes(client, db_path, vehicle_id):
+    before = client.get(f"/vehicles/{vehicle_id}").get_json()["vehicle"]
+    changes = {"nickname": "Road trip car", "current_mileage": 43000}
+
+    response = client.patch(f"/vehicles/{vehicle_id}", json=changes)
+
+    assert response.status_code == 200
+    assert response.get_json()["vehicle"] == {**before, **changes}
+    assert query(
+        db_path, "SELECT nickname, current_mileage FROM user_vehicles WHERE id = ?", vehicle_id
+    ) == [("Road trip car", 43000)]
+
+
+def test_fr10_update_of_one_field_leaves_the_other(client, vehicle_id):
+    client.patch(f"/vehicles/{vehicle_id}", json={"nickname": "Daily driver"})
+
+    response = client.patch(f"/vehicles/{vehicle_id}", json={"current_mileage": 500})
+
+    vehicle = response.get_json()["vehicle"]
+    assert (vehicle["nickname"], vehicle["current_mileage"]) == ("Daily driver", 500)
+
+
+def test_fr10_nickname_can_be_cleared_with_null(client, vehicle_id):
+    client.patch(f"/vehicles/{vehicle_id}", json={"nickname": "Daily driver"})
+
+    response = client.patch(f"/vehicles/{vehicle_id}", json={"nickname": None})
+
+    assert response.get_json()["vehicle"]["nickname"] is None
+
+
+def test_fr10_owner_can_lower_current_mileage_to_fix_a_mistake(client, db_path, vehicle_id):
+    """Records only raise current_mileage; a direct update is the way to correct it."""
+    create_record(client, vehicle_id, mileage=420000)
+
+    response = client.patch(f"/vehicles/{vehicle_id}", json={"current_mileage": 42000})
+
+    assert response.status_code == 200
+    assert current_mileage(db_path, vehicle_id) == 42000
+
+
+@pytest.mark.parametrize("payload,field", [
+    ({"nickname": 5}, "nickname"),
+    ({"nickname": "x" * 101}, "nickname"),
+    ({"current_mileage": None}, "current_mileage"),
+    ({"current_mileage": "43000"}, "current_mileage"),
+    ({"current_mileage": 43000.5}, "current_mileage"),
+    ({"current_mileage": True}, "current_mileage"),
+    ({"current_mileage": -1}, "current_mileage"),
+    ({"trim_id": 2}, "trim_id"),
+    ({"user_id": 2}, "user_id"),
+])
+def test_fr6_invalid_vehicle_update_returns_400_and_saves_nothing(
+    client, vehicle_id, payload, field
+):
+    client.patch(f"/vehicles/{vehicle_id}", json={"nickname": "Daily driver", "current_mileage": 100})
+    before = client.get(f"/vehicles/{vehicle_id}").get_json()["vehicle"]
+
+    response = client.patch(f"/vehicles/{vehicle_id}", json=payload)
+
+    assert response.status_code == 400
+    assert field in response.get_json()["error"]
+    assert client.get(f"/vehicles/{vehicle_id}").get_json()["vehicle"] == before
+
+
+@pytest.mark.parametrize("payload", [[], {}, "text", None])
+def test_fr6_vehicle_update_without_a_usable_body_returns_400(client, vehicle_id, payload):
+    assert client.patch(f"/vehicles/{vehicle_id}", json=payload).status_code == 400
+
+
+def test_fr6_the_database_itself_rejects_negative_current_mileage(db_path):
+    """Fails if the CHECK constraint is removed, whatever the app code does."""
+    conn = sqlite3.connect(db_path)
+    with pytest.raises(sqlite3.IntegrityError):
+        conn.execute(
+            "INSERT INTO user_vehicles (user_id, trim_id, current_mileage) VALUES (?, 1, -1)",
+            (DEMO_USER_ID,),
+        )
+    conn.close()
 
 
 def test_fr11_read_returns_200_and_the_record_fields(client, vehicle_id):
@@ -409,8 +546,10 @@ def test_notes_cannot_inject_sql(client, db_path, vehicle_id):
     assert record_count(db_path) == 1
 
 
-def test_deleting_a_vehicle_row_removes_its_records(client, db_path, vehicle_id):
-    """The ON DELETE CASCADE that DELETE /vehicles/{id} (FR-4) will rely on."""
+def test_fr4_the_database_itself_removes_the_records_of_a_deleted_vehicle(
+    client, db_path, vehicle_id
+):
+    """Fails if ON DELETE CASCADE is removed, whatever the app code does."""
     create_record(client, vehicle_id)
     conn = sqlite3.connect(db_path)
     conn.execute("PRAGMA foreign_keys = ON")

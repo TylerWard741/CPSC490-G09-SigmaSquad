@@ -27,12 +27,23 @@ SERVICE_DATE_FORMAT = re.compile(r"\d{4}-\d{2}-\d{2}")
 # Order matters: it is the order fields are checked and reported in.
 SERVICE_RECORD_FIELDS = ("service_date", "mileage", "service_type_id", "notes")
 SERVICE_RECORD_REQUIRED = ("service_date", "mileage", "service_type_id")
+VEHICLE_UPDATE_FIELDS = ("nickname", "current_mileage")
 
 DB_UNAVAILABLE_MESSAGE = "The vehicle database can't be reached. Please try again."
 
 SAVED_VEHICLE_SQL = """
     SELECT uv.id, uv.trim_id, ma.name AS make, mo.name AS model, t.year,
            t.trim, uv.nickname, uv.saved_at
+    FROM user_vehicles uv
+    JOIN vehicle_trims t ON t.id = uv.trim_id
+    JOIN models mo ON mo.id = t.model_id
+    JOIN makes ma ON ma.id = mo.make_id
+"""
+
+# Same columns as SAVED_VEHICLE_SQL plus current_mileage, for /vehicles/{id}.
+VEHICLE_DETAIL_SQL = """
+    SELECT uv.id, uv.trim_id, ma.name AS make, mo.name AS model, t.year,
+           t.trim, uv.nickname, uv.current_mileage, uv.saved_at
     FROM user_vehicles uv
     JOIN vehicle_trims t ON t.id = uv.trim_id
     JOIN models mo ON mo.id = t.model_id
@@ -50,6 +61,16 @@ SERVICE_RECORD_SQL = """
 def _is_int(value) -> bool:
     # bool is a subclass of int, so true would otherwise pass as 1.
     return isinstance(value, int) and not isinstance(value, bool)
+
+
+def _is_mileage(value) -> bool:
+    return _is_int(value) and value >= 0
+
+
+def _is_nickname(value) -> bool:
+    return value is None or (
+        isinstance(value, str) and len(value) <= NICKNAME_MAX_LENGTH
+    )
 
 
 def _service_date_problem(value) -> str | None:
@@ -87,7 +108,7 @@ def _service_record_problem(body, partial: bool) -> str | None:
         problem = _service_date_problem(body["service_date"])
         if problem:
             return problem
-    if "mileage" in body and (not _is_int(body["mileage"]) or body["mileage"] < 0):
+    if "mileage" in body and not _is_mileage(body["mileage"]):
         return "mileage must be an integer of 0 or more."
     if "service_type_id" in body and (
         not _is_int(body["service_type_id"]) or body["service_type_id"] < 1
@@ -98,6 +119,22 @@ def _service_record_problem(body, partial: bool) -> str | None:
         not isinstance(notes, str) or len(notes) > NOTES_MAX_LENGTH
     ):
         return f"notes must be text of at most {NOTES_MAX_LENGTH} characters."
+    return None
+
+
+def _vehicle_update_problem(body) -> str | None:
+    """Return the first validation message for a PATCH /vehicles body, or None."""
+    if not isinstance(body, dict):
+        return "The request body must be a JSON object."
+    unknown = sorted(set(body) - set(VEHICLE_UPDATE_FIELDS))
+    if unknown:
+        return f"Unknown field: {unknown[0]}."
+    if not body:
+        return "Send at least one field to update."
+    if "nickname" in body and not _is_nickname(body["nickname"]):
+        return f"nickname must be text of at most {NICKNAME_MAX_LENGTH} characters."
+    if "current_mileage" in body and not _is_mileage(body["current_mileage"]):
+        return "current_mileage must be an integer of 0 or more."
     return None
 
 
@@ -148,6 +185,12 @@ def create_app(db_path=DEFAULT_DB_PATH) -> Flask:
 
     def service_type_exists(service_type_id: int) -> bool:
         return exists("SELECT 1 FROM service_types WHERE id = ?", service_type_id)
+
+    def fetch_vehicle(vehicle_id: int) -> dict | None:
+        row = get_db().execute(
+            VEHICLE_DETAIL_SQL + " WHERE uv.id = ?", (vehicle_id,)
+        ).fetchone()
+        return dict(row) if row else None
 
     def fetch_service_record(record_id: int) -> dict | None:
         row = get_db().execute(
@@ -273,6 +316,43 @@ def create_app(db_path=DEFAULT_DB_PATH) -> Flask:
             SAVED_VEHICLE_SQL + " WHERE uv.id = ?", (cursor.lastrowid,)
         ).fetchone()
         return jsonify({"vehicle": dict(saved)}), 201
+
+    @app.get("/vehicles/<int:vehicle_id>")
+    def read_vehicle(vehicle_id):
+        vehicle = fetch_vehicle(vehicle_id)
+        if vehicle is None:
+            return _error(f"Vehicle {vehicle_id} was not found.", 404)
+        return jsonify({"vehicle": vehicle})
+
+    @app.patch("/vehicles/<int:vehicle_id>")
+    def update_vehicle(vehicle_id):
+        body = request.get_json(silent=True)
+        problem = _vehicle_update_problem(body)
+        if problem:
+            return _error(problem, 400)
+        if not vehicle_exists(vehicle_id):
+            return _error(f"Vehicle {vehicle_id} was not found.", 404)
+
+        # Column names come from the fixed tuple, never from the request.
+        fields = [field for field in VEHICLE_UPDATE_FIELDS if field in body]
+        db = get_db()
+        db.execute(
+            f"UPDATE user_vehicles SET {', '.join(f'{field} = ?' for field in fields)} "
+            "WHERE id = ?",
+            (*(body[field] for field in fields), vehicle_id),
+        )
+        db.commit()
+        return jsonify({"vehicle": fetch_vehicle(vehicle_id)})
+
+    @app.delete("/vehicles/<int:vehicle_id>")
+    def delete_vehicle(vehicle_id):
+        db = get_db()
+        # ON DELETE CASCADE removes the vehicle's service records with it.
+        cursor = db.execute("DELETE FROM user_vehicles WHERE id = ?", (vehicle_id,))
+        if cursor.rowcount == 0:
+            return _error(f"Vehicle {vehicle_id} was not found.", 404)
+        db.commit()
+        return "", 204
 
     @app.get("/service-types")
     def list_service_types():
