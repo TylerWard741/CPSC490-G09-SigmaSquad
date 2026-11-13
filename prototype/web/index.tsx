@@ -1,6 +1,7 @@
 import { createRoot } from "react-dom/client";
 import React, { useEffect } from "react";
 import { initVehicleSelect } from "./vehicle_select";
+import ServiceRecordsPanel from "./service-records/ServiceRecordsPanel";
 
 function App() {
 	useEffect(() => {
@@ -42,6 +43,7 @@ function App() {
 			<p id="saved-empty" hidden>
 				No saved vehicles yet.
 			</p>
+			<ServiceRecordsPanel />
 		</>
 	);
 }
