@@ -1,7 +1,7 @@
 # Specification — Vehicle and service-record API
 
 > Epic: [#27](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/27) · Stories: [#30](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/30)
-> Owner: Hector · Sprint: 2 · Status: draft
+> Owner: Hector · Sprint: 3 · Status: draft
 > Design: [PR #67](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/pull/67) (Figure 4 in proposal §4)
 
 This spec will cover how the API will let a client Create, Read, Update, and Delete vehicles as well as their service records. This spec aligns with Objective 1.2 where we implement the database schema that would hold the data that our dashboard and next-service calculation depend on.
@@ -26,7 +26,7 @@ Rows marked **new** are what this story adds.
 | Table | Columns | Constraints |
 |---|---|---|
 | `user_vehicles` | existing columns, plus **new** `current_mileage` | `current_mileage` INTEGER, nullable, `>= 0` |
-| `service_types` **new** | `id`, `name` | `name` NOT NULL, unique |
+| `service_types` **new** | `id`, `name` | `name` NOT NULL, unique; Seeded with Oil change, Tire rotation, Brake inspection |
 | `service_records` **new** | `id`, `vehicle_id`, `service_type_id`, `service_date`, `mileage`, `notes` | `vehicle_id` NOT NULL references `user_vehicles(id)` ON DELETE CASCADE; `service_type_id` NOT NULL references `service_types(id)`; `service_date` NOT NULL, `YYYY-MM-DD`; `mileage` NOT NULL, `>= 0`; `notes` nullable |
 
 ## Endpoints
@@ -71,7 +71,7 @@ Existing #29 endpoints are listed for completeness.
 | `notes` | Optional; text of at most 1000 characters |
 | `current_mileage` | Optional on `PATCH /vehicles`; integer `>= 0` |
 | `nickname` | Optional; text of at most 100 characters (same limit as #29) |
-| Body | Must be a JSON object; unknown fields rejected |
+| Body | Must be a JSON object; unknown fields rejected; PATCH must include at least one field |
 
 ### Examples
 
@@ -112,7 +112,8 @@ DELETE /vehicles/1
 | FR-9 | When the client requests a vehicle by id, the system shall return 200 and the requested vehicle's details: make, model, year, trim, nickname, current mileage. | #30 |
 | FR-10 | When the client updates a vehicle's nickname or current mileage, the system shall return 200 and save the changes to the vehicle record. | #30 |
 | FR-11 | When the client requests a service record by id, the system shall return 200 and the service record's fields. | #30 |
-| FR-12 | When the client requests a list of vehicle service types, the system shall return 200 and the requests service types sorted by name. | #30 |
+| FR-12 | When the client requests a list of vehicle service types, the system shall return 200 and the requested service types sorted by name. | #30 |
+| FR-13 | When a record is saved or updated with a mileage higher than the vehicle's current mileage, or the vehicle has none yet, the system shall return 201 for a new record, 200 for an update, and set `current_mileage` to that mileage. A lower mileage never lowers `current_mileage`. | #30, #81 | 
 
 ## Non-functional requirements
 
@@ -125,7 +126,7 @@ DELETE /vehicles/1
 - [ ] When the client submits a service record with date, mileage, service type, and optional notes for a vehicle, the system shall return 201 and store the service record.
 - [ ] When the client requests a vehicle's service records, the system shall return 200 and list their service records sorted by newest date first.
 - [ ] When the client updates a vehicle's service record, the system shall return 200 and save the changes.
-- [ ] When the client deletes a vehicle, the system shall return 204 and remove a vehicle and all its service records.
+- [ ] When the client deletes a vehicle, the system shall return 204 and remove the vehicle and all its service records.
 - [ ] When the client deletes a service record, the system shall return 204 and remove the service record.
 - [ ] If the client submits a record that has a missing or invalid input type, then the system shall return 400, save nothing, and respond with a message stating the invalid field.
 - [ ] If the client requests a vehicle or service record that does not exist, then the system shall return 404 with a message that vehicle or service record could not be found.
@@ -135,7 +136,5 @@ DELETE /vehicles/1
 
 | Question | Owner | Needed by |
 |---|---|---|
-| `UNIQUE (user_id, trim_id)` (PR #64) stops one user tracking two cars of the same trim. Keep it as a known limitation, or relax it (e.g. include `nickname`)? | @TamtungOS, @Mathieu2303 | Before `service_records` is built |
-| Auth is out of scope, so the API does not check that a vehicle belongs to the caller. Acceptable for the prototype? | Team | Sprint 3 planning |
-| Should saving a record with a higher `mileage` than `current_mileage` also update `current_mileage`? | @TamtungOS | Before #34 |
-| Which service types are seeded (names and list)? | @TamtungOS | Before implementation |
+| `UNIQUE (user_id, trim_id)` (PR #64) stops one user tracking two cars of the same trim. Keep it as a known limitation, or relax it (e.g. include `nickname`)? | @TamtungOS, @Mathieu2303 | Before the dashboard (#32) lists more than one vehicle |
+| Auth is out of scope, so the API does not check that a vehicle belongs to the caller. Acceptable for the prototype? | Team | Before the app is hosted |

@@ -9,7 +9,8 @@ and trim, then save the vehicle to an account. Details are in
 |---|---|
 | `app.py` | Flask JSON API, which also serves the page |
 | `db/` | SQLite schema and seed script; builds `db/app.db` (not committed) |
-| `tests/test_vehicle_api.py` | API tests (pytest) |
+| `tests/test_vehicle_api.py` | API tests for vehicle selection (pytest) |
+| `tests/test_service_records_api.py` | API tests for service types, service records and the vehicle read, update and delete endpoints (pytest) |
 | `tests/ui/` | Page tests (`node --test` with jsdom) |
 | `login.py`, `tests/test_login.py` | The course's example, to be removed by #54 |
 
@@ -94,3 +95,4 @@ that the database itself prevents an account from saving the same vehicle twice.
 |---|---|
 | v0 (Sep 27) | Login check + 4 tests (the course's example) |
 | Sprint 2 | Vehicle database (#63), vehicle selection API and page (#29) |
+| Sprint 3 | Service types, service records, and vehicle read, update and delete API (#81) |
