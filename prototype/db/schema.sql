@@ -29,5 +29,20 @@ user_id INTEGER NOT NULL REFERENCES users(id),
 trim_id INTEGER NOT NULL REFERENCES vehicle_trims(id),
 nickname TEXT,
 saved_at TEXT DEFAULT CURRENT_TIMESTAMP,
+current_mileage INTEGER CHECK (current_mileage >= 0),
 UNIQUE (user_id, trim_id)
+);
+
+CREATE TABLE service_types (
+id INTEGER PRIMARY KEY,
+name TEXT NOT NULL UNIQUE
+);
+
+CREATE TABLE service_records (
+id INTEGER PRIMARY KEY,
+vehicle_id INTEGER NOT NULL REFERENCES user_vehicles(id) ON DELETE CASCADE,
+service_type_id INTEGER NOT NULL REFERENCES service_types(id),
+service_date TEXT NOT NULL,
+mileage INTEGER NOT NULL CHECK (mileage >= 0),
+notes TEXT
 );
