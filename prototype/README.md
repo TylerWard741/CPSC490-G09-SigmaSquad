@@ -10,6 +10,7 @@ and trim, then save the vehicle to an account. Details are in
 | `app.py` | Flask JSON API, which also serves the page |
 | `db/` | SQLite schema and seed script; builds `db/app.db` (not committed) |
 | `tests/test_vehicle_api.py` | API tests (pytest) |
+| `label_rule.py`, `tests/test_label_rule.py` | Status-label rule for [#72](../../../issues/72) and its tests |
 | `tests/ui/` | Page tests (`node --test` with jsdom) |
 | `login.py`, `tests/test_login.py` | The course's example, to be removed by #54 |
 
