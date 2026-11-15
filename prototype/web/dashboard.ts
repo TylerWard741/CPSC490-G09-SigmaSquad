@@ -7,6 +7,10 @@ type Vehicle = {
 	nickname?: string | null;
 };
 
+type VehicleDetail = Vehicle & {
+	current_mileage: number | null;
+};
+
 type ServiceRecord = {
 	id: number;
 	vehicle_id: number;
@@ -15,6 +19,10 @@ type ServiceRecord = {
 	service_date: string;
 	mileage: number;
 	notes: string | null;
+	// null until a current mileage exists to label against (#73, FR-10/FR-13).
+	label: string | null;
+	window_start: number | null;
+	window_end: number | null;
 };
 
 // Dashboard page for story #77 (Objective 1.4, epic #27). Plain DOM code like
@@ -31,11 +39,12 @@ export function initDashboard(root: HTMLElement) {
 	const failures = new Map<string, { message: string; retry: () => void }>();
 	// Bumped per selection so a slow response for an old vehicle is ignored.
 	let recordsToken = 0;
+	let selectedVehicleId: number | null = null;
 
-	async function api(path: string) {
+	async function api(path: string, init?: RequestInit) {
 		let response;
 		try {
-			response = await fetch(path);
+			response = await fetch(path, init);
 		} catch {
 			throw new Error("The server can't be reached. Please try again.");
 		}
@@ -111,21 +120,39 @@ export function initDashboard(root: HTMLElement) {
 		}
 	}
 
+	function renderMileage(mileage: number | null) {
+		element<HTMLInputElement>("dash-mileage-input").value =
+			mileage === null ? "" : String(mileage);
+		element("dash-mileage-current").textContent =
+			mileage === null ? "Not entered yet." : `${mileage} miles.`;
+	}
+
+	async function loadVehicleData(vehicleId: number, token: number) {
+		const [{ service_records }, { vehicle }] = (await Promise.all([
+			api(`/vehicles/${vehicleId}/service-records`),
+			api(`/vehicles/${vehicleId}`),
+		])) as [{ service_records: ServiceRecord[] }, { vehicle: VehicleDetail }];
+		if (token !== recordsToken) return;
+		renderRecords(service_records);
+		renderMileage(vehicle.current_mileage);
+	}
+
 	async function selectVehicle(vehicleId: number, label: string) {
 		recordsToken += 1;
 		const token = recordsToken;
+		selectedVehicleId = vehicleId;
 		markSelected(vehicleId);
 		clearFailure("records");
+		clearFailure("mileage");
 		element("dash-history-title").textContent = `Service history: ${label}`;
 		element<HTMLElement>("dash-records-table").hidden = true;
 		element<HTMLElement>("dash-history-message").hidden = false;
 		element("dash-history-message").textContent = "Loading service records...";
+		element<HTMLElement>("dash-mileage-section").hidden = true;
 		try {
-			const { service_records } = (await api(
-				`/vehicles/${vehicleId}/service-records`,
-			)) as { service_records: ServiceRecord[] };
+			await loadVehicleData(vehicleId, token);
 			if (token !== recordsToken) return;
-			renderRecords(service_records);
+			element<HTMLElement>("dash-mileage-section").hidden = false;
 			clearFailure("records");
 		} catch (error) {
 			if (token !== recordsToken) return;
@@ -169,6 +196,35 @@ export function initDashboard(root: HTMLElement) {
 			failure.retry();
 		}
 	});
+
+	// #73: entering a mileage replaces the stored value (FR-14, enforced by
+	// the API) and this reload re-labels every record against it (FR-10).
+	async function saveMileage() {
+		const vehicleId = selectedVehicleId;
+		if (vehicleId === null) return;
+		const input = element<HTMLInputElement>("dash-mileage-input");
+		const value = Number(input.value);
+		if (!Number.isInteger(value) || value < 0) {
+			setFailure("mileage", "Enter the mileage as a whole number, 0 or more.", saveMileage);
+			return;
+		}
+		clearFailure("mileage");
+		const token = recordsToken;
+		try {
+			await api(`/vehicles/${vehicleId}`, {
+				method: "PATCH",
+				headers: { "Content-Type": "application/json" },
+				body: JSON.stringify({ current_mileage: value }),
+			});
+			if (token !== recordsToken) return;
+			await loadVehicleData(vehicleId, token);
+		} catch (error) {
+			if (token !== recordsToken) return;
+			setFailure("mileage", (error as Error).message, saveMileage);
+		}
+	}
+
+	element<HTMLButtonElement>("dash-mileage-save").addEventListener("click", saveMileage);
 
 	loadVehicles();
 }

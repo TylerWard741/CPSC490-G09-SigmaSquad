@@ -21,14 +21,16 @@ const VEHICLES = {
   2: { make: "Honda", model: "Civic", year: 2022, trim: "Sport", nickname: "Commuter" },
   3: { make: "Toyota", model: "Corolla", year: 2021, trim: "L" },
 };
-// Newest service_date first, as the API lists them.
+// Newest service_date first, as the API lists them. label/window_* are null
+// here; the server below fills them in from current_mileage, the same
+// contract app.py's with_label() implements for #73.
 const RECORDS = {
   1: [
-    { id: 12, vehicle_id: 1, service_type_id: 2, service_type: "Tire rotation", service_date: "2025-09-14", mileage: 36000, notes: null },
-    { id: 11, vehicle_id: 1, service_type_id: 1, service_type: "Oil change", service_date: "2025-03-02", mileage: 30500, notes: "Synthetic 0W-20" },
+    { id: 12, vehicle_id: 1, service_type_id: 2, service_type: "Tire rotation", service_date: "2025-09-14", mileage: 36000, notes: null, label: null, window_start: null, window_end: null },
+    { id: 11, vehicle_id: 1, service_type_id: 1, service_type: "Oil change", service_date: "2025-03-02", mileage: 30500, notes: "Synthetic 0W-20", label: null, window_start: null, window_end: null },
   ],
   2: [
-    { id: 20, vehicle_id: 2, service_type_id: 3, service_type: "Brake pads", service_date: "2024-06-01", mileage: 50000, notes: "<img src=x>" },
+    { id: 20, vehicle_id: 2, service_type_id: 3, service_type: "Brake pads", service_date: "2024-06-01", mileage: 50000, notes: "<img src=x>", label: null, window_start: null, window_end: null },
   ],
 };
 
@@ -36,8 +38,14 @@ function json(status, body) {
   return { ok: status < 400, status, json: async () => body };
 }
 
-function createServer(saved = [1, 2, 3]) {
-  const server = { saved: [...saved], calls: [], down: false, delays: new Map() };
+function createServer(saved = [1, 2, 3], mileage = {}) {
+  const server = {
+    saved: [...saved],
+    mileage: { ...mileage },
+    calls: [],
+    down: false,
+    delays: new Map(),
+  };
   server.fetch = async (href, options = {}) => {
     const method = options.method || "GET";
     server.calls.push({ href, method });
@@ -55,10 +63,33 @@ function createServer(saved = [1, 2, 3]) {
       const vehicles = server.saved.map((id) => ({ id, trim_id: id, nickname: null, ...VEHICLES[id] }));
       return json(200, { vehicles });
     }
+    if ((match = route.match(/^\/vehicles\/(\d+)$/)) && method === "GET") {
+      const id = Number(match[1]);
+      if (!VEHICLES[id]) return json(404, { error: "Vehicle could not be found." });
+      const current_mileage = server.mileage[id] ?? null;
+      return json(200, { vehicle: { id, trim_id: id, nickname: null, current_mileage, ...VEHICLES[id] } });
+    }
+    if ((match = route.match(/^\/vehicles\/(\d+)$/)) && method === "PATCH") {
+      const id = Number(match[1]);
+      if (!VEHICLES[id]) return json(404, { error: "Vehicle could not be found." });
+      const body = JSON.parse(options.body);
+      if (!Number.isInteger(body.current_mileage) || body.current_mileage < 0) {
+        return json(400, { error: "current_mileage must be a non-negative integer." });
+      }
+      server.mileage[id] = body.current_mileage;
+      const current_mileage = server.mileage[id];
+      return json(200, { vehicle: { id, trim_id: id, nickname: null, current_mileage, ...VEHICLES[id] } });
+    }
     if ((match = route.match(/^\/vehicles\/(\d+)\/service-records$/))) {
       const id = Number(match[1]);
       if (!VEHICLES[id]) return json(404, { error: "Vehicle could not be found." });
-      return json(200, { service_records: [...(RECORDS[id] || [])] });
+      const current_mileage = server.mileage[id] ?? null;
+      const records = (RECORDS[id] || []).map((record) =>
+        current_mileage === null
+          ? record
+          : { ...record, label: "Due Now", window_start: record.mileage, window_end: record.mileage },
+      );
+      return json(200, { service_records: records });
     }
     return json(404, { error: "not found" });
   };
@@ -90,12 +121,19 @@ async function openPage(t, { server = createServer(), hash = "#dashboard" } = {}
     message: () => (doc.getElementById("dash-history-message").hidden ? "" : doc.getElementById("dash-history-message").textContent),
     recordsTableHidden: () => doc.getElementById("dash-records-table").hidden,
     rows,
+    mileageSectionHidden: () => doc.getElementById("dash-mileage-section").hidden,
+    mileageCurrent: () => doc.getElementById("dash-mileage-current").textContent,
     async clickVehicle(id) {
       doc.querySelector(`[data-vehicle-id="${id}"]`).click();
       await settle();
     },
     async click(id) {
       doc.getElementById(id).click();
+      await settle();
+    },
+    async enterMileage(value) {
+      doc.getElementById("dash-mileage-input").value = String(value);
+      doc.getElementById("dash-mileage-save").click();
       await settle();
     },
   };
@@ -202,3 +240,55 @@ test("the dashboard is only shown with the #dashboard hash, and the pages link t
   assert.equal(page.doc.querySelector('a[href="#dashboard"]').textContent, "Dashboard");
   assert.equal(page.doc.querySelector('a[href="#"]').textContent, "Add a vehicle");
 });
+
+// #73: mileage entry.
+
+test("#73: a vehicle with no current mileage shows 'Not entered yet.'", async (t) => {
+  const page = await openPage(t);
+  await page.clickVehicle(1);
+  assert.equal(page.mileageSectionHidden(), false);
+  assert.equal(page.mileageCurrent(), "Not entered yet.");
+  assert.equal(page.doc.getElementById("dash-mileage-input").value, "");
+});
+
+test("#73: entering a mileage saves it and reloads the records it labels", async (t) => {
+  const page = await openPage(t);
+  await page.clickVehicle(1);
+  await page.enterMileage(41000);
+
+  const patch = page.server.calls.find((call) => call.method === "PATCH" && call.href === "/vehicles/1");
+  assert.ok(patch, "should PATCH /vehicles/1");
+  assert.equal(page.server.mileage[1], 41000);
+  assert.equal(page.mileageCurrent(), "41000 miles.");
+  // FR-10: records are reloaded, not just the mileage display.
+  const recordRequests = page.server.calls.filter((call) => call.href === "/vehicles/1/service-records");
+  assert.ok(recordRequests.length >= 2, "should re-fetch service records after saving mileage");
+});
+
+test("#73 FR-14: entering a second mileage replaces the first, it does not stack", async (t) => {
+  const page = await openPage(t);
+  await page.clickVehicle(1);
+  await page.enterMileage(41000);
+  await page.enterMileage(42500);
+
+  assert.equal(page.server.mileage[1], 42500);
+  assert.equal(page.mileageCurrent(), "42500 miles.");
+});
+
+test("#73: a negative mileage is rejected without calling the API", async (t) => {
+  const page = await openPage(t);
+  await page.clickVehicle(1);
+  await page.enterMileage(-5);
+
+  assert.match(page.error(), /whole number/);
+  assert.equal(page.server.calls.some((call) => call.method === "PATCH"), false);
+});
+
+test("#73: switching vehicles shows the next vehicle's own mileage", async (t) => {
+  const page = await openPage(t, { server: createServer([1, 2, 3], { 2: 50500 }) });
+  await page.clickVehicle(1);
+  assert.equal(page.mileageCurrent(), "Not entered yet.");
+  await page.clickVehicle(2);
+  assert.equal(page.mileageCurrent(), "50500 miles.");
+});
+

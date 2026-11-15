@@ -86,6 +86,14 @@ function DashboardPage() {
 					<h2 id="dash-history-title" className="text-lg font-semibold">
 						Service history
 					</h2>
+					<div id="dash-mileage-section" className="mt-3" hidden>
+						<label htmlFor="dash-mileage-input">Current mileage</label>
+						<p id="dash-mileage-current" className="text-sm"></p>
+						<input id="dash-mileage-input" type="number" min="0" step="1" />
+						<button id="dash-mileage-save" type="button">
+							Save mileage
+						</button>
+					</div>
 					<p id="dash-history-message" className="mt-3">
 						Select a vehicle to see its service history.
 					</p>
