@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { listSavedVehicles, type SavedVehicle } from './api';
 import ServiceRecordForm from './ServiceRecordForm';
+import ServiceHistory from './ServiceHistory';
 
 const labelFor = (v: SavedVehicle) =>
   `${v.year} ${v.make} ${v.model} ${v.trim}${v.nickname ? ` (${v.nickname})` : ''}`;
@@ -9,6 +10,8 @@ export default function ServiceRecordsPanel() {
   const [vehicles, setVehicles] = useState<SavedVehicle[]>([]);
   const [vehicleId, setVehicleId] = useState<number | null>(null);
   const [error, setError] = useState('');
+  const [refreshKey, setRefreshKey] = useState(0);
+  const bump = () => setRefreshKey((k) => k + 1); // makes the history reload after a save
 
   async function loadVehicles() {
     try {
@@ -38,7 +41,9 @@ export default function ServiceRecordsPanel() {
           <select id="sr-vehicle" value={vehicleId} onChange={(e) => setVehicleId(Number(e.target.value))}>
             {vehicles.map((v) => <option key={v.id} value={v.id}>{labelFor(v)}</option>)}
           </select>
-          <ServiceRecordForm key={vehicleId} vehicleId={vehicleId} />
+          <ServiceRecordForm key={vehicleId} vehicleId={vehicleId} onSaved={bump} />
+          <h3>Saved history</h3>
+          <ServiceHistory vehicleId={vehicleId} refreshKey={refreshKey} />
         </>
       )}
     </section>
