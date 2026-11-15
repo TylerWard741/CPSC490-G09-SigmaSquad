@@ -1,7 +1,7 @@
-import { useState, type ChangeEvent } from 'react';
+import { useRef, useState, type ChangeEvent } from 'react';
 import { parseCsv } from './csv';
 import { validateRecord, isValid } from './validation'; // reused from #85, not duplicated
-import { getServiceTypes, createServiceRecord, type NewServiceRecord } from './api';
+import { getServiceTypes, createServiceRecord, type NewServiceRecord, type ServiceType } from './api';
 
 interface Props { vehicleId: number; onImported?: () => void }
 interface Line { line: number; ok: boolean; text: string }
@@ -19,26 +19,37 @@ export default function ImportServiceHistory({ vehicleId, onImported }: Props) {
   const [error, setError] = useState('');
   const [lines, setLines] = useState<Line[]>([]);
   const [ready, setReady] = useState<Ready[]>([]);
+  const busy = useRef(false);       // blocks a second click while an import is running
+  const latestFile = useRef(0);     // only the most recently chosen file may update the screen
 
   async function handleFile(e: ChangeEvent<HTMLInputElement>) {
-    setError(''); setLines([]); setReady([]);
     const file = e.target.files?.[0];
+    e.target.value = ''; // so choosing the same file again fires onChange again
+    const thisFile = ++latestFile.current;
+    setError(''); setLines([]); setReady([]);
     if (!file) return;
     if (!file.name.toLowerCase().endsWith('.csv')) { setError('Please upload a .csv file.'); return; }
 
-    let types;
-    try { types = await getServiceTypes(); } catch (err) { setError((err as Error).message); return; }
-    const byName = new Map(types.map((t) => [t.name.toLowerCase(), t.id]));
+    let types: ServiceType[];
+    let text: string;
+    try {
+      types = await getServiceTypes();
+      text = await readFile(file);
+    } catch (err) {
+      if (thisFile === latestFile.current) setError((err as Error).message || 'Could not read the file.');
+      return;
+    }
+    if (thisFile !== latestFile.current) return; // a newer file was chosen while we were waiting
 
-    const [header, ...data] = parseCsv(await readFile(file));
-    const cols = (header ?? []).map((h) => h.trim().toLowerCase());
+    const byName = new Map(types.map((t) => [t.name.toLowerCase(), t.id]));
+    const [header, ...data] = parseCsv(text);
+    const cols = (header?.cells ?? []).map((h) => h.trim().toLowerCase());
     const missing = ['service_date', 'mileage', 'service_type'].filter((c) => !cols.includes(c));
     if (missing.length) { setError(`Missing column(s): ${missing.join(', ')}`); return; }
 
     const nextLines: Line[] = [];
     const nextReady: Ready[] = [];
-    data.forEach((cells, i) => {
-      const line = i + 2; // line 1 is the header
+    data.forEach(({ line, cells }) => { // line is the row's real line number in the file
       const get = (c: string) => (cells[cols.indexOf(c)] ?? '').trim();
       const typeName = get('service_type');
       const typeId = byName.get(typeName.toLowerCase()); // only ids that GET /service-types returned can get through
@@ -60,12 +71,21 @@ export default function ImportServiceHistory({ vehicleId, onImported }: Props) {
   }
 
   async function confirmImport() { // the "user confirms the import" step (FR-23)
-    const results: Line[] = [];
-    for (const { line, body } of ready) {
-      try { await createServiceRecord(vehicleId, body); results.push({ line, ok: true, text: `Row ${line}: saved` }); }
-      catch (err) { results.push({ line, ok: false, text: `Row ${line}: ${(err as Error).message}` }); }
+    if (busy.current) return;      // a second click while saving does nothing
+    busy.current = true;
+    const toSave = ready;
+    setReady([]);                  // the Import button disappears right away
+    const results = new Map<number, Line>();
+    try {
+      for (const { line, body } of toSave) {
+        try { await createServiceRecord(vehicleId, body); results.set(line, { line, ok: true, text: `Row ${line}: saved` }); }
+        catch (err) { results.set(line, { line, ok: false, text: `Row ${line}: ${(err as Error).message}` }); }
+      }
+    } finally {
+      busy.current = false;
     }
-    setLines(results); setReady([]);
+    // Replace only the rows we tried to save; rows that failed validation stay listed.
+    setLines((prev) => prev.map((l) => results.get(l.line) ?? l));
     onImported?.();
   }
 
