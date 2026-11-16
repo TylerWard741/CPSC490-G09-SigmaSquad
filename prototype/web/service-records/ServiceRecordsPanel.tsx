@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { listSavedVehicles, type SavedVehicle } from './api';
 import ServiceRecordForm from './ServiceRecordForm';
+import ImportServiceHistory from './ImportServiceHistory';
 import ServiceHistory from './ServiceHistory';
 
 const labelFor = (v: SavedVehicle) =>
@@ -11,7 +12,7 @@ export default function ServiceRecordsPanel() {
   const [vehicleId, setVehicleId] = useState<number | null>(null);
   const [error, setError] = useState('');
   const [refreshKey, setRefreshKey] = useState(0);
-  const bump = () => setRefreshKey((k) => k + 1); // makes the history reload after a save
+  const bump = () => setRefreshKey((k) => k + 1); // makes the history reload after a save or import
 
   async function loadVehicles() {
     try {
@@ -42,6 +43,7 @@ export default function ServiceRecordsPanel() {
             {vehicles.map((v) => <option key={v.id} value={v.id}>{labelFor(v)}</option>)}
           </select>
           <ServiceRecordForm key={vehicleId} vehicleId={vehicleId} onSaved={bump} />
+          <ImportServiceHistory key={`imp-${vehicleId}`} vehicleId={vehicleId} onImported={bump} />
           <h3>Saved history</h3>
           <ServiceHistory vehicleId={vehicleId} refreshKey={refreshKey} />
         </>
