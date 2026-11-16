@@ -64,8 +64,9 @@ jobs:
         working-directory: prototype
         run: |
           if [ -f package-lock.json ]; then npm ci; else npm install; fi
-          # the responsive-layout tests (#78) drive a real browser
-          npx playwright install --with-deps chromium
+          # the responsive-layout tests (#78) drive a real browser; npm ci's postinstall
+          # downloads Chromium, this adds the system libraries it needs on the runner
+          npx playwright install-deps chromium
           # only run the script if it exists, so a prototype without tests
           # still reports honestly instead of failing for the wrong reason
           # --if-present exits 0 when there is no test script, so check for it

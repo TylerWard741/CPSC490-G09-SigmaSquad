@@ -10,7 +10,7 @@ and trim, then save the vehicle to an account. Details are in
 | `app.py` | Flask JSON API, which also serves the page |
 | `db/` | SQLite schema and seed script; builds `db/app.db` (not committed) |
 | `tests/test_vehicle_api.py` | API tests (pytest) |
-| `tests/ui/` | Page tests (`node --test` with jsdom; `dashboard-responsive.test.js` uses Playwright and Chromium) |
+| `tests/ui/` | Page tests (`node --test` with jsdom) |
 | `login.py`, `tests/test_login.py` | The course's example, to be removed by #54 |
 
 You need Python 3.12 and, for the page tests only, Node 20 or newer.
@@ -62,7 +62,6 @@ With the virtual environment active, from `prototype/`, on either system:
 ```bash
 python -m pytest -q     # API tests and the course's login example
 npm install             # once
-npx playwright install chromium   # once: the browser the responsive-layout tests use
 npm test                # page tests
 ```
 
