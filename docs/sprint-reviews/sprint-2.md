@@ -37,11 +37,11 @@
 
 | Story | Owner | Why not finished | Decision |
 |---|---|---|---|
-| #13 Fill docs/development-plan.md | @TylerWard741 | Not started in Sprint 2: the time went to the required specs, diagrams and prototype skeleton. Planned to be written by voice in Sprint 3. | decision pending (Tyler) |
-| #31 Objective 1.3: service-history entry and import interface | @emilyvlsco | No pull request was opened by the boundary. | decision pending (Tyler) |
-| #49 Write the specification for epic #27 | @ready2pullallnighters | PR #60 is open; Mathieu's changes-requested review had not been re-reviewed by the boundary. | decision pending (Tyler) |
-| #56 Write the Sprint 2 review and release PR | @TylerWard741 | The review needed the final merge counts, which settled at midnight. | decision pending (Tyler) |
-| #59 Change Objective 2.3 from two labels to four | @TylerWard741 | Changing a locked objective needed a decision first, and Sprint 2 time went to the epic #28 spec (#50) and to reviewing teammates' PRs. A draft commit exists locally but is not pushed. | decision pending (Tyler) |
+| #13 Fill docs/development-plan.md | @TylerWard741 | Not started in Sprint 2: the time went to the required specs, diagrams and prototype skeleton. Still not started as of Nov 15 — now carried a second time into Sprint 3. | decision pending (Tyler) |
+| #31 Objective 1.3: service-history entry and import interface | @emilyvlsco | No pull request was opened by the boundary. | Update as of Nov 15: two of its three child tasks have since merged in Sprint 3 (#85 via PR #88, #86 via PR #94); #87 is open as PR #97. The parent story itself is still open and its milestone field still says Sprint 2. decision pending (Tyler) |
+| #49 Write the specification for epic #27 | @ready2pullallnighters | PR #60 is open; Mathieu's changes-requested review had not been re-reviewed by the boundary. | Resolved — PR #60 merged Nov 3; issue closed by hand Nov 11. |
+| #56 Write the Sprint 2 review and release PR | @TylerWard741 | The review needed the final merge counts, which settled at midnight. | In progress — this document is being completed Nov 15, filled in with Tyler's own words for the prose sections. The develop→main release PR for the Sprint 2 boundary still has not been opened. decision pending (Tyler) |
+| #59 Change Objective 2.3 from two labels to four | @TylerWard741 | Changing a locked objective needed a decision first, and Sprint 2 time went to the epic #28 spec (#50) and to reviewing teammates' PRs. A draft commit exists locally but is not pushed. | Still not opened as of Nov 15 — carried a second time into Sprint 3. decision pending (Tyler) |
 
 ## Loop health (docs/aidlc/loop-engineering.md §8)
 
