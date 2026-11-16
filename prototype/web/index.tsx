@@ -2,6 +2,7 @@ import { createRoot } from "react-dom/client";
 import React, { useEffect, useRef, useState } from "react";
 import { initVehicleSelect } from "./vehicle_select";
 import { initDashboard } from "./dashboard";
+import ServiceRecordsPanel from "./service-records/ServiceRecordsPanel";
 
 // Tracks the URL hash so "#dashboard" switches pages without a reload.
 function useHash() {
@@ -54,6 +55,7 @@ function SelectionPage() {
 			<p id="saved-empty" hidden>
 				No saved vehicles yet.
 			</p>
+			<ServiceRecordsPanel />
 		</>
 	);
 }
