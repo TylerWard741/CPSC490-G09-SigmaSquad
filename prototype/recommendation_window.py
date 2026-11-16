@@ -1,30 +1,43 @@
-"""Placeholder recommendation-window calculation.
+"""Recommended mileage window for one service on one vehicle (task #76).
 
-Task #76 ("wire the three service types into the recommendation engine's
-calculation") replaces this with the real calculation, fed by #75's
-manufacturer-interval reference data. Until #76 lands there is no reference
-data to calculate a real window from, so this returns an obviously-fake
-window far in the future: nothing will show as falsely due while it's in use.
+Reads the manufacturer intervals in the service_intervals table (#75) and
+works out where a vehicle's next window for a service is. Replaces the
+placeholder #73 used while there was no reference data.
 
-#73 depends only on this function's signature (take a service record's type
-and last-known mileage, return a (window_start, window_end) pair), not on
-the numbers it currently returns, so swapping in the real #76 implementation
-is a one-line change in prototype/app.py once it exists.
+Rules (docs/specs/recommendations-and-alerts.md; the repeat rule is the #76
+assignee's decision, since the spec does not define it):
+- After a service at mileage M, the next window starts at M + repeat_every
+  and is as wide as the manufacturer's window (FR-11: a single mileage is a
+  window whose start and end are equal).
+- With no service of that type on record, the first window is the
+  manufacturer's own, counted from an odometer of 0.
+- With no interval data for the vehicle's trim (e.g. Honda, which publishes
+  none), there is no window: the function returns None.
 """
 from __future__ import annotations
 
-# Not a real interval - see #76. Chosen to be obviously a placeholder rather
-# than a plausible-looking number, so nobody mistakes it for sourced data.
-PLACEHOLDER_INTERVAL_MILES = 999_999
+import sqlite3
 
 
-def recommended_window(service_type_name: str, last_service_mileage: int) -> tuple[int, int]:
-    """Return (window_start, window_end) for a service's next recommendation.
-
-    TODO(#76): replace with the real calculation using #75's reference
-    intervals. For now every service type uses the same placeholder
-    interval, and the window's start and end are equal (FR-11's single-
-    mileage case), consistent with how #76's real windows will be shaped.
-    """
-    start = last_service_mileage + PLACEHOLDER_INTERVAL_MILES
-    return start, start
+def recommended_window(
+    conn: sqlite3.Connection,
+    trim_id: int,
+    service_type: str,
+    last_service_mileage: int | None = None,
+) -> tuple[int, int] | None:
+    """Return (window_start, window_end), or None if no window can be given."""
+    row = conn.execute(
+        "SELECT window_start_miles, window_end_miles, repeat_every_miles "
+        "FROM service_intervals WHERE trim_id = ? AND service_type = ?",
+        (trim_id, service_type),
+    ).fetchone()
+    if row is None:
+        return None
+    start, end, repeat_every = row
+    if last_service_mileage is None:
+        return start, end
+    if repeat_every is None:
+        # A one-time service that has been done has no next window.
+        return None
+    next_start = last_service_mileage + repeat_every
+    return next_start, next_start + (end - start)
