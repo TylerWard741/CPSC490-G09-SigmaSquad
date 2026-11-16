@@ -8,6 +8,7 @@
 		"test": "node --test tests/ui/vehicle-select.test.js tests/ui/dashboard.test.js tests/ui/service-record-form.test.js tests/ui/service-import.test.js tests/ui/service-history.test.js tests/ui/dashboard-responsive.test.js"
 	},
 	"devDependencies": {
-		"jsdom": "26.1.0"
+		"jsdom": "26.1.0",
+		"playwright": "1.65.1"
 	}
 }
