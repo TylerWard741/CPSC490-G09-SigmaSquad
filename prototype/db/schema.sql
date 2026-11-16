@@ -31,3 +31,20 @@ nickname TEXT,
 saved_at TEXT DEFAULT CURRENT_TIMESTAMP,
 UNIQUE (user_id, trim_id)
 );
+
+-- Recommended service windows (#75). A single recommended mileage is stored as
+-- a window whose start and end are equal (FR-11). repeat_every_miles is how far
+-- the window moves after each service; NULL means it does not repeat.
+CREATE TABLE service_intervals (
+id INTEGER PRIMARY KEY,
+trim_id INTEGER NOT NULL REFERENCES vehicle_trims(id),
+service_type TEXT NOT NULL CHECK (service_type IN ('Oil change', 'Tire rotation', 'Brake inspection')),
+window_start_miles INTEGER NOT NULL CHECK (window_start_miles >= 0),
+window_end_miles INTEGER NOT NULL,
+repeat_every_miles INTEGER CHECK (repeat_every_miles > 0),
+source_url TEXT NOT NULL,
+source_page TEXT NOT NULL,
+source_quote TEXT NOT NULL,
+CHECK (window_end_miles >= window_start_miles),
+UNIQUE (trim_id, service_type)
+);
