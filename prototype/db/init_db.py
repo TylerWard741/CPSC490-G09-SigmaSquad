@@ -1,6 +1,11 @@
 import sqlite3
 from pathlib import Path
 
+try:  # imported by the app and tests as db.init_db
+    from db.service_interval_data import SERVICE_INTERVALS
+except ModuleNotFoundError:  # run as `python db/init_db.py`
+    from service_interval_data import SERVICE_INTERVALS
+
 DB_DIR = Path(__file__).parent
 DB_PATH = DB_DIR / "app.db"
 
@@ -33,6 +38,19 @@ def init_db(db_path=DB_PATH):
                 "INSERT INTO vehicle_trims (model_id, year, trim) VALUES (?, ?, ?)",
                 [(model_id, y, t) for y, t in trims],
             )
+    for (make, model, year, trim), rows in SERVICE_INTERVALS.items():
+        trim_id = conn.execute(
+            "SELECT t.id FROM vehicle_trims t JOIN models m ON m.id = t.model_id "
+            "JOIN makes k ON k.id = m.make_id "
+            "WHERE k.name = ? AND m.name = ? AND t.year = ? AND t.trim = ?",
+            (make, model, year, trim),
+        ).fetchone()[0]
+        conn.executemany(
+            "INSERT INTO service_intervals (trim_id, service_type, window_start_miles, "
+            "window_end_miles, repeat_every_miles, source_url, source_page, source_quote) "
+            "VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
+            [(trim_id, *row) for row in rows],
+        )
     conn.execute(
         "INSERT INTO users (id, email) VALUES (?, ?)", (DEMO_USER_ID, DEMO_USER_EMAIL)
     )
