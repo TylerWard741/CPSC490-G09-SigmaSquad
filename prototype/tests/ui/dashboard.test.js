@@ -109,7 +109,7 @@ async function openPage(t, { server = createServer(), hash = "#dashboard" } = {}
   return page;
 }
 
-test("DoD1: the dashboard lists every vehicle saved to the demo user's account", async (t) => {
+test("the dashboard lists every vehicle saved to the demo user's account", async (t) => {
   const page = await openPage(t);
   assert.deepEqual(page.vehicleLabels(), [
     "2020 Toyota Camry LE",
@@ -119,13 +119,13 @@ test("DoD1: the dashboard lists every vehicle saved to the demo user's account",
   assert.equal(page.doc.getElementById("dash-vehicles-empty").hidden, true);
 });
 
-test("DoD1: a user with no saved vehicles sees the empty state", async (t) => {
+test("a user with no saved vehicles sees the empty state", async (t) => {
   const page = await openPage(t, { server: createServer([]) });
   assert.deepEqual(page.vehicleLabels(), []);
   assert.equal(page.doc.getElementById("dash-vehicles-empty").hidden, false);
 });
 
-test("DoD1: a failed vehicle list shows an error", async (t) => {
+test("a failed vehicle list shows an error", async (t) => {
   const server = createServer();
   server.down = true;
   const page = await openPage(t, { server });
@@ -133,7 +133,7 @@ test("DoD1: a failed vehicle list shows an error", async (t) => {
   assert.deepEqual(page.vehicleLabels(), []);
 });
 
-test("DoD2: selecting a vehicle requests its records and lists them newest first", async (t) => {
+test("selecting a vehicle requests its records and lists them newest first", async (t) => {
   const page = await openPage(t);
   await page.clickVehicle(1);
   const request = page.server.calls.find((call) => call.href === "/vehicles/1/service-records");
@@ -148,7 +148,7 @@ test("DoD2: selecting a vehicle requests its records and lists them newest first
   assert.equal(page.doc.querySelector('[data-vehicle-id="2"]').getAttribute("aria-pressed"), "false");
 });
 
-test("DoD2: switching vehicles shows the other vehicle's records", async (t) => {
+test("switching vehicles shows the other vehicle's records", async (t) => {
   const page = await openPage(t);
   await page.clickVehicle(1);
   await page.clickVehicle(2);
@@ -157,7 +157,7 @@ test("DoD2: switching vehicles shows the other vehicle's records", async (t) => 
   assert.match(page.doc.getElementById("dash-history-title").textContent, /Commuter/);
 });
 
-test("DoD2: a vehicle with no records shows the empty state", async (t) => {
+test("a vehicle with no records shows the empty state", async (t) => {
   const page = await openPage(t);
   await page.clickVehicle(3);
   assert.equal(page.message(), "No service records yet.");
@@ -165,7 +165,7 @@ test("DoD2: a vehicle with no records shows the empty state", async (t) => {
   assert.deepEqual(page.rows(), []);
 });
 
-test("DoD2: a slow response for a previously selected vehicle is ignored", async (t) => {
+test("a slow response for a previously selected vehicle is ignored", async (t) => {
   const page = await openPage(t);
   let release;
   page.server.delays.set("/vehicles/1/service-records", new Promise((resolve) => { release = resolve; }));
@@ -176,7 +176,7 @@ test("DoD2: a slow response for a previously selected vehicle is ignored", async
   assert.deepEqual(page.rows(), [["2024-06-01", "Brake pads", "50000", "<img src=x>"]]);
 });
 
-test("DoD2: when the API returns 503, selecting shows an error and Retry recovers", async (t) => {
+test("when the API returns 503, selecting shows an error and Retry recovers", async (t) => {
   const page = await openPage(t);
   page.server.down = true;
   await page.clickVehicle(1);
@@ -191,7 +191,7 @@ test("DoD2: when the API returns 503, selecting shows an error and Retry recover
   assert.deepEqual(page.rows()[0], ["2025-09-14", "Tire rotation", "36000", ""]);
 });
 
-test("DoD2: when the API returns 503 on first load, Retry recovers the vehicle list", async (t) => {
+test("when the API returns 503 on first load, Retry recovers the vehicle list", async (t) => {
   const server = createServer();
   server.down = true;
   const page = await openPage(t, { server });
