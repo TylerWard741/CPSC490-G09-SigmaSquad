@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { listSavedVehicles, type SavedVehicle } from './api';
 import ServiceRecordForm from './ServiceRecordForm';
+import ImportServiceHistory from './ImportServiceHistory';
 
 const labelFor = (v: SavedVehicle) =>
   `${v.year} ${v.make} ${v.model} ${v.trim}${v.nickname ? ` (${v.nickname})` : ''}`;
@@ -39,6 +40,7 @@ export default function ServiceRecordsPanel() {
             {vehicles.map((v) => <option key={v.id} value={v.id}>{labelFor(v)}</option>)}
           </select>
           <ServiceRecordForm key={vehicleId} vehicleId={vehicleId} />
+          <ImportServiceHistory key={`imp-${vehicleId}`} vehicleId={vehicleId} />
         </>
       )}
     </section>
