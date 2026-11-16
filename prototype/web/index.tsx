@@ -1,7 +1,7 @@
 import { createRoot } from "react-dom/client";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { initVehicleSelect } from "./vehicle_select";
-import { initDashboard } from "./dashboard";
+import { DashboardPage } from "./dashboard";
 import ServiceRecordsPanel from "./service-records/ServiceRecordsPanel";
 
 // Tracks the URL hash so "#dashboard" switches pages without a reload.
@@ -57,58 +57,6 @@ function SelectionPage() {
 			</p>
 			<ServiceRecordsPanel />
 		</>
-	);
-}
-
-// Story #77: saved vehicles on the left, the selected vehicle's service
-// history on the right at desktop width.
-function DashboardPage() {
-	const root = useRef<HTMLDivElement>(null);
-	useEffect(() => {
-		initDashboard(root.current as HTMLElement);
-	}, []);
-	return (
-		<div ref={root}>
-			<h1 className="text-2xl font-bold">Dashboard</h1>
-			<div id="dash-error" className="message error" role="alert" hidden>
-				<div id="dash-error-text"></div>
-				<button id="dash-retry" type="button">
-					Retry
-				</button>
-			</div>
-			<div className="mt-6 grid gap-8 md:grid-cols-[18rem_1fr]">
-				<section>
-					<h2 className="text-lg font-semibold">Your vehicles</h2>
-					<ul id="dash-vehicles" className="mt-3 space-y-2"></ul>
-					<p id="dash-vehicles-empty" hidden>
-						No saved vehicles yet.
-					</p>
-				</section>
-				<section>
-					<h2 id="dash-history-title" className="text-lg font-semibold">
-						Service history
-					</h2>
-					<p id="dash-history-message" className="mt-3">
-						Select a vehicle to see its service history.
-					</p>
-					<table
-						id="dash-records-table"
-						className="mt-3 w-full border-collapse text-left"
-						hidden
-					>
-						<thead>
-							<tr>
-								<th className="border-b py-2 pr-4">Date</th>
-								<th className="border-b py-2 pr-4">Service</th>
-								<th className="border-b py-2 pr-4">Mileage</th>
-								<th className="border-b py-2 pr-4">Notes</th>
-							</tr>
-						</thead>
-						<tbody id="dash-records"></tbody>
-					</table>
-				</section>
-			</div>
-		</div>
 	);
 }
 

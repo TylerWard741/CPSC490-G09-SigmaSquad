@@ -65,7 +65,7 @@ function createServer(saved = [1, 2, 3]) {
   return server;
 }
 
-const settle = () => new Promise((resolve) => setTimeout(resolve, 5));
+const settle = () => new Promise((resolve) => setTimeout(resolve, 25));
 
 async function openPage(t, { server = createServer(), hash = "#dashboard" } = {}) {
   const dom = new JSDOM(HTML, { runScripts: "outside-only", url: `http://test/${hash}` });
@@ -74,8 +74,15 @@ async function openPage(t, { server = createServer(), hash = "#dashboard" } = {}
   dom.window.eval(SCRIPT);
   const doc = dom.window.document;
   // React renders asynchronously; wait for the page before its first fetch settles.
-  const ready = hash === "#dashboard" ? "dash-vehicles" : "make";
-  while (!doc.getElementById(ready)) await settle();
+  // The dashboard is ready once its first load has finished: vehicles listed,
+  // the empty state shown, or an error shown.
+  const loaded = () =>
+    hash === "#dashboard"
+      ? doc.querySelector("#dash-vehicles li") ||
+        (doc.getElementById("dash-vehicles-empty") && !doc.getElementById("dash-vehicles-empty").hidden) ||
+        (doc.getElementById("dash-error") && !doc.getElementById("dash-error").hidden)
+      : doc.getElementById("make");
+  while (!loaded()) await settle();
   await settle();
 
   const rows = () =>
