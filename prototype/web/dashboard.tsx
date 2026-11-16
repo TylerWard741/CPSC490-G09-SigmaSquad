@@ -171,10 +171,10 @@ export function DashboardPage() {
 					</p>
 					<table
 						id="dash-records-table"
-						className="mt-3 w-full border-collapse text-left"
+						className="mt-3 block w-full border-collapse text-left md:table"
 						hidden={records.length === 0}
 					>
-						<thead>
+						<thead className="hidden md:table-header-group">
 							<tr>
 								<th className="border-b py-2 pr-4">Date</th>
 								<th className="border-b py-2 pr-4">Service</th>
@@ -182,13 +182,37 @@ export function DashboardPage() {
 								<th className="border-b py-2 pr-4">Notes</th>
 							</tr>
 						</thead>
-						<tbody id="dash-records">
+						<tbody id="dash-records" className="block md:table-row-group">
 							{records.map((record) => (
-								<tr key={record.id} data-record-id={record.id}>
-									<td className="border-b py-2 pr-4">{record.service_date}</td>
-									<td className="border-b py-2 pr-4">{record.service_type}</td>
-									<td className="border-b py-2 pr-4">{record.mileage}</td>
-									<td className="border-b py-2 pr-4">{record.notes ?? ""}</td>
+								<tr
+									key={record.id}
+									data-record-id={record.id}
+									className="mb-3 block rounded border p-3 md:mb-0 md:table-row md:rounded-none md:border-0 md:p-0"
+								>
+									<td
+										className="block py-1 before:mr-2 before:font-semibold before:content-[attr(data-label)] md:table-cell md:border-b md:py-2 md:pr-4 md:before:content-none"
+										data-label="Date:"
+									>
+										{record.service_date}
+									</td>
+									<td
+										className="block py-1 before:mr-2 before:font-semibold before:content-[attr(data-label)] md:table-cell md:border-b md:py-2 md:pr-4 md:before:content-none"
+										data-label="Service:"
+									>
+										{record.service_type}
+									</td>
+									<td
+										className="block py-1 before:mr-2 before:font-semibold before:content-[attr(data-label)] md:table-cell md:border-b md:py-2 md:pr-4 md:before:content-none"
+										data-label="Mileage:"
+									>
+										{record.mileage}
+									</td>
+									<td
+										className="block py-1 before:mr-2 before:font-semibold before:content-[attr(data-label)] md:table-cell md:border-b md:py-2 md:pr-4 md:before:content-none"
+										data-label="Notes:"
+									>
+										{record.notes ?? ""}
+									</td>
 								</tr>
 							))}
 						</tbody>
