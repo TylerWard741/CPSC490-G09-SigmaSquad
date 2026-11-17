@@ -108,7 +108,7 @@ Provide accurate, mileage-based maintenance recommendations and clearly communic
 
 **2.2.** Support next-service recommendations for at least three common service types: oil changes, tire rotations, and brake inspections. ([story:#35](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/35))
 
-**2.3.** Assign and display an urgency label of either "Urgent" or "When convenient" for each applicable maintenance recommendation, using documented mileage-based rules. ([story:#36](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/36))
+**2.3.** Assign and display a status label of either "When Convenient," "Due Soon," "Due Now," or "Overdue" for each applicable maintenance recommendation, using documented mileage-based rules. ([story:#36](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/36))
 
 **2.4.** Display dashboard alerts for services that are overdue or within 500 miles of their recommended due mileage, applying the appropriate urgency label. ([story:#37](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/37))
 
