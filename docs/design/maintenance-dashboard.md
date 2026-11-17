@@ -110,19 +110,6 @@ server in jsdom.
 | 7 | While the dashboard is shown on a phone-width screen, the system shall not require horizontal scrolling. | `at <width>px the page is no wider than the screen (no horizontal scroll)` |
 | 8 | While the dashboard is shown on a phone-width screen, the system shall show text and buttons at a size that is readable and easy to tap. | `at <width>px every visible button and field is at least 44px tall`; readability is judged by a person |
 
-## Behaviour beyond the criteria
-
-The prototype also does the following. None of it is a criterion on #32, and it
-is listed so a reviewer can see it.
-
-- A deletion asks for confirmation first, and declining deletes nothing.
-- An edit has a Cancel that sends nothing, and a rejected edit shows the
-  server's message and keeps the form open.
-- A failed load or a 503 shows an error with a Retry action.
-- A user with no vehicles, or a vehicle with no records, sees an empty state.
-- On a phone-width screen each record is a stacked card; on a wider screen it is
-  a table row.
-
 ## Open questions
 
 - **Phone-width numbers.** The criteria for NFR-1 and NFR-2 do not name a width
