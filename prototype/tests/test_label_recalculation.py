@@ -1,13 +1,14 @@
 """API tests for task #73, named by the requirement they cover.
 
 FR numbers are from docs/specs/recommendations-and-alerts.md. The window
-each record is labeled against comes from recommendation_window.py, a
-placeholder for #76 - these tests check that a mileage entry (#73) is wired
-to recalculate labels, not the window's actual numbers, which are #76's job.
+each record is labeled against comes from recommendation_window.py (#76),
+read from the service_intervals table (#75). The vehicle used is trim 1, the
+2020 Camry LE, whose oil change is every 10,000 miles on Toyota's normal
+schedule (db/service_interval_data.py).
 """
 import pytest
 
-from recommendation_window import PLACEHOLDER_INTERVAL_MILES
+OIL_INTERVAL_MILES = 10_000
 
 
 def type_id(client, name):
@@ -67,7 +68,7 @@ def test_fr11_the_window_has_equal_start_and_end(client, vehicle_id):
     records = client.get(records_url(vehicle_id)).get_json()["service_records"]
     found = next(r for r in records if r["id"] == record["id"])
     assert found["window_start"] == found["window_end"]
-    assert found["window_start"] == record["mileage"] + PLACEHOLDER_INTERVAL_MILES
+    assert found["window_start"] == record["mileage"] + OIL_INTERVAL_MILES
 
 
 def test_fr10_creating_the_first_record_already_labels_it(client, vehicle_id):
@@ -79,9 +80,9 @@ def test_fr10_creating_the_first_record_already_labels_it(client, vehicle_id):
 def test_fr10_a_later_mileage_entry_recalculates_the_label(client, vehicle_id):
     """FR-10: the label is recalculated, not cached from the first entry."""
     record = create_record(client, vehicle_id, mileage=40000)
-    window_start = record["mileage"] + PLACEHOLDER_INTERVAL_MILES
+    window_start = record["mileage"] + OIL_INTERVAL_MILES
 
-    set_mileage(client, vehicle_id, window_start - PLACEHOLDER_INTERVAL_MILES)
+    set_mileage(client, vehicle_id, window_start - OIL_INTERVAL_MILES)
     assert labels_for(client, vehicle_id)[record["id"]] == "When Convenient"
 
     set_mileage(client, vehicle_id, window_start)
