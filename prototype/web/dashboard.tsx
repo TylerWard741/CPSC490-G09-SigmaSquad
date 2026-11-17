@@ -17,9 +17,14 @@ type ServiceRecord = {
 	service_date: string;
 	mileage: number;
 	notes: string | null;
+	// null until a current mileage exists to label against (#73, FR-10/FR-13).
+	label: string | null;
+	window_start: number | null;
+	window_end: number | null;
 };
 
 type ServiceType = { id: number; name: string };
+type VehicleDetail = Vehicle & { current_mileage: number | null };
 
 type Selected = { id: number; label: string };
 type Failure = { message: string; retry: () => void };
@@ -130,6 +135,8 @@ export function DashboardPage() {
 	const [vehicles, setVehicles] = useState<Vehicle[] | null>(null);
 	const [selected, setSelected] = useState<Selected | null>(null);
 	const [history, setHistory] = useState<History>({ kind: "idle" });
+	// The selected vehicle's current_mileage (#73); null until entered.
+	const [mileage, setMileage] = useState<number | null>(null);
 	const [editing, setEditing] = useState<ReadonlySet<number>>(new Set());
 	const [editTypes, setEditTypes] = useState<ServiceType[]>([]);
 	const [status, setStatus] = useState("");
@@ -140,6 +147,7 @@ export function DashboardPage() {
 	// The handlers below outlive a render, so they read this instead of state.
 	const selectedRef = useRef<Selected | null>(null);
 	const serviceTypes = useRef<ServiceType[] | null>(null);
+	const mileageInput = useRef<HTMLInputElement>(null);
 
 	const setFailure = (key: string, message: string, retry: () => void) =>
 		setFailures((current) => ({ ...current, [key]: { message, retry } }));
@@ -165,21 +173,26 @@ export function DashboardPage() {
 		}
 	}
 
+	// Loads the records and the current mileage together (#73): a mileage
+	// update changes every record's label (FR-10), so both are refreshed
+	// together after any action that could affect either.
 	async function loadRecords(vehicle: Selected) {
 		recordsToken.current += 1;
 		const token = recordsToken.current;
 		clearFailure("records");
 		try {
-			const body = (await api(`/vehicles/${vehicle.id}/service-records`)) as {
-				service_records: ServiceRecord[];
-			};
+			const [recordsBody, vehicleBody] = (await Promise.all([
+				api(`/vehicles/${vehicle.id}/service-records`),
+				api(`/vehicles/${vehicle.id}`),
+			])) as [{ service_records: ServiceRecord[] }, { vehicle: VehicleDetail }];
 			if (token !== recordsToken.current) return;
 			// ISO dates (YYYY-MM-DD) sort correctly as strings; newest first.
-			const records = [...body.service_records].sort((a, b) =>
+			const records = [...recordsBody.service_records].sort((a, b) =>
 				b.service_date.localeCompare(a.service_date),
 			);
 			setEditing(new Set());
 			setHistory({ kind: "loaded", records });
+			setMileage(vehicleBody.vehicle.current_mileage);
 		} catch (error) {
 			if (token !== recordsToken.current) return;
 			setHistory((current) => (current.kind === "loaded" ? current : { kind: "error" }));
@@ -191,6 +204,8 @@ export function DashboardPage() {
 		choose(vehicle);
 		setStatus("");
 		setHistory({ kind: "loading" });
+		setMileage(null);
+		clearFailure("mileage");
 		loadRecords(vehicle);
 	}
 
@@ -198,7 +213,36 @@ export function DashboardPage() {
 		choose(null);
 		recordsToken.current += 1;
 		clearFailure("records");
+		clearFailure("mileage");
 		setHistory({ kind: "idle" });
+		setMileage(null);
+	}
+
+	// #73: entering a mileage replaces the stored value (FR-14, enforced by
+	// the API) and this reload re-labels every record against it (FR-10).
+	async function saveMileage() {
+		const vehicle = selectedRef.current;
+		if (!vehicle) return;
+		const raw = mileageInput.current!.value;
+		const value = Number(raw);
+		if (raw.trim() === "" || !Number.isInteger(value) || value < 0) {
+			setFailure("mileage", "Enter the mileage as a whole number, 0 or more.", saveMileage);
+			return;
+		}
+		clearFailure("mileage");
+		const token = recordsToken.current;
+		try {
+			await api(`/vehicles/${vehicle.id}`, {
+				method: "PATCH",
+				headers: { "Content-Type": "application/json" },
+				body: JSON.stringify({ current_mileage: value }),
+			});
+			if (token !== recordsToken.current) return;
+			await loadRecords(vehicle);
+		} catch (error) {
+			if (token !== recordsToken.current) return;
+			setFailure("mileage", (error as Error).message, saveMileage);
+		}
 	}
 
 	async function startEdit(record: ServiceRecord) {
@@ -341,6 +385,24 @@ export function DashboardPage() {
 					<h2 id="dash-history-title" className="text-lg font-semibold">
 						{selected ? `Service history: ${selected.label}` : "Service history"}
 					</h2>
+					<div id="dash-mileage-section" className="mt-3" hidden={!selected || history.kind !== "loaded"}>
+						<label htmlFor="dash-mileage-input">Current mileage</label>
+						<p id="dash-mileage-current" className="text-sm">
+							{mileage === null ? "Not entered yet." : `${mileage} miles.`}
+						</p>
+						<input
+							key={`${selected?.id}-${mileage ?? "none"}`}
+							ref={mileageInput}
+							id="dash-mileage-input"
+							type="number"
+							min="0"
+							step="1"
+							defaultValue={mileage ?? ""}
+						/>
+						<button id="dash-mileage-save" type="button" aria-label="Save mileage" onClick={saveMileage}>
+							Save mileage
+						</button>
+					</div>
 					<p id="dash-history-message" className="mt-3" hidden={historyMessage === ""}>
 						{historyMessage}
 					</p>
