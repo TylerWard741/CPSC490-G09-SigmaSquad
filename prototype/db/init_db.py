@@ -38,6 +38,11 @@ def init_db(db_path=DB_PATH):
                 "INSERT INTO vehicle_trims (model_id, year, trim) VALUES (?, ?, ?)",
                 [(model_id, y, t) for y, t in trims],
             )
+    conn.executemany(
+        "INSERT INTO service_types (name) VALUES (?)",
+        [(name,) for name in SERVICE_TYPES],
+    )
+    service_type_ids = dict(conn.execute("SELECT name, id FROM service_types"))
     for (make, model, year, trim), rows in SERVICE_INTERVALS.items():
         trim_id = conn.execute(
             "SELECT t.id FROM vehicle_trims t JOIN models m ON m.id = t.model_id "
@@ -46,17 +51,13 @@ def init_db(db_path=DB_PATH):
             (make, model, year, trim),
         ).fetchone()[0]
         conn.executemany(
-            "INSERT INTO service_intervals (trim_id, service_type, window_start_miles, "
+            "INSERT INTO service_intervals (trim_id, service_type_id, window_start_miles, "
             "window_end_miles, repeat_every_miles, source_url, source_page, source_quote) "
             "VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
-            [(trim_id, *row) for row in rows],
+            [(trim_id, service_type_ids[row[0]], *row[1:]) for row in rows],
         )
     conn.execute(
         "INSERT INTO users (id, email) VALUES (?, ?)", (DEMO_USER_ID, DEMO_USER_EMAIL)
-    )
-    conn.executemany(
-        "INSERT INTO service_types (name) VALUES (?)",
-        [(name,) for name in SERVICE_TYPES],
     )
     conn.commit()
     conn.close()
