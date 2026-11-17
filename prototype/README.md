@@ -9,7 +9,9 @@ and trim, then save the vehicle to an account. Details are in
 |---|---|
 | `app.py` | Flask JSON API, which also serves the page |
 | `db/` | SQLite schema and seed script; builds `db/app.db` (not committed) |
-| `tests/test_vehicle_api.py` | API tests (pytest) |
+| `tests/test_vehicle_api.py` | API tests for vehicle selection (pytest) |
+| `tests/test_service_records_api.py` | API tests for service types, service records and the vehicle read, update and delete endpoints (pytest) |
+| `label_rule.py`, `tests/test_label_rule.py` | Status-label rule for [#72](../../../issues/72) and its tests |
 | `tests/ui/` | Page tests (`node --test` with jsdom) |
 | `login.py`, `tests/test_login.py` | The course's example, to be removed by #54 |
 
@@ -68,6 +70,20 @@ npm test                # page tests
 Tests build a fresh temporary database, so they never touch `db/app.db`. CI runs
 both suites on every pull request (job **Prototype build & tests**).
 
+### What the tests cover
+
+| Area | Test files | Runs with |
+|---|---|---|
+| Vehicle selection | `tests/test_vehicle_api.py`, `tests/ui/vehicle-select.test.js` | pytest, npm test |
+| Service-record entry | `tests/ui/service-record-form.test.js` | npm test |
+| Service-history display | `tests/ui/service-history.test.js` | npm test |
+| Service-history import | `tests/ui/service-import.test.js` | npm test |
+| Service-record and vehicle API | `tests/test_service_records_api.py` | pytest |
+| Status-label rule | `tests/test_label_rule.py` | pytest |
+
+pytest finds new test files on its own. A new page-test file must be added to
+the `test` line in `package.json`, or `npm test` will not run it.
+
 ## Running the repository harness locally
 
 `check_repo.py` only skips a `node_modules` folder at the repository root, so it
@@ -94,3 +110,4 @@ that the database itself prevents an account from saving the same vehicle twice.
 |---|---|
 | v0 (Sep 27) | Login check + 4 tests (the course's example) |
 | Sprint 2 | Vehicle database (#63), vehicle selection API and page (#29) |
+| Sprint 3 | Service types, service records, and vehicle read, update and delete API (#81) |
