@@ -2,16 +2,23 @@
 
 > **Facts below are final** as of the Nov 16→17 overnight push (everything
 > merged before the instructor's ~8–8:30am Nov 17 check). The Progress,
-> Feedback, and What-we-change sections still need Tyler's own words.
+> Feedback, and What-we-change sections are drafted from Tyler's picks on
+> which facts to include — plain factual lines, not polished prose. Re-read
+> and edit into your own words before this PR merges.
 
 ## Progress this sprint — the substance
 
 **Proposal moved:**
 | Section | What changed | Where |
 |---|---|---|
-| | | |
+| Section 4 index | No section 0–3/5–8 content changed this sprint; only index rows and a process reminder. | #80, #82, #83 |
 
 **Prototype moved:**
+
+- The dashboard (#77/#90) now lists a vehicle's full service history instead of nothing.
+- Service records and vehicles can be edited and deleted from the dashboard (#79/#92), and the layout works at mobile widths (#78/#102).
+- Entering a new current mileage replaces the stored value and recalculates every label (#73/#95); missing a vehicle, history, or mileage shows a named prompt instead of a wrong label (#74/#96).
+- The recommendation engine actually calculates due-next labels for oil changes, tire rotations, and brake inspections now, reading real interval data instead of a placeholder window (#75/#76/#103/#104).
 
 ## Velocity
 
@@ -87,11 +94,15 @@ mine (shared CLAUDE.md: a human judges acceptance criteria):
 
 ## Prototype increment
 
+End to end this sprint: select a vehicle, see its service history, add or edit records, enter current mileage, and get a real due-next label (When Convenient / Due Soon / Due Now / Overdue) for oil changes, tire rotations, and brake inspections — none of that worked at the Sprint 2 boundary.
+
 ## Feedback we received, and what we did about it
 
 | Feedback (source) | What we changed | Issue / PR |
 |---|---|---|
-| | | |
+| Hector caught his own missed approval on #102, then flagged real merge conflicts on #104 before anyone spent a review on it | Re-reviewed #102; #104 held for Ethan to resolve before any review proceeded | #102, #104 |
+| Mathieu commented on #103 requesting a fix | Addressed before Hector's approval and merge | #103 |
+| Ethan's dashboard redesign (#77) and Emily's merged service-history panel (#85/#86) conflicted — built without knowledge of each other | Decided to keep Emily's merged work as the base; Ethan folded his redesign into it himself | #90, #92 |
 
 ## Contribution snapshot — final
 
@@ -110,4 +121,6 @@ same account-hygiene issue flagged after Sprint 1 (only
 
 ## What we change next sprint
 
--
+- Stop cramming into the last 48 hours — most of tonight's merge marathon (Nov 16→17) was avoidable with earlier reviews, same miss the instructor flagged after Sprint 2.
+- Write real acceptance criteria before work starts, not template placeholders — #34 still has `- [ ] When ..., the system shall ...` despite all 5 of its child tasks being done.
+- Keep PRs smaller to avoid repeated-rebase marathons — Ethan on #102 ("the PR of doom"): "merging develop into my PR 10 times for every single PR really sucked the soul out of me."
