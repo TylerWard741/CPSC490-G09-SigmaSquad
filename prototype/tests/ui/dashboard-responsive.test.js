@@ -62,6 +62,9 @@ async function openDashboard(width) {
   const page = await browser.newPage({ viewport: { width, height: 800 } });
   await page.route("**/users/1/vehicles", (route) => route.fulfill({ json: VEHICLES }));
   await page.route("**/vehicles/*/service-records", (route) => route.fulfill({ json: RECORDS }));
+  await page.route(/\/vehicles\/\d+$/, (route) =>
+    route.fulfill({ json: { vehicle: { ...VEHICLES.vehicles[0], current_mileage: null } } }),
+  );
   await page.goto(`${baseUrl}/#dashboard`);
   await page.locator(".vehicle-button").first().click();
   await page.locator("#dash-records-table").waitFor({ state: "visible" });
