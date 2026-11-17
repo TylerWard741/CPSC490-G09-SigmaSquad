@@ -64,10 +64,11 @@ function patchRecord(record, body) {
   return json(200, { service_record: { ...record } });
 }
 
-function createServer(saved = [1, 2, 3]) {
+function createServer(saved = [1, 2, 3], { mileage = {} } = {}) {
   const server = {
     saved: [...saved],
     records: structuredClone(RECORDS),
+    mileage: { ...mileage },
     calls: [],
     down: false,
     delays: new Map(),
@@ -96,12 +97,30 @@ function createServer(saved = [1, 2, 3]) {
       if (!server.saved.includes(id)) return json(404, { error: "Vehicle could not be found." });
       return json(200, { service_records: newestFirst(server.records[id] || []) });
     }
-    if ((match = route.match(/^\/vehicles\/(\d+)$/)) && method === "DELETE") {
+    if ((match = route.match(/^\/vehicles\/(\d+)$/))) {
       const id = Number(match[1]);
       if (!server.saved.includes(id)) return json(404, { error: "Vehicle could not be found." });
-      server.saved = server.saved.filter((saved) => saved !== id);
-      delete server.records[id];
-      return noContent();
+      if (method === "GET") {
+        return json(200, {
+          vehicle: { id, trim_id: id, nickname: null, current_mileage: server.mileage[id] ?? null, ...VEHICLES[id] },
+        });
+      }
+      if (method === "PATCH") {
+        const body = JSON.parse(options.body);
+        const value = body.current_mileage;
+        if (!(Number.isInteger(value) && value >= 0)) {
+          return json(400, { error: "current_mileage must be an integer of 0 or more." });
+        }
+        server.mileage[id] = value;
+        return json(200, {
+          vehicle: { id, trim_id: id, nickname: null, current_mileage: value, ...VEHICLES[id] },
+        });
+      }
+      if (method === "DELETE") {
+        server.saved = server.saved.filter((saved) => saved !== id);
+        delete server.records[id];
+        return noContent();
+      }
     }
     if (route === "/service-types" && method === "GET") {
       return json(200, { service_types: SERVICE_TYPES });
@@ -185,6 +204,16 @@ async function openPage(t, { server = createServer(), hash = "#dashboard" } = {}
     },
     async deleteVehicle(id) {
       doc.querySelector(`[data-delete-vehicle-id="${id}"]`).click();
+      await settle();
+    },
+    mileageSectionHidden: () => doc.getElementById("dash-mileage-section").hidden,
+    mileageCurrentText: () => doc.getElementById("dash-mileage-current").textContent,
+    missingPrompt: () => (doc.getElementById("dash-missing-prompt").hidden ? "" : doc.getElementById("dash-missing-prompt").textContent),
+    fillMileage(value) {
+      doc.getElementById("dash-mileage-input").value = value;
+    },
+    async saveMileage() {
+      doc.getElementById("dash-mileage-save").click();
       await settle();
     },
   };
@@ -419,4 +448,96 @@ test("when deleting a vehicle returns 503, Retry deletes it", async (t) => {
   await page.click("dash-retry");
   assert.equal(page.error(), "");
   assert.deepEqual(page.vehicleLabels(), ["2020 Toyota Camry LE", "2021 Toyota Corolla L"]);
+});
+
+// #73: mileage entry and label recalculation.
+
+test("a vehicle with no mileage shows 'Not entered yet' and an empty input", async (t) => {
+  const page = await openPage(t);
+  await page.clickVehicle(1);
+  assert.equal(page.mileageSectionHidden(), false);
+  assert.equal(page.mileageCurrentText(), "Not entered yet.");
+  assert.equal(page.doc.getElementById("dash-mileage-input").value, "");
+});
+
+test("a vehicle with a saved mileage shows it", async (t) => {
+  const page = await openPage(t, { server: createServer([1, 2, 3], { mileage: { 1: 36200 } }) });
+  await page.clickVehicle(1);
+  assert.equal(page.mileageCurrentText(), "36200 miles.");
+  assert.equal(page.doc.getElementById("dash-mileage-input").value, "36200");
+});
+
+test("saving a mileage sends it, shows it, and reloads the records", async (t) => {
+  const page = await openPage(t);
+  await page.clickVehicle(1);
+  page.fillMileage("36200");
+  await page.saveMileage();
+
+  const patch = page.server.calls.find((call) => call.method === "PATCH" && call.href === "/vehicles/1");
+  assert.deepEqual(patch.body, { current_mileage: 36200 });
+  assert.equal(page.mileageCurrentText(), "36200 miles.");
+  assert.ok(
+    page.server.calls.filter((call) => call.href === "/vehicles/1/service-records").length >= 2,
+    "should reload the records after saving",
+  );
+});
+
+test("an invalid mileage shows an error and sends nothing", async (t) => {
+  const page = await openPage(t);
+  await page.clickVehicle(1);
+  page.fillMileage("-5");
+  await page.saveMileage();
+  assert.match(page.error(), /mileage/);
+  assert.equal(page.server.calls.some((call) => call.method === "PATCH" && call.href === "/vehicles/1"), false);
+});
+
+test("when saving a mileage returns 503, Retry saves it", async (t) => {
+  const page = await openPage(t);
+  await page.clickVehicle(1);
+  page.fillMileage("36200");
+  page.server.down = true;
+  await page.saveMileage();
+  assert.match(page.error(), /can't be reached/);
+
+  page.server.down = false;
+  await page.click("dash-retry");
+  assert.equal(page.error(), "");
+  assert.equal(page.mileageCurrentText(), "36200 miles.");
+});
+
+test("switching vehicles shows the newly selected vehicle's own mileage", async (t) => {
+  const page = await openPage(t, { server: createServer([1, 2, 3], { mileage: { 1: 36200 } }) });
+  await page.clickVehicle(1);
+  assert.equal(page.mileageCurrentText(), "36200 miles.");
+  await page.clickVehicle(2);
+  assert.equal(page.mileageCurrentText(), "Not entered yet.");
+});
+
+// #74: prompt for missing data instead of showing incomplete labels.
+
+test("a vehicle with records but no mileage prompts for the mileage only", async (t) => {
+  const page = await openPage(t);
+  await page.clickVehicle(1);
+  assert.equal(page.missingPrompt(), "Enter current mileage to see recommendations.");
+});
+
+test("a vehicle with no records and no mileage prompts for both", async (t) => {
+  const page = await openPage(t);
+  await page.clickVehicle(3);
+  assert.equal(page.missingPrompt(), "Enter service history and current mileage to see recommendations.");
+});
+
+test("once mileage is entered for a vehicle with records, the prompt clears", async (t) => {
+  const page = await openPage(t);
+  await page.clickVehicle(1);
+  assert.notEqual(page.missingPrompt(), "");
+  page.fillMileage("36200");
+  await page.saveMileage();
+  assert.equal(page.missingPrompt(), "");
+});
+
+test("a vehicle with both records and a saved mileage shows no prompt", async (t) => {
+  const page = await openPage(t, { server: createServer([1, 2, 3], { mileage: { 1: 36200 } }) });
+  await page.clickVehicle(1);
+  assert.equal(page.missingPrompt(), "");
 });
