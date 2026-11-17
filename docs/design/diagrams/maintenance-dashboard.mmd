@@ -1,0 +1,20 @@
+flowchart TD
+    open[User opens the dashboard] --> list[List saved vehicles]
+    list --> select[User selects a vehicle]
+    select --> records[Show its service records, newest first]
+    records --> edit[User edits a record]
+    records --> delrec[User deletes a record]
+    list --> delveh[User deletes a vehicle]
+    edit --> save[Save change and show updated record]
+    delrec --> confirm1{Confirm?}
+    delveh --> confirm2{Confirm?}
+    confirm1 -- yes --> removed1[Record removed from history]
+    confirm2 -- yes --> removed2[Vehicle and its records removed]
+    confirm1 -- no --> records
+    confirm2 -- no --> list
+    save --> records
+    removed1 --> records
+    removed2 --> list
+    list --> editveh[User edits a vehicle's nickname or current mileage]
+    editveh --> savev[Save change and show updated vehicle]
+    savev --> list
