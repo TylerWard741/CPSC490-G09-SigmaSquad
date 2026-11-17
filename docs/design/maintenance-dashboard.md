@@ -72,43 +72,30 @@ listed below.*
 
 ## Functional requirements
 
-| ID | Requirement | Story |
-|---|---|---|
-| FR-1 | When the user opens the dashboard, the system shall list every vehicle saved to their account. | #32 |
-| FR-2 | When the user selects a vehicle on the dashboard, the system shall show that vehicle's saved service records. | #32 |
-| FR-3 | When the dashboard shows a vehicle's service records, the system shall order them newest first. | #32 |
-| FR-4 | When the user edits a service record on the dashboard, the system shall save the change and show the updated record. | #32 |
-| FR-5 | When the user deletes a service record on the dashboard, the system shall remove it from the vehicle's service history. | #32 |
-| FR-6 | When the user deletes a vehicle on the dashboard, the system shall remove the vehicle and all of its service records. | #32 |
+Each requirement is covered by the tests named in its row. The tests are in
+`prototype/tests/ui/dashboard.test.js` and
+`prototype/tests/ui/dashboard-responsive.test.js` and run against a fake API
+server in jsdom. They are on the open PRs #90, #92 and #102, not yet on
+`develop`.
+
+| ID | Requirement | Story | Test |
+|---|---|---|---|
+| FR-1 | When the user opens the dashboard, the system shall list every vehicle saved to their account. | #32 | `the dashboard lists every vehicle saved to the demo user's account` |
+| FR-2 | When the user selects a vehicle on the dashboard, the system shall show that vehicle's saved service records. | #32 | `selecting a vehicle requests its records and lists them newest first`, `switching vehicles shows the other vehicle's records` |
+| FR-3 | When the dashboard shows a vehicle's service records, the system shall order them newest first. | #32 | `selecting a vehicle requests its records and lists them newest first`, `changing a record's date re-sorts the history newest first` |
+| FR-4 | When the user edits a service record on the dashboard, the system shall save the change and show the updated record. | #32 | `editing a service record saves it and the table shows the change` |
+| FR-5 | When the user deletes a service record on the dashboard, the system shall remove it from the vehicle's service history. | #32 | `deleting a service record after confirming removes it` |
+| FR-6 | When the user deletes a vehicle on the dashboard, the system shall remove the vehicle and all of its service records. | #32 | `deleting the selected vehicle removes it and clears its history` |
 
 ## Non-functional requirements
 
-| ID | Requirement | Why it matters here |
-|---|---|---|
-| NFR-1 | While the dashboard is shown on a phone-width screen, the system shall not require horizontal scrolling. | The app is meant to work on mobile browsers; sideways scrolling makes a table hard to read. |
-| NFR-2 | While the dashboard is shown on a phone-width screen, the system shall show text and buttons at a size that is readable and easy to tap. | Users cannot use a page whose text they cannot read or whose buttons they miss. |
+| ID | Requirement | Why it matters here | Test |
+|---|---|---|---|
+| NFR-1 | While the dashboard is shown on a phone-width screen, the system shall not require horizontal scrolling. | The app is meant to work on mobile browsers; sideways scrolling makes a table hard to read. | `at <width>px the page is no wider than the screen (no horizontal scroll)` |
+| NFR-2 | While the dashboard is shown on a phone-width screen, the system shall show text and buttons at a size that is readable and easy to tap. | Users cannot use a page whose text they cannot read or whose buttons they miss. | `at <width>px every visible button and field is at least 44px tall`; readability is judged by a person |
 
-These restate `docs/specs/recommendations-and-alerts.md` NFR-3 and NFR-4. The
-criteria give no widths or sizes (see Open questions).
-
-## Acceptance criteria and tests
-
-The criteria are those on #32. The test names are from the open PRs #90, #92
-and #102; none of them is merged into `develop` yet, so these tests are not on
-`develop` today. The tests are in `prototype/tests/ui/dashboard.test.js` and
-`prototype/tests/ui/dashboard-responsive.test.js`, and run against a fake API
-server in jsdom.
-
-| # | Criterion | Test |
-|---|---|---|
-| 1 | When the user opens the dashboard, the system shall list every vehicle saved to their account. | `the dashboard lists every vehicle saved to the demo user's account` |
-| 2 | When the user selects a vehicle on the dashboard, the system shall show that vehicle's saved service records. | `selecting a vehicle requests its records and lists them newest first`, `switching vehicles shows the other vehicle's records` |
-| 3 | When the dashboard shows a vehicle's service records, the system shall order them newest first. | `selecting a vehicle requests its records and lists them newest first`, `changing a record's date re-sorts the history newest first` |
-| 4 | When the user edits a service record on the dashboard, the system shall save the change and show the updated record. | `editing a service record saves it and the table shows the change` |
-| 5 | When the user deletes a service record on the dashboard, the system shall remove it from the vehicle's service history. | `deleting a service record after confirming removes it` |
-| 6 | When the user deletes a vehicle on the dashboard, the system shall remove the vehicle and all of its service records. | `deleting the selected vehicle removes it and clears its history` |
-| 7 | While the dashboard is shown on a phone-width screen, the system shall not require horizontal scrolling. | `at <width>px the page is no wider than the screen (no horizontal scroll)` |
-| 8 | While the dashboard is shown on a phone-width screen, the system shall show text and buttons at a size that is readable and easy to tap. | `at <width>px every visible button and field is at least 44px tall`; readability is judged by a person |
+These restate `docs/specs/recommendations-and-alerts.md` NFR-3 and NFR-4. They
+give no widths or sizes (see Open questions).
 
 ## Open questions
 
