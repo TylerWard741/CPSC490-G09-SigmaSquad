@@ -208,6 +208,7 @@ async function openPage(t, { server = createServer(), hash = "#dashboard" } = {}
     },
     mileageSectionHidden: () => doc.getElementById("dash-mileage-section").hidden,
     mileageCurrentText: () => doc.getElementById("dash-mileage-current").textContent,
+    missingPrompt: () => (doc.getElementById("dash-missing-prompt").hidden ? "" : doc.getElementById("dash-missing-prompt").textContent),
     fillMileage(value) {
       doc.getElementById("dash-mileage-input").value = value;
     },
@@ -510,4 +511,33 @@ test("switching vehicles shows the newly selected vehicle's own mileage", async 
   assert.equal(page.mileageCurrentText(), "36200 miles.");
   await page.clickVehicle(2);
   assert.equal(page.mileageCurrentText(), "Not entered yet.");
+});
+
+// #74: prompt for missing data instead of showing incomplete labels.
+
+test("a vehicle with records but no mileage prompts for the mileage only", async (t) => {
+  const page = await openPage(t);
+  await page.clickVehicle(1);
+  assert.equal(page.missingPrompt(), "Enter current mileage to see recommendations.");
+});
+
+test("a vehicle with no records and no mileage prompts for both", async (t) => {
+  const page = await openPage(t);
+  await page.clickVehicle(3);
+  assert.equal(page.missingPrompt(), "Enter service history and current mileage to see recommendations.");
+});
+
+test("once mileage is entered for a vehicle with records, the prompt clears", async (t) => {
+  const page = await openPage(t);
+  await page.clickVehicle(1);
+  assert.notEqual(page.missingPrompt(), "");
+  page.fillMileage("36200");
+  await page.saveMileage();
+  assert.equal(page.missingPrompt(), "");
+});
+
+test("a vehicle with both records and a saved mileage shows no prompt", async (t) => {
+  const page = await openPage(t, { server: createServer([1, 2, 3], { mileage: { 1: 36200 } }) });
+  await page.clickVehicle(1);
+  assert.equal(page.missingPrompt(), "");
 });
