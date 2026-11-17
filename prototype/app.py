@@ -19,6 +19,8 @@ from flask import Flask, g, jsonify, request
 from werkzeug.exceptions import HTTPException
 
 from db.init_db import init_db
+from label_rule import label
+from recommendation_window import recommended_window
 
 DEFAULT_DB_PATH = Path(__file__).parent / "db" / "app.db"
 NICKNAME_MAX_LENGTH = 100
@@ -198,6 +200,22 @@ def create_app(db_path=DEFAULT_DB_PATH) -> Flask:
         ).fetchone()
         return dict(row) if row else None
 
+    def with_label(record: dict, current_mileage: int | None) -> dict:
+        # FR-10: recalculated fresh on every read, so a mileage update (#73)
+        # is reflected the next time records are listed, with no label to
+        # go stale. FR-13: no mileage yet means nothing to label (#74).
+        if current_mileage is None:
+            return {**record, "label": None, "window_start": None, "window_end": None}
+        window_start, window_end = recommended_window(
+            record["service_type"], record["mileage"]
+        )
+        return {
+            **record,
+            "label": label(current_mileage, window_start, window_end),
+            "window_start": window_start,
+            "window_end": window_end,
+        }
+
     def raise_current_mileage(vehicle_id: int, mileage: int) -> None:
         # A record can only move the odometer reading forward, never back.
         get_db().execute(
@@ -361,14 +379,16 @@ def create_app(db_path=DEFAULT_DB_PATH) -> Flask:
 
     @app.get("/vehicles/<int:vehicle_id>/service-records")
     def list_service_records(vehicle_id):
-        if not vehicle_exists(vehicle_id):
+        vehicle = fetch_vehicle(vehicle_id)
+        if vehicle is None:
             return _error(f"Vehicle {vehicle_id} was not found.", 404)
         rows = get_db().execute(
             SERVICE_RECORD_SQL
             + " WHERE sr.vehicle_id = ? ORDER BY sr.service_date DESC, sr.id DESC",
             (vehicle_id,),
         )
-        return jsonify({"service_records": _rows(rows)})
+        records = [with_label(row, vehicle["current_mileage"]) for row in _rows(rows)]
+        return jsonify({"service_records": records})
 
     @app.post("/vehicles/<int:vehicle_id>/service-records")
     def create_service_record(vehicle_id):
