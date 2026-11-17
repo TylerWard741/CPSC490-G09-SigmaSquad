@@ -53,22 +53,22 @@ listed above. Source: `diagrams/maintenance-dashboard.mmd`.*
 
 ## Functional requirements
 
-| ID | Requirement | Story | Test |
-|---|---|---|---|
-| FR-1 | When the user opens the dashboard, the system shall list every vehicle saved to their account. | #32 | `the dashboard lists every vehicle saved to the demo user's account` |
-| FR-2 | When the user selects a vehicle on the dashboard, the system shall show that vehicle's saved service records. | #32 | `selecting a vehicle requests its records and lists them newest first`, `switching vehicles shows the other vehicle's records` |
-| FR-3 | When the dashboard shows a vehicle's service records, the system shall order them newest first. | #32 | `selecting a vehicle requests its records and lists them newest first`, `changing a record's date re-sorts the history newest first` |
-| FR-4 | When the user edits a service record on the dashboard, the system shall save the change and show the updated record. | #32 | `editing a service record saves it and the table shows the change` |
-| FR-5 | When the user deletes a service record on the dashboard, the system shall remove it from the vehicle's service history. | #32 | `deleting a service record after confirming removes it` |
-| FR-6 | When the user deletes a vehicle on the dashboard, the system shall remove the vehicle and all of its service records. | #32 | `deleting the selected vehicle removes it and clears its history` |
-| FR-7 | When the user edits a vehicle's nickname or current mileage on the dashboard, the system shall save the change and show the updated vehicle. | #32 | none yet |
+| ID | Requirement | Story |
+|---|---|---|
+| FR-1 | When the user opens the dashboard, the system shall list every vehicle saved to their account. | #32 |
+| FR-2 | When the user selects a vehicle on the dashboard, the system shall show that vehicle's saved service records. | #32 |
+| FR-3 | When the dashboard shows a vehicle's service records, the system shall order them newest first. | #32 |
+| FR-4 | When the user edits a service record on the dashboard, the system shall save the change and show the updated record. | #32 |
+| FR-5 | When the user deletes a service record on the dashboard, the system shall remove it from the vehicle's service history. | #32 |
+| FR-6 | When the user deletes a vehicle on the dashboard, the system shall remove the vehicle and all of its service records. | #32 |
+| FR-7 | When the user edits a vehicle's nickname or current mileage on the dashboard, the system shall save the change and show the updated vehicle. | #32 |
 
 ## Non-functional requirements
 
-| ID | Requirement | Why it matters here | Test |
-|---|---|---|---|
-| NFR-1 | While the dashboard is shown on a phone-width screen, the system shall not require horizontal scrolling. | The app is meant to work on mobile browsers; sideways scrolling makes a table hard to read. | `at <width>px the page is no wider than the screen (no horizontal scroll)` |
-| NFR-2 | While the dashboard is shown on a phone-width screen, the system shall show text and buttons at a size that is readable and easy to tap. | Users cannot use a page whose text they cannot read or whose buttons they miss. | `at <width>px every visible button and field is at least 44px tall`; readability is judged by a person |
+| ID | Requirement | Why it matters here |
+|---|---|---|
+| NFR-1 | While the dashboard is shown on a phone-width screen, the system shall not require horizontal scrolling. | The app is meant to work on mobile browsers; sideways scrolling makes a table hard to read. |
+| NFR-2 | While the dashboard is shown on a phone-width screen, the system shall show text and buttons at a size that is readable and easy to tap. | Users cannot use a page whose text they cannot read or whose buttons they miss. |
 
 ## Open questions
 
