@@ -70,6 +70,20 @@ npm test                # page tests
 Tests build a fresh temporary database, so they never touch `db/app.db`. CI runs
 both suites on every pull request (job **Prototype build & tests**).
 
+### What the tests cover
+
+| Area | Test files | Runs with |
+|---|---|---|
+| Vehicle selection | `tests/test_vehicle_api.py`, `tests/ui/vehicle-select.test.js` | pytest, npm test |
+| Service-record entry | `tests/ui/service-record-form.test.js` | npm test |
+| Service-history display | `tests/ui/service-history.test.js` | npm test |
+| Service-history import | `tests/ui/service-import.test.js` | npm test |
+| Service-record and vehicle API | `tests/test_service_records_api.py` | pytest |
+| Status-label rule | `tests/test_label_rule.py` | pytest |
+
+pytest finds new test files on its own. A new page-test file must be added to
+the `test` line in `package.json`, or `npm test` will not run it.
+
 ## Running the repository harness locally
 
 `check_repo.py` only skips a `node_modules` folder at the repository root, so it
