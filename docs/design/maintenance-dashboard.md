@@ -54,12 +54,6 @@ listed above. Source: `diagrams/maintenance-dashboard.mmd`.*
 
 ## Functional requirements
 
-Each requirement is covered by the tests named in its row. The tests are in
-`prototype/tests/ui/dashboard.test.js` and
-`prototype/tests/ui/dashboard-responsive.test.js` and run against a fake API
-server in jsdom. They are on the open PRs #90, #92 and #102, not yet on
-`develop`.
-
 | ID | Requirement | Story | Test |
 |---|---|---|---|
 | FR-1 | When the user opens the dashboard, the system shall list every vehicle saved to their account. | #32 | `the dashboard lists every vehicle saved to the demo user's account` |
