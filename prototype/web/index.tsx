@@ -1,9 +1,21 @@
 import { createRoot } from "react-dom/client";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { initVehicleSelect } from "./vehicle_select";
+import { DashboardPage } from "./dashboard";
 import ServiceRecordsPanel from "./service-records/ServiceRecordsPanel";
 
-function App() {
+// Tracks the URL hash so "#dashboard" switches pages without a reload.
+function useHash() {
+	const [hash, setHash] = useState(window.location.hash);
+	useEffect(() => {
+		const update = () => setHash(window.location.hash);
+		window.addEventListener("hashchange", update);
+		return () => window.removeEventListener("hashchange", update);
+	}, []);
+	return hash;
+}
+
+function SelectionPage() {
 	useEffect(() => {
 		initVehicleSelect();
 	}, []);
@@ -45,6 +57,27 @@ function App() {
 			</p>
 			<ServiceRecordsPanel />
 		</>
+	);
+}
+
+function App() {
+	const hash = useHash();
+	const onDashboard = hash === "#dashboard";
+	return (
+		<div className={onDashboard ? undefined : "mx-auto max-w-lg"}>
+			<nav className="mb-6 flex gap-4">
+				<a
+					href="#dashboard"
+					aria-current={onDashboard ? "page" : undefined}
+				>
+					Dashboard
+				</a>
+				<a href="#" aria-current={onDashboard ? undefined : "page"}>
+					Add a vehicle
+				</a>
+			</nav>
+			{onDashboard ? <DashboardPage /> : <SelectionPage />}
+		</div>
 	);
 }
 
