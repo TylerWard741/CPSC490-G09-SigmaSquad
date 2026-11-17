@@ -200,15 +200,22 @@ def create_app(db_path=DEFAULT_DB_PATH) -> Flask:
         ).fetchone()
         return dict(row) if row else None
 
-    def with_label(record: dict, current_mileage: int | None) -> dict:
+    def with_label(record: dict, vehicle: dict) -> dict:
         # FR-10: recalculated fresh on every read, so a mileage update (#73)
         # is reflected the next time records are listed, with no label to
-        # go stale. FR-13: no mileage yet means nothing to label (#74).
-        if current_mileage is None:
-            return {**record, "label": None, "window_start": None, "window_end": None}
-        window_start, window_end = recommended_window(
-            record["service_type"], record["mileage"]
+        # go stale. FR-13: no mileage yet means nothing to label (#74). No
+        # interval data for the vehicle's trim also means nothing to label (#76).
+        current_mileage = vehicle["current_mileage"]
+        window = (
+            None
+            if current_mileage is None
+            else recommended_window(
+                get_db(), vehicle["trim_id"], record["service_type"], record["mileage"]
+            )
         )
+        if window is None:
+            return {**record, "label": None, "window_start": None, "window_end": None}
+        window_start, window_end = window
         return {
             **record,
             "label": label(current_mileage, window_start, window_end),
@@ -387,7 +394,7 @@ def create_app(db_path=DEFAULT_DB_PATH) -> Flask:
             + " WHERE sr.vehicle_id = ? ORDER BY sr.service_date DESC, sr.id DESC",
             (vehicle_id,),
         )
-        records = [with_label(row, vehicle["current_mileage"]) for row in _rows(rows)]
+        records = [with_label(row, vehicle) for row in _rows(rows)]
         return jsonify({"service_records": records})
 
     @app.post("/vehicles/<int:vehicle_id>/service-records")
