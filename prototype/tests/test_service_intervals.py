@@ -18,6 +18,7 @@ COVERED = [("Toyota", "Camry", 2020, "LE"), ("Toyota", "Camry", 2020, "SE"), ("T
 @pytest.fixture
 def conn(db_path):
     connection = sqlite3.connect(db_path)
+    connection.execute("PRAGMA foreign_keys = ON")  # as app.py and init_db do
     connection.row_factory = sqlite3.Row
     yield connection
     connection.close()
@@ -26,7 +27,9 @@ def conn(db_path):
 def get_interval(conn, tid, service_type):
     """The window for one trim and service type, queried with plain SQL."""
     return conn.execute(
-        "SELECT * FROM service_intervals WHERE trim_id = ? AND service_type = ?",
+        "SELECT i.* FROM service_intervals i "
+        "JOIN service_types st ON st.id = i.service_type_id "
+        "WHERE i.trim_id = ? AND st.name = ?",
         (tid, service_type),
     ).fetchone()
 
@@ -77,11 +80,12 @@ def test_query_by_saved_vehicle_returns_all_three_service_types(conn):
     conn.execute("INSERT INTO user_vehicles (user_id, trim_id) VALUES (?, ?)", (DEMO_USER_ID, tid))
     vehicle_id = conn.execute("SELECT last_insert_rowid()").fetchone()[0]
     rows = conn.execute(
-        "SELECT i.service_type FROM service_intervals i "
+        "SELECT st.name FROM service_intervals i "
+        "JOIN service_types st ON st.id = i.service_type_id "
         "JOIN user_vehicles v ON v.trim_id = i.trim_id WHERE v.id = ?",
         (vehicle_id,),
     ).fetchall()
-    assert {row["service_type"] for row in rows} == set(SERVICE_TYPES)
+    assert {row["name"] for row in rows} == set(SERVICE_TYPES)
 
 
 def test_a_vehicle_with_no_recorded_window_returns_nothing(conn):
@@ -89,15 +93,20 @@ def test_a_vehicle_with_no_recorded_window_returns_nothing(conn):
     assert get_interval(conn, tid, "Oil change") is None
 
 
-def test_only_the_three_v1_service_types_are_accepted(conn):
+def test_an_interval_must_reference_an_existing_service_type(conn):
     tid = trim_id(conn, "Honda", "Civic", 2022, "Sport")
     with pytest.raises(sqlite3.IntegrityError):
         conn.execute(
-            "INSERT INTO service_intervals (trim_id, service_type, window_start_miles, "
+            "INSERT INTO service_intervals (trim_id, service_type_id, window_start_miles, "
             "window_end_miles, source_url, source_page, source_quote) "
-            "VALUES (?, 'Wiper blades', 1, 1, 'u', 'p', 'q')",
+            "VALUES (?, 9999, 1, 1, 'u', 'p', 'q')",
             (tid,),
         )
+
+
+def test_only_the_three_v1_service_types_exist(conn):
+    names = {row["name"] for row in conn.execute("SELECT name FROM service_types")}
+    assert names == set(SERVICE_TYPES)
 
 
 def test_the_seed_only_covers_seeded_vehicles():

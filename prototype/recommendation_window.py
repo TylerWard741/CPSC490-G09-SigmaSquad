@@ -27,8 +27,10 @@ def recommended_window(
 ) -> tuple[int, int] | None:
     """Return (window_start, window_end), or None if no window can be given."""
     row = conn.execute(
-        "SELECT window_start_miles, window_end_miles, repeat_every_miles "
-        "FROM service_intervals WHERE trim_id = ? AND service_type = ?",
+        "SELECT i.window_start_miles, i.window_end_miles, i.repeat_every_miles "
+        "FROM service_intervals i "
+        "JOIN service_types st ON st.id = i.service_type_id "
+        "WHERE i.trim_id = ? AND st.name = ?",
         (trim_id, service_type),
     ).fetchone()
     if row is None:

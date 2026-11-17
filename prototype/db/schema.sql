@@ -53,7 +53,7 @@ notes TEXT
 CREATE TABLE service_intervals (
 id INTEGER PRIMARY KEY,
 trim_id INTEGER NOT NULL REFERENCES vehicle_trims(id),
-service_type TEXT NOT NULL CHECK (service_type IN ('Oil change', 'Tire rotation', 'Brake inspection')),
+service_type_id INTEGER NOT NULL REFERENCES service_types(id),
 window_start_miles INTEGER NOT NULL CHECK (window_start_miles >= 0),
 window_end_miles INTEGER NOT NULL,
 repeat_every_miles INTEGER CHECK (repeat_every_miles > 0),
@@ -61,5 +61,5 @@ source_url TEXT NOT NULL,
 source_page TEXT NOT NULL,
 source_quote TEXT NOT NULL,
 CHECK (window_end_miles >= window_start_miles),
-UNIQUE (trim_id, service_type)
+UNIQUE (trim_id, service_type_id)
 );

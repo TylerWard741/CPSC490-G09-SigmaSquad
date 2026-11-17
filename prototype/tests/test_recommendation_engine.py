@@ -104,9 +104,9 @@ def test_a_trim_with_no_interval_data_gets_no_labels_for_any_type(conn):
 
 def test_a_one_time_service_that_has_been_done_has_no_next_window(conn):
     conn.execute(
-        "INSERT INTO service_intervals (trim_id, service_type, window_start_miles, "
+        "INSERT INTO service_intervals (trim_id, service_type_id, window_start_miles, "
         "window_end_miles, repeat_every_miles, source_url, source_page, source_quote) "
-        "VALUES (?, 'Oil change', 1000, 1500, NULL, 'u', 'p', 'q')",
+        "VALUES (?, (SELECT id FROM service_types WHERE name = 'Oil change'), 1000, 1500, NULL, 'u', 'p', 'q')",
         (CIVIC_EX,),
     )
     assert recommended_window(conn, CIVIC_EX, "Oil change") == (1000, 1500)
@@ -115,9 +115,9 @@ def test_a_one_time_service_that_has_been_done_has_no_next_window(conn):
 
 def test_the_window_keeps_the_manufacturers_width_when_it_repeats(conn):
     conn.execute(
-        "INSERT INTO service_intervals (trim_id, service_type, window_start_miles, "
+        "INSERT INTO service_intervals (trim_id, service_type_id, window_start_miles, "
         "window_end_miles, repeat_every_miles, source_url, source_page, source_quote) "
-        "VALUES (?, 'Tire rotation', 5000, 7500, 5000, 'u', 'p', 'q')",
+        "VALUES (?, (SELECT id FROM service_types WHERE name = 'Tire rotation'), 5000, 7500, 5000, 'u', 'p', 'q')",
         (CIVIC_EX,),
     )
     assert recommended_window(conn, CIVIC_EX, "Tire rotation", 8000) == (13000, 15500)
