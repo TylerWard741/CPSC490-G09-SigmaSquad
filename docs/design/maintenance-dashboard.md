@@ -68,7 +68,7 @@ flowchart TD
 ```
 
 *Figure 1 — Dashboard flow. Selecting, editing and deleting each call the API
-listed below.*
+listed above.*
 
 ## Functional requirements
 
