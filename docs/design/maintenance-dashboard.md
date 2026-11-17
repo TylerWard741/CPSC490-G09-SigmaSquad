@@ -47,28 +47,10 @@ All of these are defined in `docs/specs/vehicle-service-api.md`.
 
 ## Dashboard flow
 
-```mermaid
-flowchart TD
-    open[User opens the dashboard] --> list[List saved vehicles]
-    list --> select[User selects a vehicle]
-    select --> records[Show its service records, newest first]
-    records --> edit[User edits a record]
-    records --> delrec[User deletes a record]
-    list --> delveh[User deletes a vehicle]
-    edit --> save[Save change and show updated record]
-    delrec --> confirm1{Confirm?}
-    delveh --> confirm2{Confirm?}
-    confirm1 -- yes --> removed1[Record removed from history]
-    confirm2 -- yes --> removed2[Vehicle and its records removed]
-    confirm1 -- no --> records
-    confirm2 -- no --> list
-    save --> records
-    removed1 --> records
-    removed2 --> list
-```
+![Dashboard flow: the user opens the dashboard, sees the saved vehicles, selects one to see its service records, and can edit or delete a record or delete a vehicle](diagrams/maintenance-dashboard.png)
 
 *Figure 1 — Dashboard flow. Selecting, editing and deleting each call the API
-listed above.*
+listed above. Source: `diagrams/maintenance-dashboard.mmd`.*
 
 ## Functional requirements
 
