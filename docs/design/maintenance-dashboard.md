@@ -20,7 +20,8 @@ not cover the screens around it (vehicle selection, service entry, import).
 
 - Listing the vehicles saved to the demo user's account.
 - Showing a selected vehicle's service records, newest first.
-- Editing a service record, deleting a service record, deleting a vehicle.
+- Editing a vehicle's nickname or current mileage, editing a service record,
+  deleting a service record, deleting a vehicle.
 - Fitting a phone-width screen, with readable text and tappable buttons.
 
 **Out of scope.**
@@ -28,9 +29,6 @@ not cover the screens around it (vehicle selection, service entry, import).
 - Status labels and the missing-data prompt (#34, #37; see
   `docs/specs/recommendations-and-alerts.md` FR-6 to FR-9 and FR-13).
 - Adding vehicles and service records (#29, #31).
-- Editing a vehicle's nickname or current mileage from the dashboard. The API
-  supports it (`docs/specs/vehicle-service-api.md` FR-10); the dashboard does
-  not use it yet.
 - Sign-in. The page acts as the seeded demo user.
 
 ## What the dashboard calls
@@ -43,6 +41,7 @@ All of these are defined in `docs/specs/vehicle-service-api.md`.
 | Select a vehicle | `GET /vehicles/{vehicle_id}/service-records` |
 | Save an edited record | `PATCH /service-records/{record_id}` |
 | Delete a record | `DELETE /service-records/{record_id}` |
+| Save an edited vehicle | `PATCH /vehicles/{vehicle_id}` |
 | Delete a vehicle | `DELETE /vehicles/{vehicle_id}` |
 
 ## Dashboard flow
@@ -62,6 +61,7 @@ listed above. Source: `diagrams/maintenance-dashboard.mmd`.*
 | FR-4 | When the user edits a service record on the dashboard, the system shall save the change and show the updated record. | #32 | `editing a service record saves it and the table shows the change` |
 | FR-5 | When the user deletes a service record on the dashboard, the system shall remove it from the vehicle's service history. | #32 | `deleting a service record after confirming removes it` |
 | FR-6 | When the user deletes a vehicle on the dashboard, the system shall remove the vehicle and all of its service records. | #32 | `deleting the selected vehicle removes it and clears its history` |
+| FR-7 | When the user edits a vehicle's nickname or current mileage on the dashboard, the system shall save the change and show the updated vehicle. | #32 | none yet |
 
 ## Non-functional requirements
 
@@ -74,5 +74,3 @@ listed above. Source: `diagrams/maintenance-dashboard.mmd`.*
 
 - **Phone-width numbers.** Neither NFR names a width or a tap-target size, and
   the team has not agreed any. Readability has no measure at all.
-- **Vehicle edits.** Whether the dashboard edits a vehicle's nickname or current
-  mileage is not decided. The API supports it.
