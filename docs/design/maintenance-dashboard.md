@@ -76,8 +76,7 @@ server in jsdom. They are on the open PRs #90, #92 and #102, not yet on
 | NFR-1 | While the dashboard is shown on a phone-width screen, the system shall not require horizontal scrolling. | The app is meant to work on mobile browsers; sideways scrolling makes a table hard to read. | `at <width>px the page is no wider than the screen (no horizontal scroll)` |
 | NFR-2 | While the dashboard is shown on a phone-width screen, the system shall show text and buttons at a size that is readable and easy to tap. | Users cannot use a page whose text they cannot read or whose buttons they miss. | `at <width>px every visible button and field is at least 44px tall`; readability is judged by a person |
 
-These restate `docs/specs/recommendations-and-alerts.md` NFR-3 and NFR-4. They
-give no widths or sizes (see Open questions).
+These give no widths or sizes (see Open questions).
 
 ## Open questions
 
