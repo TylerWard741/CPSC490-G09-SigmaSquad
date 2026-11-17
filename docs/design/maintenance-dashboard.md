@@ -76,23 +76,9 @@ server in jsdom. They are on the open PRs #90, #92 and #102, not yet on
 | NFR-1 | While the dashboard is shown on a phone-width screen, the system shall not require horizontal scrolling. | The app is meant to work on mobile browsers; sideways scrolling makes a table hard to read. | `at <width>px the page is no wider than the screen (no horizontal scroll)` |
 | NFR-2 | While the dashboard is shown on a phone-width screen, the system shall show text and buttons at a size that is readable and easy to tap. | Users cannot use a page whose text they cannot read or whose buttons they miss. | `at <width>px every visible button and field is at least 44px tall`; readability is judged by a person |
 
-These give no widths or sizes (see Open questions).
-
 ## Open questions
 
-- **Phone-width numbers.** The criteria for NFR-1 and NFR-2 do not name a width
-  or a size, because the team has not agreed any. The tests use 320, 375 and
-  414 px as phone widths and 44 px as the minimum tap-target height. Those
-  numbers live in the test, not in the criteria.
-- **Readability is not measured.** The tap-target test measures height, not
-  whether text is readable. A person has to look at the page at phone width.
-- **Vehicle edits.** Whether the dashboard should also edit a vehicle's nickname
-  or current mileage is not decided.
-- **Overlap with `screen-flow.md`.** That document already describes the
-  dashboard's place in the navigation; this one describes its behaviour. Check
-  that they do not drift.
-- **Tests use a fake server.** They run the page in jsdom, which is not a
-  browser, against a stand-in for the API that could drift from the real one.
-- **Layout of edit and delete on phones.** PR #102's description says the edit
-  and delete controls are not laid out for the card view yet. That has not been
-  re-checked after the merges.
+- **Phone-width numbers.** Neither NFR names a width or a tap-target size, and
+  the team has not agreed any. Readability has no measure at all.
+- **Vehicle edits.** Whether the dashboard edits a vehicle's nickname or current
+  mileage is not decided. The API supports it.
