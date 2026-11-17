@@ -9,6 +9,9 @@ SAMPLE = {
     "Honda": {"Civic": [(2019, "EX"), (2022, "Sport")]},
 }
 
+# The three version-one service types (#35).
+SERVICE_TYPES = ["Oil change", "Tire rotation", "Brake inspection"]
+
 # Auth is out of scope for #29: this seeded user stands in for a signed-in one.
 DEMO_USER_ID = 1
 DEMO_USER_EMAIL = "demo@example.com"
@@ -32,6 +35,10 @@ def init_db(db_path=DB_PATH):
             )
     conn.execute(
         "INSERT INTO users (id, email) VALUES (?, ?)", (DEMO_USER_ID, DEMO_USER_EMAIL)
+    )
+    conn.executemany(
+        "INSERT INTO service_types (name) VALUES (?)",
+        [(name,) for name in SERVICE_TYPES],
     )
     conn.commit()
     conn.close()

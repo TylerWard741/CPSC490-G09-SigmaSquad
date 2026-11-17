@@ -2,7 +2,7 @@
 
 body {
 	font-family: system-ui, sans-serif;
-	max-width: 32rem;
+	max-width: 72rem;
 	margin: 2rem auto;
 	padding: 0 1rem;
 	color: #1f2933;
@@ -47,8 +47,18 @@ button:disabled {
 	background: #fff4d6;
 	color: #6b4e00;
 }
-#retry {
+#retry,
+#dash-retry {
 	margin-top: 0.5rem;
+}
+.vehicle-button {
+	display: block;
+	flex: 1;
+	margin-top: 0;
+	text-align: left;
+}
+.action-button {
+	margin-top: 0;
 }
 [hidden] {
 	display: none;
