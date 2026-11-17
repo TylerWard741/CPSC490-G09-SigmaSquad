@@ -257,6 +257,7 @@ buildable. CI gate G9 fails if a document exists in `docs/specs/` or
 | [docs/specs/vehicle-service-api.md](../docs/specs/vehicle-service-api.md) | specification | API spec that outlines our database schema and REST API implementation for Creating, Reading, Updating, and Deleting (CRUD) operations for vehicles and service records. | #30 |
 | [docs/specs/recommendations-and-alerts.md](../docs/specs/recommendations-and-alerts.md) | specification | Status labels and dashboard for recommended services (epic #28) | #50, #34, #35, #36, #37, #38 |
 | [docs/specs/vehicle-selection.md](../docs/specs/vehicle-selection.md) | specification | This spec covers choosing a vehicle with its make, model, year and trim, and saving it to an account. | #29 |
+| [docs/specs/vehicle-data-and-tracking.md](../docs/specs/vehicle-data-and-tracking.md) | specification | Vehicle selection, service-record entry and the dashboard for epic #27 (vehicle data and maintenance tracking) | #49, #27, #29, #30, #31 |
 
 ### Planned activities — the work items
 
@@ -295,6 +296,7 @@ G8 fails if such an issue exists that this section does not link.
 | [task:#59](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/59) | Task | Change Objective 2.3 from two labels to four (#36, epic #28) | -- | @TylerWard741 | Sprint 2 |
 | [task:#63](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/63) | Task | Vehicle database schema and seed data | #29 | @Mathieu2303 | Sprint 2 |
 | [task:#18](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/18) | Task | Write proposal section 5 Project Outcomes and section 6 Project Timeline (the CPSC 491 plan) | -- | @ready2pullallnighters | Sprint 3 |
+| [task:#106](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/106) | Task | List the epic #27 spec in proposal section 4 (Specification and design documents) | -- | @ready2pullallnighters | Sprint 3 |
 
 ## 5. Project Outcomes
 
