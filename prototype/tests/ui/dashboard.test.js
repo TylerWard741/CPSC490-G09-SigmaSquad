@@ -191,6 +191,12 @@ async function openPage(t, { server = createServer(), hash = "#dashboard" } = {}
   return page;
 }
 
+test("before a vehicle is selected, the dashboard asks the user to select one", async (t) => {
+  const page = await openPage(t);
+  assert.equal(page.message(), "Select a vehicle to see its service history.");
+  assert.equal(page.recordsTableHidden(), true);
+});
+
 test("the dashboard lists every vehicle saved to the demo user's account", async (t) => {
   const page = await openPage(t);
   assert.deepEqual(page.vehicleLabels(), [
