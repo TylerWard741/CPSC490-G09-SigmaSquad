@@ -325,6 +325,14 @@ export function DashboardPage() {
 	const failureList = Object.values(failures);
 	const errorText = [...new Set(failureList.map((failure) => failure.message))].join(" ");
 	const records = history.kind === "loaded" ? history.records : [];
+	// FR-13: name what's missing instead of showing incomplete labels. A
+	// vehicle not being chosen yet is covered by historyMessage below.
+	const missing: string[] = [];
+	if (history.kind === "loaded") {
+		if (records.length === 0) missing.push("service history");
+		if (mileage === null) missing.push("current mileage");
+	}
+	const missingDataPrompt = missing.length === 0 ? "" : `Enter ${missing.join(" and ")} to see recommendations.`;
 	const historyMessage =
 		history.kind === "idle"
 			? "Select a vehicle to see its service history."
@@ -385,6 +393,9 @@ export function DashboardPage() {
 					<h2 id="dash-history-title" className="text-lg font-semibold">
 						{selected ? `Service history: ${selected.label}` : "Service history"}
 					</h2>
+					<p id="dash-missing-prompt" className="mt-2" role="status" hidden={missingDataPrompt === ""}>
+						{missingDataPrompt}
+					</p>
 					<div id="dash-mileage-section" className="mt-3" hidden={!selected || history.kind !== "loaded"}>
 						<label htmlFor="dash-mileage-input">Current mileage</label>
 						<p id="dash-mileage-current" className="text-sm">
