@@ -257,6 +257,7 @@ buildable. CI gate G9 fails if a document exists in `docs/specs/` or
 | [docs/design/maintenance-dashboard.md](../docs/design/maintenance-dashboard.md) | design | what the dashboard shows and does: vehicle list, service history, edit and delete, phone-width layout | #27, #32 |
 | [docs/specs/vehicle-service-api.md](../docs/specs/vehicle-service-api.md) | specification | API spec that outlines our database schema and REST API implementation for Creating, Reading, Updating, and Deleting (CRUD) operations for vehicles and service records. | #30 |
 | [docs/specs/recommendations-and-alerts.md](../docs/specs/recommendations-and-alerts.md) | specification | Status labels and dashboard for recommended services (epic #28) | #50, #34, #35, #36, #37, #38 |
+| [docs/specs/recommendation-engine.md](../docs/specs/recommendation-engine.md) | specification | which service types the recommendation engine supports and the reference data it reads | #28, #35 |
 | [docs/specs/vehicle-selection.md](../docs/specs/vehicle-selection.md) | specification | This spec covers choosing a vehicle with its make, model, year and trim, and saving it to an account. | #29 |
 | [docs/specs/vehicle-data-and-tracking.md](../docs/specs/vehicle-data-and-tracking.md) | specification | Specification for epic #27: vehicle data upload and tracking, CRUD requirements, and service-history entry/import. | #27, #29, #30, #31, #49 |
 
