@@ -39,12 +39,6 @@ that turn a mileage into a label are in
 
 ## Open questions
 
-- **Which vehicle has a window.** The prototype has windows for some vehicles
-  and none for others, because some manufacturers publish no fixed mileage. Which
-  vehicles must have all three is not decided.
-- **After a service.** The spec does not say when the next window starts once a
-  service is done, or what the first window is when a vehicle has no record of
-  that service. Tyler (owner of #34) has not confirmed either rule.
 - **No service history.** FR-1 to FR-3 apply when a vehicle has service history.
   What the engine does without it is not defined here; the prompt for missing
   data is #34's (`recommendations-and-alerts.md` FR-13).
