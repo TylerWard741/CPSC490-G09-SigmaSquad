@@ -61,9 +61,12 @@ button:disabled {
 }
 .vehicle-button {
 	display: block;
-	width: 100%;
+	flex: 1;
 	margin-top: 0;
 	text-align: left;
+}
+.action-button {
+	margin-top: 0;
 }
 [hidden] {
 	display: none;
