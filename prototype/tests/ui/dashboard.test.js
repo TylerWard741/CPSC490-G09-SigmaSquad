@@ -157,6 +157,12 @@ test("switching vehicles shows the other vehicle's records", async (t) => {
   assert.match(page.doc.getElementById("dash-history-title").textContent, /Commuter/);
 });
 
+test("before a vehicle is selected, the dashboard asks the user to select one", async (t) => {
+  const page = await openPage(t);
+  assert.equal(page.message(), "Select a vehicle to see its service history.");
+  assert.equal(page.recordsTableHidden(), true);
+});
+
 test("a vehicle with no records shows the empty state", async (t) => {
   const page = await openPage(t);
   await page.clickVehicle(3);
