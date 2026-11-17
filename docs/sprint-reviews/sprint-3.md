@@ -40,11 +40,11 @@ mine (shared CLAUDE.md: a human judges acceptance criteria):
 - #35 (Objective 2.2, three service types, sp 3) — PR #109 added
   `docs/specs/recommendation-engine.md`. Both child tasks (#75, #76) are
   done in the prototype.
-- #34 (Objective 2.1, recommendation engine, sp 5) — all five children
-  (#72–#76) are closed, but #34's own acceptance criteria are still the
-  **unfilled template placeholders** (`- [ ] When ..., the system shall
-  ...`) — nobody ever wrote them. Worth fixing before judging this one
-  done either way.
+- #34 (Objective 2.1, recommendation engine, sp 5) — its two real children
+  (#73, #74) are both closed, but #34's own acceptance criteria are still
+  the **unfilled template placeholders** (`- [ ] When ..., the system
+  shall ...`) — nobody ever wrote them. Worth fixing before judging this
+  one done either way.
 
 ## Completed (merged PRs) — final
 
@@ -53,7 +53,7 @@ mine (shared CLAUDE.md: a human judges acceptance criteria):
 | #85 Manual service-record entry form (child of #31) | @emilyvlsco | #88 | Nov 15 |
 | #86 Service-history import/upload interface (child of #31) | @emilyvlsco | #94 | Nov 15/16 |
 | #87 Display saved service history (child of #31) | @emilyvlsco | #97 | Nov 16 |
-| #72 Label rule (child of #34) | @Mathieu2303 | #93 | Nov 16 |
+| #72 Label rule (child of #36) | @Mathieu2303 | #93 | Nov 16 |
 | #81 Service-record schema/CRUD API (child of #33) | @TamtungOS | #89 | Nov 16 |
 | #80 Section 4 Sprint 3 rows | @TylerWard741 | #82 | Nov 17 |
 | #83 Board-card-movement reminder in shared CLAUDE.md | @TylerWard741 | #84 | Nov 17 |
@@ -64,10 +64,10 @@ mine (shared CLAUDE.md: a human judges acceptance criteria):
 | #74 Missing-data prompt (child of #34) | @TylerWard741 | #96 | Nov 17 |
 | #78 Responsive dashboard for mobile (child of #32) | @ready2pullallnighters | #102 | Nov 17 |
 | #32 Objective 1.4 deliverable doc (sp 5, pending close) | @ready2pullallnighters | #108 | Nov 17 |
-| #75 Recommended-interval reference data (child of #34) | @ready2pullallnighters | #103 | Nov 17 |
+| #75 Recommended-interval reference data (child of #35) | @ready2pullallnighters | #103 | Nov 17 |
 | #35 Objective 2.2 deliverable doc (sp 3, pending close) | @ready2pullallnighters | #109 | Nov 17 |
 | #56 Sprint 2 review facts (carried over) | @TylerWard741 | #99 | Nov 17 |
-| #76 Wire service types into the recommendation calculation (child of #34) | @ready2pullallnighters | #104 | Nov 17 |
+| #76 Wire service types into the recommendation calculation (child of #35) | @ready2pullallnighters | #104 | Nov 17 |
 
 ## Still open at the boundary
 
