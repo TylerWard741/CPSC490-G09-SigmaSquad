@@ -20,6 +20,7 @@ Thumbs.db
 .env.*
 *.pem
 *.key
+!.env.example
 
 # Build output
 dist/
@@ -29,3 +30,4 @@ build/
 # Converted submissions (keep the Markdown source of truth in git;
 # commit a .docx deliberately if your team writes in Word)
 proposal/*.docx
+prototype/db/app.db
