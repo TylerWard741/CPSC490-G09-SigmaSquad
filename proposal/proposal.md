@@ -110,7 +110,7 @@ Provide accurate, mileage-based maintenance recommendations and clearly communic
 
 **2.3.** Assign and display a status label of either "When Convenient," "Due Soon," "Due Now," or "Overdue" for each applicable maintenance recommendation, using documented mileage-based rules. ([story:#36](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/36))
 
-**2.4.** Display dashboard alerts for services that are overdue or within 500 miles of their recommended due mileage, applying the appropriate urgency label. ([story:#37](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/37))
+**2.4.** Display dashboard alerts for services labeled Due Soon, Due Now, or Overdue, showing each service's status label, mileage window, and miles remaining or past due. ([story:#37](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/37))
 
 **2.5.** Validate vehicle selection, service-history processing, due-mileage calculations, and urgency labels against at least five simulated vehicle-data scenarios, with every scenario producing the expected result. ([story:#38](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/38))
 
@@ -312,6 +312,7 @@ G8 fails if such an issue exists that this section does not link.
 | [task:#85](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/85) | Task | Build the manual service-record entry form | #31 | @emilyvlsco | Sprint 3 |
 | [task:#86](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/86) | Task | Build the service-history import/upload interface | #31 | @emilyvlsco | Sprint 3 |
 | [task:#87](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/87) | Task | Display a vehicle's saved maintenance history | #31 | @emilyvlsco | Sprint 3 |
+| [task:#115](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/115) | Task | Sync Objective 2.4 wording to the four-label system and fill #34/#37/#38 acceptance criteria | -- | @TylerWard741 | Sprint 4 |
 
 ## 5. Project Outcomes
 
