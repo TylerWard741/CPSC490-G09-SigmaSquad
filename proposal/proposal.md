@@ -312,6 +312,10 @@ G8 fails if such an issue exists that this section does not link.
 | [task:#85](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/85) | Task | Build the manual service-record entry form | #31 | @emilyvlsco | Sprint 3 |
 | [task:#86](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/86) | Task | Build the service-history import/upload interface | #31 | @emilyvlsco | Sprint 3 |
 | [task:#87](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/87) | Task | Display a vehicle's saved maintenance history | #31 | @emilyvlsco | Sprint 3 |
+| [task:#98](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/98) | Task | Write the Sprint 3 review and open the develop-to-main release PR | -- | @TylerWard741 | Sprint 3 |
+| [task:#91](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/91) | Task | Write the prototype's UI tests in TypeScript and type-check the prototype | #33 | @Mathieu2303 | Sprint 4 |
+| [task:#101](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/101) | Task | Add a check_repo_clean.py wrapper so local harness runs match CI | -- | @Mathieu2303 | Sprint 4 |
+| [task:#111](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/111) | Task | Fix orphaned issues #91 and #101, and link proposal section 4 for gate G8/G10 | -- | @TylerWard741 | Sprint 4 |
 | [task:#112](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/112) | Task | Update course files to CPSC490 176a886 (to-word.lua, reference.docx) | -- | @TylerWard741 | Sprint 4 |
 
 ## 5. Project Outcomes
