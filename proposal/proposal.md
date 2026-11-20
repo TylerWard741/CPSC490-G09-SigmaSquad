@@ -297,7 +297,7 @@ G8 fails if such an issue exists that this section does not link.
 | [task:#57](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/57) | Task | Add Sprint 2 task rows to proposal section 4 (gate G8) | -- | @TylerWard741 | Sprint 2 |
 | [task:#59](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/59) | Task | Change Objective 2.3 from two labels to four (#36, epic #28) | -- | @TylerWard741 | Sprint 2 |
 | [task:#63](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/63) | Task | Vehicle database schema and seed data | #29 | @Mathieu2303 | Sprint 2 |
-| [task:#18](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/18) | Task | Write proposal section 5 Project Outcomes and section 6 Project Timeline (the CPSC 491 plan) | -- | @ready2pullallnighters | Sprint 3 |
+| [task:#18](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/18) | Task | Write proposal section 5 Project Outcomes and section 6 Project Timeline (the CPSC 491 plan) | -- | @ready2pullallnighters | Sprint 4 |
 | [task:#72](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/72) | Task | Implement the When Convenient/Due Soon/Due Now/Overdue label rule | #36 | @Mathieu2303 | Sprint 3 |
 | [task:#73](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/73) | Task | Add current-mileage entry that replaces the stored value and recalculates labels | #34 | @TylerWard741 | Sprint 3 |
 | [task:#74](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/74) | Task | Prompt the user for missing data before showing recommendation labels | #34 | @TylerWard741 | Sprint 3 |
@@ -312,6 +312,7 @@ G8 fails if such an issue exists that this section does not link.
 | [task:#85](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/85) | Task | Build the manual service-record entry form | #31 | @emilyvlsco | Sprint 3 |
 | [task:#86](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/86) | Task | Build the service-history import/upload interface | #31 | @emilyvlsco | Sprint 3 |
 | [task:#87](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/87) | Task | Display a vehicle's saved maintenance history | #31 | @emilyvlsco | Sprint 3 |
+| [task:#122](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/122) | Task | Write proposal section 3/4 prose from the specs, design docs, and implemented slice | -- | @TamtungOS | Sprint 4 |
 
 ## 5. Project Outcomes
 
