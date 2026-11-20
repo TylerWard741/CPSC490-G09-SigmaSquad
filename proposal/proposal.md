@@ -312,6 +312,9 @@ G8 fails if such an issue exists that this section does not link.
 | [task:#85](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/85) | Task | Build the manual service-record entry form | #31 | @emilyvlsco | Sprint 3 |
 | [task:#86](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/86) | Task | Build the service-history import/upload interface | #31 | @emilyvlsco | Sprint 3 |
 | [task:#87](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/87) | Task | Display a vehicle's saved maintenance history | #31 | @emilyvlsco | Sprint 3 |
+| [task:#117](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/117) | Task | Build the dashboard alerts list for Due Soon, Due Now, and Overdue services | #37 | @emilyvlsco | Sprint 4 |
+| [task:#118](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/118) | Task | Show mileage window and miles remaining/past due for each dashboard alert | #37 | @emilyvlsco | Sprint 4 |
+| [task:#119](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/119) | Task | Write a five-scenario end-to-end test suite for the recommendation engine | #38 | @TylerWard741 | Sprint 4 |
 
 ## 5. Project Outcomes
 
