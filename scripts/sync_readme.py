@@ -6,12 +6,17 @@ top. This script is the single place that assembles it, so an edit to the
 banner can never again silently drop the attribution (it did once).
 """
 import io
+import os
 import re
 import sys
 from pathlib import Path
 
-GUIDE = Path(sys.argv[1] if len(sys.argv) > 1 else
-             r"C:/Users/kshin/OneDrive/Documents/CSUF/2026_Fall/CPSC490_Group_Repo_Guide.md")
+# The guide lives in the instructor's private course folder: pass its path as
+# the first argument, or set CPSC_GUIDE.
+_guide = sys.argv[1] if len(sys.argv) > 1 else os.environ.get("CPSC_GUIDE")
+if not _guide:
+    sys.exit("usage: python scripts/sync_readme.py <path to CPSC490_Group_Repo_Guide.md> (or set CPSC_GUIDE)")
+GUIDE = Path(_guide)
 OUT = Path(__file__).resolve().parents[1] / "README.md"
 
 BANNER = """# CPSC 490 — Group Repository Setup Guide
