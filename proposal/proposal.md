@@ -316,6 +316,7 @@ G8 fails if such an issue exists that this section does not link.
 | [task:#91](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/91) | Task | Write the prototype's UI tests in TypeScript and type-check the prototype | #33 | @Mathieu2303 | Sprint 4 |
 | [task:#101](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/101) | Task | Add a check_repo_clean.py wrapper so local harness runs match CI | -- | @Mathieu2303 | Sprint 4 |
 | [task:#111](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/111) | Task | Fix orphaned issues #91 and #101, and link proposal section 4 for gate G8/G10 | -- | @TylerWard741 | Sprint 4 |
+| [task:#112](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/112) | Task | Update course files to CPSC490 176a886 (to-word.lua, reference.docx) | -- | @TylerWard741 | Sprint 4 |
 | [task:#115](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/115) | Task | Sync Objective 2.4 wording to the four-label system and fill #34/#37/#38 acceptance criteria | -- | @TylerWard741 | Sprint 4 |
 
 ## 5. Project Outcomes
