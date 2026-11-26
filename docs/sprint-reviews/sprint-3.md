@@ -4,9 +4,7 @@
 > 15 snapshot that merged via #100 (PR for this same file) before Monday Nov
 > 16's merges were in. Facts pulled from GitHub and checked against
 > `develop` by Hector (TamtungOS) on #98; boundary taken as midnight
-> Pacific, same as sprint-2.md. One placeholder remains: the last row of
-> the Feedback table, awaiting Tyler's own sentence confirming Ethan's two
-> review comments are fixed (they are — see the Carried-over table below).
+> Pacific, same as sprint-2.md.
 
 ## Progress this sprint — the substance
 
@@ -126,6 +124,16 @@ should be used going forward).
 
 - #31: all three of its tasks merged (#88, #94, #97) — acceptance criteria
   still unchecked; Tyler's call whether it's done.
+
+**Update, Nov 25:** running the prototype's full test suite (177/177 pytest,
+94/94 `npm test`) gave test-backed evidence for most of the still-open
+acceptance criteria above and in the Carried-over tables, so the boxes below
+were checked off against that evidence. The issues remain open — closing
+them is still Tyler's call, not this file's.
+- #31: all 7 criteria checked.
+- #32: 8 of 9 checked; criterion 7's nickname-editing half is still
+  unchecked (mileage editing works, nickname editing doesn't — see #125).
+- #34: all 4 criteria checked.
 
 ## What we change next sprint
 
