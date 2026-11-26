@@ -318,6 +318,10 @@ G8 fails if such an issue exists that this section does not link.
 | [task:#111](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/111) | Task | Fix orphaned issues #91 and #101, and link proposal section 4 for gate G8/G10 | -- | @TylerWard741 | Sprint 4 |
 | [task:#112](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/112) | Task | Update course files to CPSC490 176a886 (to-word.lua, reference.docx) | -- | @TylerWard741 | Sprint 4 |
 | [task:#115](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/115) | Task | Sync Objective 2.4 wording to the four-label system and fill #34/#37/#38 acceptance criteria | -- | @TylerWard741 | Sprint 4 |
+| [task:#117](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/117) | Task | Build the dashboard alerts list for Due Soon, Due Now, and Overdue services | #37 | @emilyvlsco | Sprint 4 |
+| [task:#118](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/118) | Task | Show mileage window and miles remaining/past due for each dashboard alert | #37 | @emilyvlsco | Sprint 4 |
+| [task:#119](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/119) | Task | Write a five-scenario end-to-end test suite for the recommendation engine | #38 | @TylerWard741 | Sprint 4 |
+| [task:#120](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/120) | Task | Break down #37 and #38 into child tasks and link them in proposal section 4 | -- | @TylerWard741 | Sprint 4 |
 
 ## 5. Project Outcomes
 
