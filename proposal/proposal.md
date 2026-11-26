@@ -108,9 +108,9 @@ Provide accurate, mileage-based maintenance recommendations and clearly communic
 
 **2.2.** Support next-service recommendations for at least three common service types: oil changes, tire rotations, and brake inspections. ([story:#35](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/35))
 
-**2.3.** Assign and display an urgency label of either "Urgent" or "When convenient" for each applicable maintenance recommendation, using documented mileage-based rules. ([story:#36](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/36))
+**2.3.** Assign and display a status label of either "When Convenient," "Due Soon," "Due Now," or "Overdue" for each applicable maintenance recommendation, using documented mileage-based rules. ([story:#36](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/36))
 
-**2.4.** Display dashboard alerts for services that are overdue or within 500 miles of their recommended due mileage, applying the appropriate urgency label. ([story:#37](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/37))
+**2.4.** Display dashboard alerts for services labeled Due Soon, Due Now, or Overdue, showing each service's status label, mileage window, and miles remaining or past due. ([story:#37](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/37))
 
 **2.5.** Validate vehicle selection, service-history processing, due-mileage calculations, and urgency labels against at least five simulated vehicle-data scenarios, with every scenario producing the expected result. ([story:#38](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/38))
 
@@ -317,6 +317,7 @@ G8 fails if such an issue exists that this section does not link.
 | [task:#101](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/101) | Task | Add a check_repo_clean.py wrapper so local harness runs match CI | -- | @Mathieu2303 | Sprint 4 |
 | [task:#111](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/111) | Task | Fix orphaned issues #91 and #101, and link proposal section 4 for gate G8/G10 | -- | @TylerWard741 | Sprint 4 |
 | [task:#112](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/112) | Task | Update course files to CPSC490 176a886 (to-word.lua, reference.docx) | -- | @TylerWard741 | Sprint 4 |
+| [task:#115](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/115) | Task | Sync Objective 2.4 wording to the four-label system and fill #34/#37/#38 acceptance criteria | -- | @TylerWard741 | Sprint 4 |
 | [task:#117](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/117) | Task | Build the dashboard alerts list for Due Soon, Due Now, and Overdue services | #37 | @emilyvlsco | Sprint 4 |
 | [task:#118](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/118) | Task | Show mileage window and miles remaining/past due for each dashboard alert | #37 | @emilyvlsco | Sprint 4 |
 | [task:#119](https://github.com/TylerWard741/CPSC490-G09-SigmaSquad/issues/119) | Task | Write a five-scenario end-to-end test suite for the recommendation engine | #38 | @TylerWard741 | Sprint 4 |
