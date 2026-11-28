@@ -19,7 +19,7 @@ Closes #<story>
 ## Checklist
 - [ ] Acceptance criteria of the linked story are met **as written** (not reworded)
 - [ ] I read every line of the change and can explain it
-- [ ] Harness run locally and green (`python .github/scripts/check_repo.py`)
+- [ ] Harness run locally and green (`python .github/scripts/check_repo_clean.py`, which runs `check_repo.py` without `node_modules`)
 - [ ] No existing test was weakened, skipped, or deleted (if one was, explained above)
 - [ ] No unrelated changes bundled in
 - [ ] AI-assisted commits carry an `Assisted-by:` trailer
