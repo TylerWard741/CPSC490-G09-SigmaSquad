@@ -87,17 +87,22 @@ the `test` line in `package.json`, or `npm test` will not run it.
 ## Running the repository harness locally
 
 `check_repo.py` only skips a `node_modules` folder at the repository root, so it
-reports failures from third-party READMEs in `prototype/node_modules`. Delete
-that folder before running the harness. CI is not affected, because its harness
-job never installs Node packages.
+reports failures from third-party READMEs in `prototype/node_modules` and
+`prototype/web/node_modules`. CI is not affected, because its harness job never
+installs Node packages.
 
-```powershell
-Remove-Item -Recurse -Force prototype\node_modules   # Windows, from the repository root
-```
+Run the wrapper instead (#101). It copies the repository to a temporary folder
+without `node_modules`, `.venv` or build output, runs the unchanged
+`check_repo.py` there with the same arguments, prints its output, exits with its
+exit code, and deletes the copy. Nothing in your working tree is touched, so
+there is nothing to reinstall afterwards.
 
 ```bash
-rm -rf prototype/node_modules                        # Linux / macOS, from the repository root
+python .github/scripts/check_repo_clean.py            # from anywhere; add --strict to pass it through
 ```
+
+Set `GITHUB_TOKEN` and `GITHUB_REPOSITORY` first if you want the GitHub-backed
+gates (G3, G8, G10) to run the way they do in CI.
 
 ## What it proves
 
